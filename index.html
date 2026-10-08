@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>TRI WAHYUDI // 16-BIT RETRO PORTFOLIO</title>
-  <meta name="description" content="Portfolio 16-Bit Retro Classic Tri Wahyudi - Mahasiswa Teknik Informatika Semester 5 (21 Tahun). Showcase & Analisis Project Web PO Bus, Web Alat Kebersihan, Android Apps, dan IoT.">
+  <meta name="description" content="Portfolio 16-Bit Retro Tri Wahyudi - Mahasiswa Teknik Informatika Semester 5 (21 Tahun). Spesialisasi Web PO Bus, Web Alat Kebersihan, Mobile Android, & Analisis Project GitHub.">
   
   <!-- Pixel Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,17 +15,11 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230f051d'/><rect x='2' y='4' width='12' height='8' fill='%2300f0ff'/><rect x='4' y='6' width='3' height='2' fill='%23ff007f'/><rect x='9' y='6' width='3' height='2' fill='%23ffcc00'/><rect x='6' y='10' width='4' height='2' fill='%2339ff14'/></svg>">
 </head>
 <body class="crt-active">
-  <!-- CRT Scanlines and Curvature Overlay -->
+  <!-- CRT Scanlines Overlay -->
   <div id="crtOverlay" class="crt-overlay" aria-hidden="true"></div>
   <div class="crt-vignette" aria-hidden="true"></div>
 
-  <!-- Audio unlock banner for mobile browser autoplay policy -->
-  <div id="audioUnlockBanner" class="retro-banner-top">
-    <span>[!] KLIK UNTUK MENGAKTIFKAN 16-BIT RETRO SOUND FX</span>
-    <button id="enableSoundBtn" class="retro-btn btn-sm">AKTIFKAN SOUND</button>
-  </div>
-
-  <!-- RETRO TOP HUD / HEADER -->
+  <!-- TOP HUD / STATUS BAR -->
   <header class="retro-hud">
     <div class="hud-container">
       <div class="hud-item player-tag">
@@ -33,165 +27,157 @@
         <span class="hud-val neon-green">TRI WAHYUDI</span>
       </div>
 
-      <div class="hud-item score-tag">
-        <span class="hud-label">SEM / AGE</span>
-        <span class="hud-val neon-cyan">SEM.5 &bull; 21 TH</span>
+      <div class="hud-item status-tag">
+        <span class="hud-label">ROLE</span>
+        <span class="hud-val neon-cyan">TI SEM.5 &bull; 21 TH</span>
       </div>
 
       <div class="hud-item score-tag">
         <span class="hud-label">SCORE</span>
-        <span id="hudScore" class="hud-val neon-yellow">099850</span>
-      </div>
-
-      <div class="hud-item repo-tag">
-        <span class="hud-label">GITHUB REPOS</span>
-        <span id="repoCount" class="hud-val neon-pink">📁 30+ REPOS</span>
+        <span id="hudScore" class="hud-val neon-yellow">099950</span>
       </div>
 
       <div class="hud-controls">
         <button id="sfxToggleBtn" class="hud-btn" title="Toggle Sound FX" aria-label="Toggle Sound">
           <span class="icon">🔊</span> <span class="btn-text">SFX: ON</span>
         </button>
-        <button id="crtToggleBtn" class="hud-btn" title="Toggle CRT Filter" aria-label="Toggle CRT Scanline Effect">
+        <button id="crtToggleBtn" class="hud-btn" title="Toggle CRT Filter" aria-label="Toggle CRT Scanlines">
           <span class="icon">📺</span> <span class="btn-text">CRT: ON</span>
-        </button>
-        <button id="menuToggleBtn" class="hud-btn mobile-menu-btn" aria-label="Buka Menu Navigasi">
-          <span class="icon">☰</span> <span class="btn-text">MENU</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- NAVIGATION BAR -->
-  <nav id="retroNav" class="retro-nav">
+  <!-- RETRO SCREEN NAVIGATION (TAB-BASED SPA ROUTER) -->
+  <nav class="retro-nav" id="retroNav">
     <div class="nav-container">
-      <ul class="nav-links">
-        <li><a href="#hero" class="nav-item active"><span class="bracket">[</span>1. START<span class="bracket">]</span></a></li>
-        <li><a href="#about" class="nav-item"><span class="bracket">[</span>2. PROFIL<span class="bracket">]</span></a></li>
-        <li><a href="#projects" class="nav-item"><span class="bracket">[</span>3. QUESTS &amp; PROJECT<span class="bracket">]</span></a></li>
-        <li><a href="#github-lab" class="nav-item"><span class="bracket">[</span>4. GITHUB ANALISIS<span class="bracket">]</span></a></li>
-        <li><a href="#ps3-vault" class="nav-item"><span class="bracket">[</span>5. RETRO LAB<span class="bracket">]</span></a></li>
-        <li><a href="#skills" class="nav-item"><span class="bracket">[</span>6. STATS<span class="bracket">]</span></a></li>
-        <li><a href="#arcade" class="nav-item"><span class="bracket">[</span>7. MINI GAME<span class="bracket">]</span></a></li>
-        <li><a href="#contact" class="nav-item"><span class="bracket">[</span>8. KONTAK<span class="bracket">]</span></a></li>
-      </ul>
+      <div class="nav-tabs-wrapper">
+        <button class="nav-tab-btn active sound-click" data-target="view-home">
+          <span class="tab-icon">🏠</span>
+          <span class="tab-label"><span class="bracket">[</span>1. PROFIL<span class="bracket">]</span></span>
+        </button>
+        <button class="nav-tab-btn sound-click" data-target="view-projects">
+          <span class="tab-icon">🚀</span>
+          <span class="tab-label"><span class="bracket">[</span>2. PROJECT &amp; GITHUB<span class="bracket">]</span></span>
+        </button>
+        <button class="nav-tab-btn sound-click" data-target="view-skills">
+          <span class="tab-icon">🔬</span>
+          <span class="tab-label"><span class="bracket">[</span>3. SKILLS &amp; ANALISIS<span class="bracket">]</span></span>
+        </button>
+        <button class="nav-tab-btn sound-click" data-target="view-arcade">
+          <span class="tab-icon">🕹️</span>
+          <span class="tab-label"><span class="bracket">[</span>4. ARCADE GAME<span class="bracket">]</span></span>
+        </button>
+        <button class="nav-tab-btn sound-click" data-target="view-contact">
+          <span class="tab-icon">💾</span>
+          <span class="tab-label"><span class="bracket">[</span>5. KONTAK<span class="bracket">]</span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- MAIN WRAPPER -->
+  <!-- MAIN APP CONTAINER -->
   <main class="page-content">
 
-    <!-- HERO SECTION -->
-    <section id="hero" class="hero-section">
+    <!-- =========================================================================
+         SCREEN 1: PROFIL & HERO (BERANDA)
+         ========================================================================= -->
+    <section id="view-home" class="view-screen active">
       <div class="retro-card hero-card">
         <div class="card-header-bar">
           <span class="sys-dot red"></span>
           <span class="sys-dot yellow"></span>
           <span class="sys-dot green"></span>
-          <span class="window-title">SYSTEM BOOT // READY DEVELOPER ONE</span>
-          <span class="cartridge-badge">TI SEMESTER 5</span>
+          <span class="window-title">CHAR_SELECT // READY DEVELOPER ONE</span>
+          <span class="cartridge-badge">STATUS: ACTIVE</span>
         </div>
 
         <div class="hero-grid">
-          <!-- Sprite Character Avatar -->
+          <!-- Pixel Avatar -->
           <div class="hero-avatar-col">
             <div class="pixel-frame avatar-wrapper">
-              <div class="pixel-avatar" id="heroAvatar">
-                <!-- SVG Pixel Art Character: Developer with Laptop & Headset -->
+              <div class="pixel-avatar">
                 <svg viewBox="0 0 32 32" class="pixel-svg avatar-svg" shape-rendering="crispEdges">
                   <rect width="32" height="32" fill="#18112d"/>
-                  <!-- Hair -->
                   <rect x="10" y="4" width="12" height="4" fill="#1b120c"/>
                   <rect x="8" y="6" width="16" height="4" fill="#2d1c13"/>
-                  <!-- Headband / Headset -->
                   <rect x="9" y="3" width="14" height="2" fill="#00f0ff"/>
                   <rect x="7" y="5" width="2" height="5" fill="#00f0ff"/>
                   <rect x="23" y="5" width="2" height="5" fill="#00f0ff"/>
                   <rect x="6" y="8" width="2" height="4" fill="#ff007f"/>
                   <rect x="24" y="8" width="2" height="4" fill="#ff007f"/>
-                  <!-- Face -->
                   <rect x="10" y="8" width="12" height="8" fill="#ffdbac"/>
                   <rect x="11" y="16" width="10" height="2" fill="#f1c27d"/>
-                  <!-- Eyes -->
                   <rect x="12" y="10" width="2" height="2" fill="#111"/>
                   <rect x="18" y="10" width="2" height="2" fill="#111"/>
                   <rect x="12" y="10" width="1" height="1" fill="#fff"/>
                   <rect x="18" y="10" width="1" height="1" fill="#fff"/>
-                  <!-- Smile -->
                   <rect x="14" y="13" width="4" height="1" fill="#c47a54"/>
-                  <!-- Developer Jacket -->
                   <rect x="8" y="18" width="16" height="8" fill="#1f2338"/>
                   <rect x="11" y="18" width="10" height="7" fill="#00f0ff"/>
-                  <!-- Code icon on shirt </ > -->
                   <rect x="13" y="20" width="2" height="2" fill="#111"/>
                   <rect x="17" y="20" width="2" height="2" fill="#111"/>
                   <rect x="15" y="21" width="2" height="1" fill="#ff007f"/>
-                  <!-- Hands holding Laptop / Controller -->
                   <rect x="7" y="22" width="4" height="3" fill="#ffdbac"/>
                   <rect x="21" y="22" width="4" height="3" fill="#ffdbac"/>
-                  <!-- 16-Bit Laptop Screen -->
                   <rect x="9" y="22" width="14" height="6" fill="#0d081a"/>
                   <rect x="10" y="23" width="12" height="4" fill="#39ff14"/>
                   <rect x="11" y="24" width="6" height="2" fill="#111"/>
-                  <!-- Legs -->
                   <rect x="10" y="27" width="5" height="4" fill="#111936"/>
                   <rect x="17" y="27" width="5" height="4" fill="#111936"/>
-                  <!-- Shoes -->
                   <rect x="9" y="30" width="6" height="2" fill="#ffcc00"/>
                   <rect x="17" y="30" width="6" height="2" fill="#ffcc00"/>
                 </svg>
               </div>
               <div class="avatar-status">
-                <span class="status-indicator"></span> LEVEL 21 (AGE 21)
+                <span class="status-indicator"></span> ONLINE &bull; LEVEL 21
               </div>
             </div>
 
             <div class="mini-console-badge">
-              <span class="badge-label">ROLE &amp; FOCUS:</span>
-              <span class="badge-val">TEKNIK INFORMATIKA (SEM 5)</span>
+              <span class="badge-label">KAMPUS:</span>
+              <span class="badge-val">TEKNIK INFORMATIKA</span>
             </div>
           </div>
 
-          <!-- Hero Text Details -->
+          <!-- Hero Info -->
           <div class="hero-info-col">
             <div class="hero-title-box">
-              <div class="tag-pill neon-border">INFORMATICS ENGINEERING UNDERGRADUATE</div>
+              <div class="tag-pill neon-border">INFORMATICS UNDERGRADUATE</div>
               <h1 class="hero-name glitch-text" data-text="TRI WAHYUDI">TRI WAHYUDI</h1>
               <p class="hero-subtitle">
                 <span class="pixel-bullet">►</span> MAHASISWA TEKNIK INFORMATIKA SEMESTER 5 &middot; 21 TAHUN &middot; FULL-STACK &amp; PROJECT ANALYST
               </p>
             </div>
 
-            <!-- RPG Dialogue Box with Typewriter effect -->
+            <!-- RPG Dialogue Box -->
             <div class="dialogue-box pixel-box">
               <div class="dialogue-speaker">
                 <span class="speaker-name">TRI_WAHYUDI.EXE:</span>
-                <span class="speaker-status">SPEAKING...</span>
+                <span class="speaker-status">READY</span>
               </div>
-              <p id="dialogueText" class="dialogue-message">
-                "Halo! Saya Tri Wahyudi, mahasiswa Teknik Informatika semester 5 berusia 21 tahun. Hobi terbesar saya adalah membuat project dan menganalisis arsitektur software — mulai dari sistem PO Bus, profil perusahaan B2B, aplikasi Android, hingga IoT di GitHub!"
+              <p class="dialogue-message">
+                "Selamat datang! Saya Tri Wahyudi, mahasiswa Teknik Informatika semester 5 (21 tahun). Passion utama saya adalah <strong>membuat project dan menganalisis arsitektur sistem</strong> — dari web PO Bus, sistem profil perusahaan, aplikasi Android, hingga integrasi cloud dan IoT!"
               </p>
-              <div class="dialogue-footer">
-                <span class="press-space-hint blink">JELAJAHI REPOSITORY &amp; ANALISIS PROJECT DI BAWAH ▼</span>
-              </div>
             </div>
 
-            <!-- Hero Action Buttons -->
+            <!-- Quick Action Buttons -->
             <div class="hero-buttons">
-              <a href="#projects" class="retro-btn btn-primary sound-click">
-                <span class="btn-icon">⚡</span> DAFTAR PROJECT
-              </a>
-              <a href="#github-lab" class="retro-btn btn-secondary sound-click">
-                <span class="btn-icon">📁</span> ANALISIS GITHUB
-              </a>
-              <a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" class="retro-btn btn-accent sound-click">
-                <span class="btn-icon">👾</span> GITHUB @wongsxs
-              </a>
+              <button class="retro-btn btn-primary sound-click quick-nav-btn" data-target="view-projects">
+                <span class="btn-icon">🚀</span> LIHAT PROJECT &amp; REPO
+              </button>
+              <button class="retro-btn btn-secondary sound-click quick-nav-btn" data-target="view-skills">
+                <span class="btn-icon">🔬</span> ANALISIS &amp; SKILLS
+              </button>
+              <button class="retro-btn btn-accent sound-click quick-nav-btn" data-target="view-contact">
+                <span class="btn-icon">💾</span> HUBUNGI SAYA
+              </button>
             </div>
 
+            <!-- Quick Metrics Grid -->
             <div class="hero-stats-quick">
               <div class="quick-stat">
-                <span class="stat-num neon-green">SEM 5</span>
+                <span class="stat-num neon-green">SEM. 5</span>
                 <span class="stat-text">INFORMATIKA</span>
               </div>
               <div class="quick-stat">
@@ -203,37 +189,25 @@
                 <span class="stat-text">GITHUB REPOS</span>
               </div>
               <div class="quick-stat">
-                <span class="stat-num neon-pink">MULTI</span>
-                <span class="stat-text">WEB &bull; APP &bull; IOT</span>
+                <span class="stat-num neon-pink">100%</span>
+                <span class="stat-text">RESPONSIF</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ABOUT & HOBBY SECTION -->
-    <section id="about" class="section-container">
-      <div class="section-header">
-        <h2 class="section-title"><span class="title-bracket">&lt;</span> PROFIL &amp; HOBI ANALISIS PROJECT <span class="title-bracket">&gt;</span></h2>
-        <p class="section-desc">Mengenal karakter Tri Wahyudi di bangku kuliah, koding, dan eksplorasi arsitektur sistem</p>
-      </div>
-
+      <!-- Quick Highlights Grid -->
       <div class="grid-2-col">
-        <!-- Bio Card -->
+        <!-- Biodata Singkat -->
         <div class="retro-card">
           <div class="card-header-bar">
-            <span class="window-title">STUDENT_PROFILE.DAT</span>
+            <span class="window-title">IDENTITAS_MAHASISWA.DAT</span>
           </div>
           <div class="card-body">
-            <h3 class="card-heading neon-cyan">SIAPA TRI WAHYUDI?</h3>
-            <p class="pixel-text">
-              Saya adalah mahasiswa aktif program studi <strong>Teknik Informatika semester 5</strong> (berusia 21 tahun). Memiliki ketertarikan mendalam dalam rekayasa perangkat lunak, arsitektur database, dan pengembangan aplikasi multi-platform baik berbasis Web, Mobile (Android), maupun sistem Embedded (IoT).
-            </p>
-            <div class="pixel-divider"></div>
             <div class="attribute-list">
               <div class="attr-row">
-                <span class="attr-key">NAMA LENGKAP:</span>
+                <span class="attr-key">NAMA:</span>
                 <span class="attr-val">Tri Wahyudi</span>
               </div>
               <div class="attr-row">
@@ -241,443 +215,257 @@
                 <span class="attr-val neon-green">Mahasiswa S1 Teknik Informatika</span>
               </div>
               <div class="attr-row">
-                <span class="attr-key">SEMESTER &amp; USIA:</span>
-                <span class="attr-val neon-yellow">Semester 5 &middot; 21 Tahun</span>
+                <span class="attr-key">SEMESTER:</span>
+                <span class="attr-val neon-cyan">Semester 5 (Tingkat 3)</span>
               </div>
               <div class="attr-row">
-                <span class="attr-key">AKUN GITHUB:</span>
-                <span class="attr-val neon-cyan"><a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" style="color:var(--neon-cyan);text-decoration:none;">github.com/wongsxs</a></span>
+                <span class="attr-key">USIA:</span>
+                <span class="attr-val neon-yellow">21 Tahun</span>
               </div>
               <div class="attr-row">
-                <span class="attr-key">SPECIALTY:</span>
-                <span class="attr-val">Full-Stack, Mobile (Kotlin), IoT (ESP32)</span>
+                <span class="attr-key">GITHUB RESMI:</span>
+                <span class="attr-val neon-pink"><a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" style="color:var(--neon-pink);text-decoration:none;">@wongsxs</a></span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Hobby Card: Project Crafting & Analysis -->
-        <div class="retro-card ps3-highlight-card">
+        <!-- Hobi & Passion -->
+        <div class="retro-card">
           <div class="card-header-bar">
-            <span class="window-title">PASSION // PROJECT CRAFTING &amp; SYSTEM ANALYSIS</span>
-            <span class="cartridge-badge pulse">ACTIVE HOBBY</span>
+            <span class="window-title">PASSION_ANALISIS_PROJECT.LOG</span>
           </div>
           <div class="card-body">
-            <div class="hobby-header-flex">
-              <div class="ps3-logo-badge">
-                <span class="ps-symbol triangle">⚡</span>
-                <span class="ps-symbol circle">⚙</span>
-                <span class="ps-symbol cross">🔬</span>
-                <span class="ps-symbol square">💻</span>
-              </div>
-              <div>
-                <h3 class="card-heading neon-pink">MEMBUAT &amp; ANALISIS PROJECT</h3>
-                <span class="sub-badge">EXPLORING SOFTWARE ARCHITECTURE</span>
-              </div>
-            </div>
-
+            <h3 class="card-heading neon-yellow">HOBI: MEMBUAT &amp; ANALISIS PROJECT</h3>
             <p class="pixel-text">
-              Hobi utama saya bukan sekadar menulis kode, tetapi <strong>membangun solusi nyata dari nol dan menganalisis arsitekturnya</strong>. Saya gemar membedah bagaimana sebuah sistem bekerja: mulai dari pemodelan ERD database, alur UI/UX, integrasi API, perancangan sistem absensi, cloud storage, hingga sinkronisasi mikrokontroler hardware.
+              Senang mengeksplorasi kebutuhan bisnis dan menerjemahkannya ke dalam kode yang efisien, mulai dari perancangan arsitektur database, desain interaksi UI/UX, hingga pengujian keamanan dan performa aplikasi.
             </p>
-
-            <div class="ps3-feature-tags">
-              <span class="retro-tag"><span class="tag-icon">🏗️</span> SYSTEM ARCHITECTURE</span>
-              <span class="retro-tag"><span class="tag-icon">🔬</span> CODE ANALYSIS</span>
-              <span class="retro-tag"><span class="tag-icon">📱</span> ANDROID KOTLIN</span>
-              <span class="retro-tag"><span class="tag-icon">🌐</span> FULL-STACK WEB</span>
-              <span class="retro-tag"><span class="tag-icon">🤖</span> IOT EMBEDDED</span>
-            </div>
-
-            <div class="ps3-callout">
-              <span class="callout-icon">💡</span>
-              <span class="callout-text">"Bagi saya, membuat dan menganalisis project adalah cara tercepat menguji batas logika, memecahkan masalah nyata, dan terus bertumbuh sebagai engineer."</span>
+            <div class="tech-stack-row">
+              <span class="tech-pill">SYSTEM ARCHITECTURE</span>
+              <span class="tech-pill">FULL-STACK WEB</span>
+              <span class="tech-pill">ANDROID KOTLIN</span>
+              <span class="tech-pill">IOT EMBEDDED</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS SECTION (STAGE SELECT & SHOWCASE) -->
-    <section id="projects" class="section-container">
+    <!-- =========================================================================
+         SCREEN 2: PROJECT SHOWCASE & GITHUB ANALYZER
+         ========================================================================= -->
+    <section id="view-projects" class="view-screen">
       <div class="section-header">
-        <div class="stage-tag">MISSION STAGES</div>
-        <h2 class="section-title"><span class="title-bracket">[</span> STAGE SELECT: DAFTAR PROJECT UTAMA <span class="title-bracket">]</span></h2>
-        <p class="section-desc">Koleksi project pilihan hasil analisis dan pengembangan oleh Tri Wahyudi</p>
+        <div class="stage-tag">MISSION PORTFOLIO</div>
+        <h2 class="section-title"><span class="title-bracket">[</span> DAFTAR PROJECT &amp; REPO GITHUB <span class="title-bracket">]</span></h2>
+        <p class="section-desc">Pilihan project unggulan dan repositori yang telah dianalisis arsitekturnya</p>
       </div>
 
+      <!-- 4 MAJOR PROJECTS GRID -->
       <div class="projects-grid">
-        <!-- PROJECT 1: WEB PO BUS (ASM PUTRA TRANS) -->
-        <div class="project-stage-card retro-card" data-stage="1">
+        <!-- 1. WEB PO BUS -->
+        <div class="project-stage-card retro-card">
           <div class="stage-ribbon">STAGE 01</div>
-          
           <div class="card-header-bar">
-            <span class="window-title">STAGE_01: PO_BUS_SYSTEM.EXE</span>
-            <span class="status-pill clear">ACTIVE PROJECT ★★★</span>
+            <span class="window-title">STAGE_01: PO_BUS_SYSTEM</span>
+            <span class="status-pill clear">COMPLETED ★★★</span>
           </div>
-
-          <div class="project-preview-screen">
-            <!-- Retro Pixel Art Bus & Road Scene -->
-            <div class="pixel-scene bus-scene">
-              <div class="scene-sky">
-                <div class="pixel-moon"></div>
-                <div class="pixel-star s1"></div>
-                <div class="pixel-star s2"></div>
-                <div class="pixel-star s3"></div>
-              </div>
-              <div class="scene-city"></div>
-              <div class="scene-road">
-                <div class="road-lines"></div>
-                <!-- Pixel Art PO Bus -->
-                <div class="pixel-bus" id="animatedBus">
-                  <svg viewBox="0 0 48 24" class="pixel-svg" shape-rendering="crispEdges">
-                    <rect x="4" y="6" width="38" height="12" fill="#00f0ff"/>
-                    <rect x="6" y="4" width="34" height="2" fill="#ffffff"/>
-                    <rect x="2" y="8" width="42" height="10" fill="#00d4e3"/>
-                    <rect x="14" y="2" width="16" height="2" fill="#e0e0e0"/>
-                    <rect x="16" y="1" width="12" height="1" fill="#888888"/>
-                    <rect x="36" y="6" width="7" height="6" fill="#1b2a47"/>
-                    <rect x="28" y="6" width="6" height="5" fill="#1b2a47"/>
-                    <rect x="20" y="6" width="6" height="5" fill="#1b2a47"/>
-                    <rect x="12" y="6" width="6" height="5" fill="#1b2a47"/>
-                    <rect x="4" y="6" width="6" height="5" fill="#1b2a47"/>
-                    <rect x="38" y="7" width="2" height="4" fill="#a4f2ff"/>
-                    <rect x="30" y="7" width="2" height="3" fill="#a4f2ff"/>
-                    <rect x="22" y="7" width="2" height="3" fill="#a4f2ff"/>
-                    <rect x="14" y="7" width="2" height="3" fill="#a4f2ff"/>
-                    <rect x="2" y="12" width="42" height="2" fill="#ff007f"/>
-                    <rect x="2" y="14" width="42" height="1" fill="#ffcc00"/>
-                    <rect x="43" y="13" width="2" height="2" fill="#ffff55"/>
-                    <rect x="1" y="13" width="1" height="2" fill="#ff2222"/>
-                    <rect x="8" y="16" width="6" height="6" fill="#111111"/>
-                    <rect x="10" y="18" width="2" height="2" fill="#aaaaaa"/>
-                    <rect x="32" y="16" width="6" height="6" fill="#111111"/>
-                    <rect x="34" y="18" width="2" height="2" fill="#aaaaaa"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="screen-overlay-badge">INTERCITY TICKETING &amp; FLEET MANAGEMENT</div>
-          </div>
-
           <div class="card-body">
-            <h3 class="project-title neon-cyan">WEB PO BUS (ASM PUTRA TRANS / RESERVASI BUS)</h3>
+            <h3 class="project-title neon-cyan">WEB PO BUS (ASM PUTRA TRANS)</h3>
             <p class="pixel-text">
-              Sistem reservasi dan manajemen armada PO Bus yang dirancang untuk mengotomasi pemesanan tiket penumpang, pemilihan denah kursi bus secara 2D interaktif, jadwal keberangkatan, rute trayek antar kota, dan manifes supir.
+              Sistem reservasi tiket dan manajemen armada bus antarkota dengan denah pemilihan kursi 2D interaktif (*realtime*), manifes penumpang, serta validasi tiket QR Code.
             </p>
-
-            <div class="project-features-list">
-              <div class="feat-item"><span class="feat-icon">✔</span> Pemilihan Kursi 2D Interaktif Realtime</div>
-              <div class="feat-item"><span class="feat-icon">✔</span> Manajemen Jadwal Trayek, Rute, &amp; Tarif</div>
-              <div class="feat-item"><span class="feat-icon">✔</span> Validasi Tiket Digital &amp; QR Code Scanner</div>
-              <div class="feat-item"><span class="feat-icon">✔</span> Terintegrasi di GitHub: <code>wongsxs/asmputratrans</code></div>
+            <div class="repo-analysis">
+              <span class="anal-label">ANALISIS SISTEM:</span>
+              <span class="anal-text">Mencegah tiket ganda dengan array matrix kursi dan sinkronisasi rute/tarif antarkota.</span>
             </div>
-
             <div class="tech-stack-row">
               <span class="tech-pill">PHP / LARAVEL</span>
               <span class="tech-pill">JAVASCRIPT</span>
               <span class="tech-pill">MYSQL</span>
-              <span class="tech-pill">RESPONSIVE UI</span>
-              <span class="tech-pill">GITHUB REPO</span>
+              <span class="tech-pill">QR VALIDATOR</span>
             </div>
-
             <div class="project-actions">
-              <button class="retro-btn btn-primary open-modal-btn sound-click" data-modal="modalBus">
-                <span class="btn-icon">🔍</span> DETAIL ANALISIS
-              </button>
-              <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer" class="retro-btn btn-secondary sound-click">
-                <span class="btn-icon">📂</span> REPOSITORY
+              <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer" class="retro-btn btn-primary sound-click">
+                <span class="btn-icon">📂</span> REPO: asmputratrans
               </a>
+              <button class="retro-btn btn-secondary open-modal-btn sound-click" data-modal="modalBus">
+                <span class="btn-icon">🔍</span> DETAIL INTEL
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- PROJECT 2: WEB PERUSAHAAN ALAT KEBERSIHAN (COMPANY DAU) -->
-        <div class="project-stage-card retro-card" data-stage="2">
+        <!-- 2. WEB PERUSAHAAN ALAT KEBERSIHAN -->
+        <div class="project-stage-card retro-card">
           <div class="stage-ribbon">STAGE 02</div>
-
           <div class="card-header-bar">
-            <span class="window-title">STAGE_02: CLEANING_CORP.EXE</span>
-            <span class="status-pill clear">ACTIVE PROJECT ★★★</span>
+            <span class="window-title">STAGE_02: CLEANING_CORP</span>
+            <span class="status-pill clear">COMPLETED ★★★</span>
           </div>
-
-          <div class="project-preview-screen">
-            <!-- Retro Pixel Art Cleaning Tool Scene -->
-            <div class="pixel-scene clean-scene">
-              <div class="scene-sparkles">
-                <div class="sparkle sp1">✦</div>
-                <div class="sparkle sp2">✦</div>
-                <div class="sparkle sp3">✦</div>
-              </div>
-              <div class="clean-floor"></div>
-              <!-- Pixel Art Cleaning Machine / Sweeper -->
-              <div class="pixel-cleaner" id="animatedCleaner">
-                <svg viewBox="0 0 48 24" class="pixel-svg" shape-rendering="crispEdges">
-                  <rect x="10" y="6" width="28" height="12" fill="#ffcc00"/>
-                  <rect x="8" y="8" width="32" height="10" fill="#e5b800"/>
-                  <rect x="6" y="10" width="36" height="6" fill="#2d3142"/>
-                  <rect x="14" y="4" width="10" height="4" fill="#00f0ff"/>
-                  <rect x="16" y="5" width="6" height="2" fill="#a4f2ff"/>
-                  <rect x="36" y="2" width="4" height="10" fill="#222"/>
-                  <rect x="38" y="1" width="6" height="2" fill="#ff007f"/>
-                  <rect x="34" y="6" width="4" height="3" fill="#39ff14"/>
-                  <rect x="6" y="16" width="8" height="4" fill="#00f0ff" class="brush-spin"/>
-                  <rect x="7" y="18" width="6" height="4" fill="#ffffff"/>
-                  <rect x="18" y="16" width="6" height="6" fill="#111111"/>
-                  <rect x="20" y="18" width="2" height="2" fill="#dddddd"/>
-                  <rect x="30" y="16" width="6" height="6" fill="#111111"/>
-                  <rect x="32" y="18" width="2" height="2" fill="#dddddd"/>
-                  <rect x="38" y="17" width="5" height="3" fill="#ff007f"/>
-                  <circle cx="4" cy="18" r="2" fill="#a4f2ff"/>
-                </svg>
-              </div>
-            </div>
-            <div class="screen-overlay-badge">B2B INDUSTRIAL CATALOGUE &amp; COMPANY PROFILE</div>
-          </div>
-
           <div class="card-body">
             <h3 class="project-title neon-yellow">WEB PERUSAHAAN ALAT KEBERSIHAN (COMPANY DAU)</h3>
             <p class="pixel-text">
-              Website profil korporat dan katalog interaktif B2B untuk penyedia peralatan kebersihan industri, mesin floor scrubber, mesin polisher, dan chemical sanitasi komersil lengkap dengan sistem penawaran harga (RFQ).
+              Portal korporat &amp; katalog B2B distributor peralatan kebersihan industri (mesin floor polisher, auto-scrubber, vacuum) dengan kalkulator RFQ otomatis.
             </p>
-
-            <div class="project-features-list">
-              <div class="feat-item"><span class="feat-icon">✔</span> Katalog Produk Industri Terorganisir</div>
-              <div class="feat-item"><span class="feat-icon">✔</span> Request for Quotation (RFQ) Otomatis</div>
-              <div class="feat-item"><span class="feat-icon">✔</span> Integrasi WhatsApp Business Sales Checkout</div>
-              <div class="feat-item"><span class="feat-icon">✔</span> Terintegrasi di GitHub: <code>wongsxs/companyDAU</code></div>
+            <div class="repo-analysis">
+              <span class="anal-label">ANALISIS SISTEM:</span>
+              <span class="anal-text">Mengoptimalkan konversi sales B2B dengan integrasi form penawaran instan ke WhatsApp.</span>
             </div>
-
             <div class="tech-stack-row">
               <span class="tech-pill">PHP</span>
               <span class="tech-pill">HTML5 &amp; CSS3</span>
-              <span class="tech-pill">JAVASCRIPT</span>
               <span class="tech-pill">B2B COMMERCE</span>
-              <span class="tech-pill">GITHUB REPO</span>
+              <span class="tech-pill">WHATSAPP API</span>
             </div>
-
             <div class="project-actions">
-              <button class="retro-btn btn-primary open-modal-btn sound-click" data-modal="modalClean">
-                <span class="btn-icon">🔍</span> DETAIL ANALISIS
-              </button>
-              <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer" class="retro-btn btn-secondary sound-click">
-                <span class="btn-icon">📂</span> REPOSITORY
+              <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer" class="retro-btn btn-primary sound-click">
+                <span class="btn-icon">📂</span> REPO: companyDAU
               </a>
+              <button class="retro-btn btn-secondary open-modal-btn sound-click" data-modal="modalClean">
+                <span class="btn-icon">🔍</span> DETAIL INTEL
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- PROJECT 3: SMART TOURISM KEBUMEN (ANDROID APP) -->
-        <div class="project-stage-card retro-card" data-stage="3">
+        <!-- 3. SMART TOURISM KEBUMEN -->
+        <div class="project-stage-card retro-card">
           <div class="stage-ribbon">STAGE 03</div>
-
           <div class="card-header-bar">
-            <span class="window-title">STAGE_03: SMART_TOURISM.APK</span>
+            <span class="window-title">STAGE_03: SMART_TOURISM</span>
             <span class="status-pill clear">MOBILE APP ★★★</span>
           </div>
-
-          <div class="project-preview-screen" style="background: linear-gradient(180deg, #18092a, #2c1b4d);">
-            <div style="height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;">
-              <span style="font-size: 3rem;">📱🗺️</span>
-              <span class="neon-green" style="font-family: var(--font-pixel); font-size: 0.75rem;">ANDROID KOTLIN NATIVE</span>
-            </div>
-            <div class="screen-overlay-badge">MOBILE TOURISM &amp; GEOLOCATION</div>
-          </div>
-
           <div class="card-body">
-            <h3 class="project-title neon-green">SMART TOURISM KEBUMEN (WISATA KEBUMEN)</h3>
+            <h3 class="project-title neon-green">SMART TOURISM KEBUMEN (ANDROID APP)</h3>
             <p class="pixel-text">
-              Aplikasi mobile Android berbasis Kotlin untuk memandu wisatawan menjelajahi keindahan destinasi wisata di Kabupaten Kebumen, dilengkapi informasi rute, rekomendasi tempat, rating, dan panduan fasilitas.
+              Aplikasi mobile native Android berbasis Kotlin untuk memandu wisatawan menjelajahi destinasi wisata di Kabupaten Kebumen lengkap dengan rute dan fasilitas.
             </p>
-
-            <div class="project-features-list">
-              <div class="feat-item"><span class="feat-icon">✔</span> Android Architecture Components &amp; Kotlin</div>
-              <div class="feat-item"><span class="feat-icon">✔</span> Detail Wisata, Navigasi Peta, &amp; Galeri Foto</div>
-              <div class="feat-item"><span class="feat-icon">✔</span> Terintegrasi di GitHub: <code>wongsxs/smart-tourism-kebumen-v1</code></div>
+            <div class="repo-analysis">
+              <span class="anal-label">ANALISIS SISTEM:</span>
+              <span class="anal-text">Arsitektur MVVM, Navigation Component, dan integrasi titik koordinat GPS lokasi wisata.</span>
             </div>
-
             <div class="tech-stack-row">
               <span class="tech-pill">KOTLIN</span>
               <span class="tech-pill">ANDROID SDK</span>
-              <span class="tech-pill">REST API</span>
-              <span class="tech-pill">MAPS &amp; LOCATION</span>
+              <span class="tech-pill">MAPS / GEOLOCATION</span>
             </div>
-
             <div class="project-actions">
-              <button class="retro-btn btn-primary open-modal-btn sound-click" data-modal="modalTourism">
-                <span class="btn-icon">🔍</span> DETAIL ANALISIS
-              </button>
-              <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer" class="retro-btn btn-secondary sound-click">
-                <span class="btn-icon">📂</span> REPOSITORY
+              <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer" class="retro-btn btn-primary sound-click">
+                <span class="btn-icon">📂</span> REPO: smart-tourism
               </a>
+              <button class="retro-btn btn-secondary open-modal-btn sound-click" data-modal="modalTourism">
+                <span class="btn-icon">🔍</span> DETAIL INTEL
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- PROJECT 4: SISTEM ABSENSI GAMKI -->
-        <div class="project-stage-card retro-card" data-stage="4">
+        <!-- 4. SISTEM ABSENSI GAMKI -->
+        <div class="project-stage-card retro-card">
           <div class="stage-ribbon">STAGE 04</div>
-
           <div class="card-header-bar">
-            <span class="window-title">STAGE_04: ABSENSI_GAMKI.SYS</span>
+            <span class="window-title">STAGE_04: ABSENSI_GAMKI</span>
             <span class="status-pill clear">SYSTEM VER 1.0 ★★★</span>
           </div>
-
-          <div class="project-preview-screen" style="background: linear-gradient(180deg, #091a2e, #0e3054);">
-            <div style="height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;">
-              <span style="font-size: 3rem;">📋✅</span>
-              <span class="neon-cyan" style="font-family: var(--font-pixel); font-size: 0.75rem;">WEB ATTENDANCE ENGINE</span>
-            </div>
-            <div class="screen-overlay-badge">ORGANIZATIONAL ATTENDANCE &amp; REPORTING</div>
-          </div>
-
           <div class="card-body">
             <h3 class="project-title neon-pink">SISTEM WEB ABSENSI KEGIATAN GAMKI</h3>
             <p class="pixel-text">
-              Aplikasi web pencatatan kehadiran presensi untuk kegiatan dan musyawarah organisasi GAMKI, mempermudah pendataan peserta secara efisien, validasi kehadiran, serta rekapitulasi data kehadiran otomatis.
+              Aplikasi pencatatan presensi digital delegasi kegiatan organisasi GAMKI dengan verifikasi ID cepat, dashboard kuorum, dan rekapitulasi data otomatis.
             </p>
-
-            <div class="project-features-list">
-              <div class="feat-item"><span class="feat-icon">✔</span> Presensi Digital Terstruktur &amp; Cepat</div>
-              <div class="feat-item"><span class="feat-icon">✔</span> Dashboard Admin &amp; Export Rekap Laporan</div>
-              <div class="feat-item"><span class="feat-icon">✔</span> Terintegrasi di GitHub: <code>wongsxs/absensi-gamki</code></div>
+            <div class="repo-analysis">
+              <span class="anal-label">ANALISIS SISTEM:</span>
+              <span class="anal-text">Skema database relasional kehadiran terenkripsi dan live counter statistik peserta.</span>
             </div>
-
             <div class="tech-stack-row">
               <span class="tech-pill">JAVASCRIPT</span>
               <span class="tech-pill">NODE.JS / WEB</span>
-              <span class="tech-pill">DATABASE</span>
-              <span class="tech-pill">EVENT MANAGEMENT</span>
+              <span class="tech-pill">EVENT MGMT</span>
             </div>
-
             <div class="project-actions">
-              <button class="retro-btn btn-primary open-modal-btn sound-click" data-modal="modalGamki">
-                <span class="btn-icon">🔍</span> DETAIL ANALISIS
-              </button>
-              <a href="https://github.com/wongsxs/absensi-gamki" target="_blank" rel="noopener noreferrer" class="retro-btn btn-secondary sound-click">
-                <span class="btn-icon">📂</span> REPOSITORY
+              <a href="https://github.com/wongsxs/absensi-gamki" target="_blank" rel="noopener noreferrer" class="retro-btn btn-primary sound-click">
+                <span class="btn-icon">📂</span> REPO: absensi-gamki
               </a>
+              <button class="retro-btn btn-secondary open-modal-btn sound-click" data-modal="modalGamki">
+                <span class="btn-icon">🔍</span> DETAIL INTEL
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- GITHUB REPOSITORY ANALYZER LAB (ANALISIS PROJECT GITHUB) -->
-    <section id="github-lab" class="section-container">
-      <div class="section-header">
-        <div class="stage-tag special-tag">ANALYSIS LAB</div>
-        <h2 class="section-title"><span class="title-bracket">[</span> GITHUB REPOSITORY ANALYZER &amp; INVENTORY <span class="title-bracket">]</span></h2>
-        <p class="section-desc">Hasil analisis arsitektur dan pemetaan project dari akun GitHub @wongsxs</p>
-      </div>
-
-      <div class="retro-card">
+      <!-- GITHUB REPOSITORY FILTER LAB -->
+      <div class="retro-card" style="margin-top: 32px;">
         <div class="card-header-bar">
-          <span class="window-title">GITHUB_METRICS // WONGSXS_WORKSPACE</span>
-          <span class="status-pill online">30+ REPOSITORIES SYNCED</span>
+          <span class="window-title">GITHUB_EXPLORER // @WONGSXS (30+ REPOSITORIES)</span>
+          <span class="cartridge-badge">FILTER ACTIVE</span>
         </div>
-
         <div class="card-body">
-          <!-- Filter Tabs for Projects -->
           <div class="repo-filter-tabs">
-            <button class="filter-btn active sound-click" data-filter="all">SEMUA PROJECT</button>
+            <button class="filter-btn active sound-click" data-filter="all">SEMUA REPO</button>
             <button class="filter-btn sound-click" data-filter="web">WEB &amp; FULLSTACK</button>
-            <button class="filter-btn sound-click" data-filter="mobile">MOBILE (KOTLIN)</button>
-            <button class="filter-btn sound-click" data-filter="iot">IOT &amp; UTILITIES</button>
+            <button class="filter-btn sound-click" data-filter="mobile">ANDROID (KOTLIN)</button>
+            <button class="filter-btn sound-click" data-filter="iot">IOT &amp; EMBEDDED</button>
           </div>
 
-          <!-- Grid of Analyzed GitHub Repositories -->
           <div class="github-repo-grid">
-            <!-- Repo 1: asmputratrans -->
+            <!-- 1. asmputratrans -->
             <div class="repo-card-box" data-cat="web">
               <div class="repo-header">
-                <span class="repo-type-icon">🌐</span>
+                <span class="repo-type-icon">🚌</span>
                 <span class="repo-name">asmputratrans</span>
                 <span class="repo-badge public">PUBLIC</span>
               </div>
-              <p class="repo-desc">Web sistem reservasi &amp; transportasi PO Bus Antarkota (PO Bus ASM Putra Trans).</p>
-              <div class="repo-analysis">
-                <span class="anal-label">ANALISIS ARSITEKTUR:</span>
-                <span class="anal-text">Front-end bus ticketing, seat layout matrix, dan jadwal operasional armada.</span>
-              </div>
+              <p class="repo-desc">Sistem reservasi tiket &amp; trayek PO Bus ASM Putra Trans.</p>
               <div class="repo-footer">
-                <span class="lang-dot css"></span> CSS / PHP / JS
+                <span><span class="lang-dot css"></span> CSS / PHP</span>
                 <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer" class="repo-link">BUKA REPO ►</a>
               </div>
             </div>
 
-            <!-- Repo 2: companyDAU -->
+            <!-- 2. companyDAU -->
             <div class="repo-card-box" data-cat="web">
               <div class="repo-header">
                 <span class="repo-type-icon">🏢</span>
                 <span class="repo-name">companyDAU</span>
                 <span class="repo-badge public">PUBLIC</span>
               </div>
-              <p class="repo-desc">Web Perusahaan &amp; Katalog Alat Kebersihan Industri (Cleaning Equipment Corp).</p>
-              <div class="repo-analysis">
-                <span class="anal-label">ANALISIS ARSITEKTUR:</span>
-                <span class="anal-text">Katalog produk multi-kategori, modul RFQ instan, dan integrasi WhatsApp sales.</span>
-              </div>
+              <p class="repo-desc">Web Perusahaan B2B &amp; Katalog Alat Kebersihan Industri.</p>
               <div class="repo-footer">
-                <span class="lang-dot php"></span> PHP
+                <span><span class="lang-dot php"></span> PHP</span>
                 <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer" class="repo-link">BUKA REPO ►</a>
               </div>
             </div>
 
-            <!-- Repo 3: smart-tourism-kebumen-v1 -->
+            <!-- 3. smart-tourism-kebumen-v1 -->
             <div class="repo-card-box" data-cat="mobile">
               <div class="repo-header">
                 <span class="repo-type-icon">📱</span>
-                <span class="repo-name">smart-tourism-kebumen-v1</span>
+                <span class="repo-name">smart-tourism-kebumen</span>
                 <span class="repo-badge public">PUBLIC</span>
               </div>
-              <p class="repo-desc">Aplikasi mobile native Android rekomendasi wisata Kabupaten Kebumen.</p>
-              <div class="repo-analysis">
-                <span class="anal-label">ANALISIS ARSITEKTUR:</span>
-                <span class="anal-text">Kotlin Native, RecyclerView multi-layout, Maps routing, dan caching data destinasi.</span>
-              </div>
+              <p class="repo-desc">Aplikasi Android panduan &amp; peta objek wisata Kabupaten Kebumen.</p>
               <div class="repo-footer">
-                <span class="lang-dot kotlin"></span> Kotlin
+                <span><span class="lang-dot kotlin"></span> Kotlin</span>
                 <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer" class="repo-link">BUKA REPO ►</a>
               </div>
             </div>
 
-            <!-- Repo 4: absensi-gamki -->
-            <div class="repo-card-box" data-cat="web">
-              <div class="repo-header">
-                <span class="repo-type-icon">📋</span>
-                <span class="repo-name">absensi-gamki</span>
-                <span class="repo-badge private">PRIVATE</span>
-              </div>
-              <p class="repo-desc">Sistem Web Absensi Kegiatan GAMKI - Tahap 1.</p>
-              <div class="repo-analysis">
-                <span class="anal-label">ANALISIS ARSITEKTUR:</span>
-                <span class="anal-text">Database schema kehadiran organisasi, validasi ID peserta, dan rekapitulasi cepat.</span>
-              </div>
-              <div class="repo-footer">
-                <span class="lang-dot js"></span> JavaScript
-                <span class="repo-status-note">STAGE 1 DEPLOYED</span>
-              </div>
-            </div>
-
-            <!-- Repo 5: ESP32project -->
+            <!-- 4. ESP32project -->
             <div class="repo-card-box" data-cat="iot">
               <div class="repo-header">
                 <span class="repo-type-icon">🤖</span>
                 <span class="repo-name">ESP32project</span>
                 <span class="repo-badge public">PUBLIC</span>
               </div>
-              <p class="repo-desc">Embedded Firmware &amp; IoT Project berbasis mikrokontroler ESP32.</p>
-              <div class="repo-analysis">
-                <span class="anal-label">ANALISIS ARSITEKTUR:</span>
-                <span class="anal-text">C++ Firmware, sensor I/O reading, telemetry Wi-Fi connection, dan otomasi hardware.</span>
-              </div>
+              <p class="repo-desc">Embedded firmware C++ &amp; otomasi mikrokontroler hardware ESP32.</p>
               <div class="repo-footer">
-                <span class="lang-dot cpp"></span> C++ / Arduino
+                <span><span class="lang-dot cpp"></span> C++ / Arduino</span>
                 <a href="https://github.com/wongsxs/ESP32project" target="_blank" rel="noopener noreferrer" class="repo-link">BUKA REPO ►</a>
               </div>
             </div>
 
-            <!-- Repo 6: kt-cloud -->
+            <!-- 5. kt-cloud -->
             <div class="repo-card-box" data-cat="web">
               <div class="repo-header">
                 <span class="repo-type-icon">☁️</span>
@@ -685,60 +473,23 @@
                 <span class="repo-badge private">PRIVATE</span>
               </div>
               <p class="repo-desc">Personal cloud storage powered by Google Drive API &amp; TypeScript.</p>
-              <div class="repo-analysis">
-                <span class="anal-label">ANALISIS ARSITEKTUR:</span>
-                <span class="anal-text">Google Drive OAuth2 authentication, chunked file upload, dan storage indexing.</span>
-              </div>
               <div class="repo-footer">
-                <span class="lang-dot ts"></span> TypeScript
-                <span class="repo-status-note">CLOUD SYSTEM</span>
+                <span><span class="lang-dot ts"></span> TypeScript</span>
+                <span class="repo-status-note">CLOUD STORAGE</span>
               </div>
             </div>
 
-            <!-- Repo 7: mancing-game -->
+            <!-- 6. absensi-gamki -->
             <div class="repo-card-box" data-cat="web">
               <div class="repo-header">
-                <span class="repo-type-icon">🎣</span>
-                <span class="repo-name">mancing-game</span>
-                <span class="repo-badge public">PUBLIC</span>
-              </div>
-              <p class="repo-desc">MANCING Game Frontend deployable for Web &amp; Vercel.</p>
-              <div class="repo-analysis">
-                <span class="anal-label">ANALISIS ARSITEKTUR:</span>
-                <span class="anal-text">Canvas Game loop, sprite rendering, collision detection, dan scoring logic.</span>
-              </div>
-              <div class="repo-footer">
-                <span class="lang-dot js"></span> JavaScript
-                <a href="https://github.com/wongsxs/mancing-game" target="_blank" rel="noopener noreferrer" class="repo-link">BUKA REPO ►</a>
-              </div>
-            </div>
-
-            <!-- Repo 8: YuuPaymentListener / Services -->
-            <div class="repo-card-box" data-cat="mobile">
-              <div class="repo-header">
-                <span class="repo-type-icon">💳</span>
-                <span class="repo-name">YuuPaymentListener</span>
+                <span class="repo-type-icon">📋</span>
+                <span class="repo-name">absensi-gamki</span>
                 <span class="repo-badge private">PRIVATE</span>
               </div>
-              <p class="repo-desc">Android background service untuk mendeteksi notifikasi transaksi &amp; webhook.</p>
-              <div class="repo-analysis">
-                <span class="anal-label">ANALISIS ARSITEKTUR:</span>
-                <span class="anal-text">NotificationListenerService Kotlin, asynchronous HTTP POST callback, dan secure token.</span>
-              </div>
+              <p class="repo-desc">Sistem Web Absensi Kegiatan Musyawarah GAMKI Tahap 1.</p>
               <div class="repo-footer">
-                <span class="lang-dot kotlin"></span> Kotlin
-                <span class="repo-status-note">BACKGROUND SERVICE</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Total Analysis Summary Banner -->
-          <div class="analysis-summary-banner">
-            <div class="asb-icon">📊</div>
-            <div class="asb-content">
-              <div class="asb-title">KESIMPULAN ANALISIS ENGINEERING TRI WAHYUDI:</div>
-              <div class="asb-text">
-                Portofolio GitHub menunjukkan kapabilitas seimbang antara <strong>Web Full-Stack</strong> (Laravel/PHP &amp; JavaScript), <strong>Mobile Android</strong> (Kotlin Native), <strong>Cloud Service Integration</strong>, dan <strong>Hardware IoT</strong> (ESP32 C++). Terbiasa memecahkan masalah dari level sistem hingga antarmuka pengguna!
+                <span><span class="lang-dot js"></span> JavaScript</span>
+                <span class="repo-status-note">STAGE 1 DEPLOYED</span>
               </div>
             </div>
           </div>
@@ -746,217 +497,27 @@
       </div>
     </section>
 
-    <!-- PS3 CONSOLE VAULT (RETRO GAMING & SOUNDBOARD) -->
-    <section id="ps3-vault" class="section-container">
+    <!-- =========================================================================
+         SCREEN 3: SKILLS, ATTRIBUTES & ANALISIS ARSITEKTUR
+         ========================================================================= -->
+    <section id="view-skills" class="view-screen">
       <div class="section-header">
-        <div class="stage-tag special-tag">BONUS RETRO STAGE</div>
-        <h2 class="section-title"><span class="title-bracket">[</span> PLAYSTATION 3 RETRO HARDWARE LAB <span class="title-bracket">]</span></h2>
-        <p class="section-desc">Interactive DualShock 3 Gamepad &amp; Soundboard Chiptune Synthesizer</p>
+        <div class="stage-tag">ATTRIBUTES &amp; CAPABILITIES</div>
+        <h2 class="section-title"><span class="title-bracket">[</span> STATISTIK KEMAMPUAN &amp; INVENTARIS <span class="title-bracket">]</span></h2>
+        <p class="section-desc">Kompilasi keahlian teknis dan metodologi rekayasa perangkat lunak</p>
       </div>
 
-      <div class="ps3-station-wrapper retro-card">
-        <div class="card-header-bar">
-          <span class="window-title">DUALSHOCK_3_INTERFACE // AUDIO_SYNTHESIZER</span>
-          <span class="status-pill online">HARDWARE LAB ACTIVE</span>
-        </div>
-
-        <div class="ps3-layout-grid">
-          <!-- Left: PS3 Console Unit & Disc Slot -->
-          <div class="ps3-hardware-col">
-            <div class="ps3-console-chassis">
-              <div class="chassis-top">
-                <div class="ps3-emboss-text">PLAYSTATION 3</div>
-                <div class="chassis-vent"></div>
-              </div>
-
-              <!-- Blu-ray Disc Slot -->
-              <div class="disc-slot-container">
-                <div class="disc-slot-lip"></div>
-                <div id="ejectDisc" class="inserted-disc">
-                  <span class="disc-label">TRI_WAHYUDI_PROJECTS.ISO</span>
-                </div>
-              </div>
-
-              <div class="chassis-bottom">
-                <div class="indicator-group">
-                  <div class="led-block">
-                    <span id="ps3PowerLed" class="led-light led-green"></span>
-                    <span class="led-label">POWER</span>
-                  </div>
-                  <div class="led-block">
-                    <span class="led-light led-blue blink-slow"></span>
-                    <span class="led-label">BLU-RAY</span>
-                  </div>
-                  <div class="led-block">
-                    <span class="led-light led-orange"></span>
-                    <span class="led-label">HDD</span>
-                  </div>
-                </div>
-
-                <div class="console-buttons">
-                  <button id="ps3EjectBtn" class="ps3-touch-btn sound-click" title="Eject / Insert Game Disc">
-                    ⏏ EJECT
-                  </button>
-                  <button id="ps3PowerBtn" class="ps3-touch-btn sound-click" title="Toggle Console Power">
-                    ⏻ POWER
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Console Status Readout -->
-            <div class="ps3-readout pixel-box">
-              <div class="readout-title">XMB CONSOLE MONITOR</div>
-              <div class="readout-line"><span class="neon-cyan">DEVELOPER:</span> Tri Wahyudi (TI Sem 5)</div>
-              <div class="readout-line"><span class="neon-pink">ENGINE:</span> Web Audio API 16-Bit Chiptune</div>
-              <div class="readout-line"><span class="neon-yellow">STATUS:</span> <span id="ps3StatusText">RUNNING SMOOTH (0 ERRORS)</span></div>
-              <div class="readout-line"><span class="neon-green">ACTIVE DISK:</span> "ASM Putra Trans &amp; Company DAU"</div>
-            </div>
-          </div>
-
-          <!-- Center/Right: Interactive DualShock 3 Controller & Soundboard -->
-          <div class="ps3-controller-col">
-            <div class="controller-instruction">
-              <span class="instruction-badge">KLIK TOMBOL CONTROLLER DI BAWAH:</span>
-              <p>Setiap tombol memicu efek audio 16-bit asli &amp; combo rahasia!</p>
-            </div>
-
-            <!-- Virtual DualShock 3 Gamepad UI -->
-            <div class="virtual-gamepad">
-              <div class="gamepad-top-triggers">
-                <button class="trigger-btn pad-btn" data-key="L1">L1</button>
-                <button class="trigger-btn pad-btn" data-key="L2">L2</button>
-                <div class="gamepad-cable"></div>
-                <button class="trigger-btn pad-btn" data-key="R2">R2</button>
-                <button class="trigger-btn pad-btn" data-key="R1">R1</button>
-              </div>
-
-              <div class="gamepad-body">
-                <!-- D-PAD (Left) -->
-                <div class="dpad-cluster">
-                  <button class="dpad-btn up pad-btn" data-key="UP" title="Up">▲</button>
-                  <div class="dpad-horizontal">
-                    <button class="dpad-btn left pad-btn" data-key="LEFT" title="Left">◀</button>
-                    <div class="dpad-center"></div>
-                    <button class="dpad-btn right pad-btn" data-key="RIGHT" title="Right">▶</button>
-                  </div>
-                  <button class="dpad-btn down pad-btn" data-key="DOWN" title="Down">▼</button>
-                </div>
-
-                <!-- Center Controls: SELECT, PS BUTTON, START -->
-                <div class="gamepad-center-cluster">
-                  <div class="gamepad-brand">SONY</div>
-                  <div class="mid-btns-row">
-                    <button class="mid-btn pad-btn" data-key="SELECT">SELECT</button>
-                    <button id="psHomeBtn" class="ps-home-btn pad-btn" data-key="PS" title="PlayStation Home Button">
-                      <span class="ps-logo-micro">PS</span>
-                    </button>
-                    <button class="mid-btn pad-btn" data-key="START">START</button>
-                  </div>
-                  <div class="analog-cluster">
-                    <div class="analog-stick left-stick pad-btn" data-key="L3">L3</div>
-                    <div class="analog-stick right-stick pad-btn" data-key="R3">R3</div>
-                  </div>
-                </div>
-
-                <!-- Action Buttons (Right: △, ◯, ✕, ▢) -->
-                <div class="action-cluster">
-                  <button class="action-btn btn-triangle pad-btn" data-key="TRIANGLE" title="Triangle">
-                    <span class="sym">△</span>
-                  </button>
-                  <div class="action-horizontal">
-                    <button class="action-btn btn-square pad-btn" data-key="SQUARE" title="Square">
-                      <span class="sym">▢</span>
-                    </button>
-                    <div class="action-center-spacer"></div>
-                    <button class="action-btn btn-circle pad-btn" data-key="CIRCLE" title="Circle">
-                      <span class="sym">◯</span>
-                    </button>
-                  </div>
-                  <button class="action-btn btn-cross pad-btn" data-key="CROSS" title="Cross">
-                    <span class="sym">✕</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Last Key Pressed Feedback Bar -->
-              <div class="gamepad-feedback">
-                <span class="fb-label">INPUT TERAKHIR:</span>
-                <span id="lastPressedKey" class="fb-val neon-yellow">[TEKAN TOMBOL CONTROLLER]</span>
-                <span class="fb-combo-hint">(Coba Combo: ▲ ▲ ▼ ▼ ◀ ▶ ◀ ▶ ▢ ◯)</span>
-              </div>
-            </div>
-
-            <!-- Trophies Showcase -->
-            <div class="trophy-room-box">
-              <div class="trophy-title-row">
-                <span class="trophy-heading">🏆 TROPHY ROOM (TRI WAHYUDI ACHIEVEMENTS)</span>
-                <span class="trophy-rank">LEVEL 21 &bull; TI SEMESTER 5</span>
-              </div>
-
-              <div class="trophy-list">
-                <div class="trophy-card platinum">
-                  <div class="trophy-icon">🏆</div>
-                  <div class="trophy-info">
-                    <div class="t-name">PLATINUM: FULL-STACK &amp; SYSTEM ANALYST</div>
-                    <div class="t-desc">Menganalisis &amp; merilis 30+ project di GitHub (Web, Android, IoT).</div>
-                  </div>
-                  <div class="t-grade">PLATINUM</div>
-                </div>
-
-                <div class="trophy-card gold">
-                  <div class="trophy-icon">🥇</div>
-                  <div class="trophy-info">
-                    <div class="t-name">GOLD: PO BUS SYSTEM ARCHITECT</div>
-                    <div class="t-desc">Merancang sistem reservasi PO Bus ASM Putra Trans antarkota.</div>
-                  </div>
-                  <div class="t-grade">GOLD</div>
-                </div>
-
-                <div class="trophy-card silver">
-                  <div class="trophy-icon">🥈</div>
-                  <div class="trophy-info">
-                    <div class="t-name">SILVER: KOTLIN ANDROID EXPLORER</div>
-                    <div class="t-desc">Membangun Smart Tourism Kebumen dan background payment listeners.</div>
-                  </div>
-                  <div class="t-grade">SILVER</div>
-                </div>
-
-                <div class="trophy-card bronze">
-                  <div class="trophy-icon">🥉</div>
-                  <div class="trophy-info">
-                    <div class="t-name">BRONZE: EMBEDDED IOT MAKER</div>
-                    <div class="t-desc">Memprogram mikrokontroler ESP32 dengan sensor C++ realtime.</div>
-                  </div>
-                  <div class="t-grade">BRONZE</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS & STATS (CHARACTER STATUS SHEET) -->
-    <section id="skills" class="section-container">
-      <div class="section-header">
-        <div class="stage-tag">DEVELOPER STATUS</div>
-        <h2 class="section-title"><span class="title-bracket">[</span> STATISTIK KEMAMPUAN TEKNIS <span class="title-bracket">]</span></h2>
-        <p class="section-desc">Parameter skill koding dan analisis sistem Tri Wahyudi</p>
-      </div>
-
-      <div class="stats-grid">
-        <!-- RPG Parameter Gauges -->
+      <div class="grid-2-col">
+        <!-- Parameter Gauges -->
         <div class="retro-card">
           <div class="card-header-bar">
-            <span class="window-title">BASE_STATS.RPG</span>
+            <span class="window-title">BASE_ATTRIBUTES.RPG</span>
           </div>
           <div class="card-body">
-            <!-- HP & MP Bars -->
             <div class="bar-stat-group">
               <div class="stat-bar-header">
                 <span class="stat-name">SYSTEM &amp; PROJECT ANALYSIS:</span>
-                <span class="stat-val">96 / 100</span>
+                <span class="stat-val">96%</span>
               </div>
               <div class="stat-gauge-track">
                 <div class="stat-gauge-fill fill-green" style="width: 96%;"></div>
@@ -965,8 +526,8 @@
 
             <div class="bar-stat-group">
               <div class="stat-bar-header">
-                <span class="stat-name">WEB FULL-STACK (PHP/JS/TS):</span>
-                <span class="stat-val">94 / 100</span>
+                <span class="stat-name">FULL-STACK WEB (PHP / JS / TS):</span>
+                <span class="stat-val">94%</span>
               </div>
               <div class="stat-gauge-track">
                 <div class="stat-gauge-fill fill-cyan" style="width: 94%;"></div>
@@ -976,7 +537,7 @@
             <div class="bar-stat-group">
               <div class="stat-bar-header">
                 <span class="stat-name">ANDROID DEVELOPMENT (KOTLIN):</span>
-                <span class="stat-val">90 / 100</span>
+                <span class="stat-val">90%</span>
               </div>
               <div class="stat-gauge-track">
                 <div class="stat-gauge-fill fill-pink" style="width: 90%;"></div>
@@ -985,8 +546,8 @@
 
             <div class="bar-stat-group">
               <div class="stat-bar-header">
-                <span class="stat-name">IOT &amp; EMBEDDED (ESP32 / C++):</span>
-                <span class="stat-val">88 / 100</span>
+                <span class="stat-name">IOT &amp; EMBEDDED (ESP32 C++):</span>
+                <span class="stat-val">88%</span>
               </div>
               <div class="stat-gauge-track">
                 <div class="stat-gauge-fill fill-yellow" style="width: 88%;"></div>
@@ -998,57 +559,51 @@
             <div class="perk-list">
               <div class="perk-item">
                 <span class="perk-bullet">★</span>
-                <span><strong>ANALISIS ARSITEKTUR:</strong> Terbiasa menganalisis proses bisnis, memecah sistem jadi modul modular, dan merancang skema database optimal.</span>
+                <span><strong>MODULAR CODEBASE:</strong> Membagi sistem menjadi komponen bersih yang mudah di-maintain dan di-scale.</span>
               </div>
               <div class="perk-item">
                 <span class="perk-bullet">★</span>
-                <span><strong>RESPONSIF &amp; MULTI-PLATFORM:</strong> Solusi berjalan konsisten di web browser, smartphone Android, hingga mikrokontroler.</span>
+                <span><strong>DATABASE RELASIONAL:</strong> Optimalisasi query SQL, normalisasi tabel, dan integritas data.</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Inventory Equipment -->
+        <!-- Tech Inventory -->
         <div class="retro-card">
           <div class="card-header-bar">
-            <span class="window-title">TECH_INVENTORY.BAG</span>
+            <span class="window-title">TECH_EQUIPMENT.BAG</span>
           </div>
           <div class="card-body">
-            <h3 class="card-heading neon-cyan">INVENTARIS TEKNOLOGI</h3>
             <div class="inventory-slots">
-              <div class="inv-slot" title="PHP & Laravel">
+              <div class="inv-slot">
                 <div class="slot-icon">🐘</div>
-                <div class="slot-title">PHP / LARAVEL</div>
+                <div class="slot-title">PHP &amp; LARAVEL</div>
                 <div class="slot-level">LV.92</div>
               </div>
-
-              <div class="inv-slot" title="JavaScript & TypeScript">
+              <div class="inv-slot">
                 <div class="slot-icon">⚡</div>
-                <div class="slot-title">JS / TYPESCRIPT</div>
+                <div class="slot-title">JS &amp; TYPESCRIPT</div>
                 <div class="slot-level">LV.94</div>
               </div>
-
-              <div class="inv-slot" title="Kotlin Android">
+              <div class="inv-slot">
                 <div class="slot-icon">🤖</div>
                 <div class="slot-title">KOTLIN ANDROID</div>
                 <div class="slot-level">LV.90</div>
               </div>
-
-              <div class="inv-slot" title="Database MySQL">
+              <div class="inv-slot">
                 <div class="slot-icon">🗄️</div>
                 <div class="slot-title">MYSQL / SQL</div>
                 <div class="slot-level">LV.91</div>
               </div>
-
-              <div class="inv-slot" title="IoT ESP32">
+              <div class="inv-slot">
                 <div class="slot-icon">📡</div>
                 <div class="slot-title">ESP32 / C++</div>
                 <div class="slot-level">LV.88</div>
               </div>
-
-              <div class="inv-slot" title="Git & GitHub">
+              <div class="inv-slot">
                 <div class="slot-icon">🐙</div>
-                <div class="slot-title">GIT @wongsxs</div>
+                <div class="slot-title">GIT &amp; GITHUB</div>
                 <div class="slot-level">LV.95</div>
               </div>
             </div>
@@ -1057,7 +612,7 @@
 
             <div class="xp-progress-box">
               <div class="xp-labels">
-                <span>SEMESTER 5 PROGRESS (MENUNJU KELULUSAN)</span>
+                <span>PROGRES SEMESTER 5 TEKNIK INFORMATIKA</span>
                 <span class="neon-green">5 / 8 SEMESTER (62.5%)</span>
               </div>
               <div class="stat-gauge-track">
@@ -1069,12 +624,14 @@
       </div>
     </section>
 
-    <!-- MINI GAME ARCADE ARENA (CANVAS RETRO GAME) -->
-    <section id="arcade" class="section-container">
+    <!-- =========================================================================
+         SCREEN 4: ARCADE RETRO MINI-GAME (DIBUAT TERPISAH AGAR RAPI)
+         ========================================================================= -->
+    <section id="view-arcade" class="view-screen">
       <div class="section-header">
-        <div class="stage-tag special-tag">PLAYABLE ARCADE</div>
-        <h2 class="section-title"><span class="title-bracket">[</span> ARCADE ARENA: PO BUS RUNNER <span class="title-bracket">]</span></h2>
-        <p class="section-desc">Mainkan game 16-Bit retro langsung di browser! Kendarai PO Bus, kumpulkan coin, dan hindari rintangan!</p>
+        <div class="stage-tag special-tag">PLAYABLE ARENA</div>
+        <h2 class="section-title"><span class="title-bracket">[</span> ARCADE: PO BUS HIGHWAY RUSH <span class="title-bracket">]</span></h2>
+        <p class="section-desc">Game mini 16-bit HTML5 Canvas — kemudikan Bus PO ASM Putra Trans menghindari rintangan!</p>
       </div>
 
       <div class="arcade-cabinet-wrapper retro-card">
@@ -1092,18 +649,16 @@
             <div>LIVES: <span id="gameLives" class="neon-red">♥♥♥</span></div>
           </div>
 
-          <!-- HTML5 Canvas for the 16-bit mini game -->
           <div class="canvas-wrapper">
             <canvas id="gameCanvas" width="640" height="360"></canvas>
             
-            <!-- Game Over / Start Overlay -->
             <div id="gameOverlay" class="game-overlay">
               <div class="overlay-content">
                 <h3 id="overlayTitle" class="neon-yellow">INSERT COIN TO PLAY</h3>
                 <p id="overlaySubtitle">Kendalikan Bus PO ASM Putra Trans (Tri Wahyudi) di jalan raya!</p>
                 <div class="controls-guide">
                   <div>[▲ / JUMP] [◀ / KIRI] [▶ / KANAN]</div>
-                  <div class="mobile-note">(Atau gunakan tombol virtual di bawah pada HP)</div>
+                  <div class="mobile-note">(Atau gunakan tombol sentuh di bawah pada HP)</div>
                 </div>
                 <button id="startGameBtn" class="retro-btn btn-primary sound-click">
                   ▶ START GAME
@@ -1112,7 +667,7 @@
             </div>
           </div>
 
-          <!-- Mobile Virtual Controls -->
+          <!-- Touch Controls for Mobile -->
           <div class="mobile-arcade-controls">
             <button id="ctrlLeft" class="arcade-touch-btn" aria-label="Gerak Kiri">◀ KIRI</button>
             <button id="ctrlJump" class="arcade-touch-btn jump-btn" aria-label="Lompat">▲ LOMPAT</button>
@@ -1121,35 +676,35 @@
         </div>
 
         <div class="cabinet-coin-slot">
-          <span class="slot-text">INSERT COIN [100 CREDITS FREE]</span>
-          <div class="coin-entry"></div>
+          <span class="slot-text">POWERED BY HTML5 CANVAS &amp; WEB AUDIO API</span>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT & MEMORY CARD SAVE POINT -->
-    <section id="contact" class="section-container">
+    <!-- =========================================================================
+         SCREEN 5: SAVE POINT / KONTAK
+         ========================================================================= -->
+    <section id="view-contact" class="view-screen">
       <div class="section-header">
-        <div class="stage-tag">FINAL STAGE</div>
-        <h2 class="section-title"><span class="title-bracket">[</span> MEMORY CARD SAVE POINT: HUBUNGI TRI WAHYUDI <span class="title-bracket">]</span></h2>
-        <p class="section-desc">Kirim pesan, tawaran kolaborasi proyek, atau diskusikan kebutuhan software ke Tri Wahyudi</p>
+        <div class="stage-tag">SAVE TRANSMISSION</div>
+        <h2 class="section-title"><span class="title-bracket">[</span> MEMORY CARD SAVE POINT: HUBUNGI SAYA <span class="title-bracket">]</span></h2>
+        <p class="section-desc">Kirim pesan kerja sama, konsultasi sistem, atau tawaran proyek langsung ke Tri Wahyudi</p>
       </div>
 
       <div class="grid-2-col">
-        <!-- Memory Card Form -->
+        <!-- Form Kontak -->
         <div class="retro-card">
           <div class="card-header-bar">
-            <span class="window-title">SAVE_SLOT_01: NEW_TRANSMISSION</span>
+            <span class="window-title">SAVE_SLOT_01: NEW_MESSAGE</span>
             <span class="cartridge-badge">8MB MEMORY CARD</span>
           </div>
-
           <div class="card-body">
             <form id="contactForm" class="retro-form" onsubmit="return false;">
               <div class="form-group">
                 <label for="senderName" class="form-label">
-                  <span class="input-bullet">►</span> NAMA / INSTANSI / PERUSAHAAN:
+                  <span class="input-bullet">►</span> NAMA / INSTANSI:
                 </label>
-                <input type="text" id="senderName" class="retro-input" placeholder="Masukkan nama Anda..." required>
+                <input type="text" id="senderName" class="retro-input" placeholder="Masukkan nama..." required>
               </div>
 
               <div class="form-group">
@@ -1161,15 +716,14 @@
 
               <div class="form-group">
                 <label for="projectType" class="form-label">
-                  <span class="input-bullet">►</span> TOPIK KOLABORASI:
+                  <span class="input-bullet">►</span> TOPIK PROJECT:
                 </label>
                 <select id="projectType" class="retro-input retro-select">
-                  <option value="bus">Web PO Bus / Sistem Transportasi</option>
-                  <option value="clean">Web Perusahaan / Katalog Alat Kebersihan</option>
+                  <option value="bus">Web PO Bus / Reservasi Armada</option>
+                  <option value="clean">Web Perusahaan / Katalog B2B</option>
                   <option value="android">Aplikasi Mobile Android (Kotlin)</option>
-                  <option value="absensi">Sistem Absensi &amp; Manajemen Organisasi</option>
+                  <option value="absensi">Sistem Absensi &amp; Manajemen</option>
                   <option value="iot">Project IoT / Hardware ESP32</option>
-                  <option value="analysis">Analisis &amp; Audit Arsitektur Software</option>
                   <option value="other">Kolaborasi &amp; Lainnya</option>
                 </select>
               </div>
@@ -1178,7 +732,7 @@
                 <label for="senderMessage" class="form-label">
                   <span class="input-bullet">►</span> PESAN TRANSMISI:
                 </label>
-                <textarea id="senderMessage" rows="4" class="retro-input" placeholder="Tuliskan detail kebutuhan atau pesan proyek di sini..." required></textarea>
+                <textarea id="senderMessage" rows="4" class="retro-input" placeholder="Tuliskan pesan atau kebutuhan Anda..." required></textarea>
               </div>
 
               <button type="submit" id="saveMsgBtn" class="retro-btn btn-primary btn-block sound-click">
@@ -1187,46 +741,45 @@
 
               <div id="saveSuccessAlert" class="save-status-box hidden">
                 <span class="save-check">✔</span>
-                <span>SAVE COMPLETED! Transmisi pesan berhasil disiapkan ke Tri Wahyudi!</span>
+                <span>SAVE COMPLETED! Pesan Anda berhasil disimpan dan diteruskan ke Tri Wahyudi!</span>
               </div>
             </form>
           </div>
         </div>
 
-        <!-- Direct Channels & Social Links -->
+        <!-- Direct Channels -->
         <div class="retro-card">
           <div class="card-header-bar">
-            <span class="window-title">COMMUNICATION_CHANNELS.IO</span>
+            <span class="window-title">DIRECT_TRANSMISSION.CH</span>
           </div>
-
           <div class="card-body">
-            <h3 class="card-heading neon-yellow">LINK KANAL TRANSMISI LANGSUNG</h3>
+            <h3 class="card-heading neon-yellow">SALURAN RESMI</h3>
             <p class="pixel-text">
-              Hubungi Tri Wahyudi secara instan melalui kanal kontak resmi di bawah:
+              Silakan hubungi secara langsung melalui saluran di bawah:
             </p>
 
             <div class="channel-buttons-list">
-              <!-- WhatsApp Direct -->
-              <a href="https://wa.me/?text=Halo%20Tri%20Wahyudi,%20saya%20tertarik%20dengan%20portfolio%20dan%20project%20Anda!" target="_blank" rel="noopener noreferrer" class="channel-item wa-channel sound-click">
+              <!-- WhatsApp -->
+              <a href="https://wa.me/?text=Halo%20Tri%20Wahyudi,%20saya%20tertarik%20dengan%20portfolio%20web%20Anda!" target="_blank" rel="noopener noreferrer" class="channel-item wa-channel sound-click">
                 <span class="ch-icon">📱</span>
                 <div class="ch-meta">
-                  <span class="ch-name">WHATSAPP LANGSUNG</span>
-                  <span class="ch-sub">Chat cepat dan diskusi instan</span>
+                  <span class="ch-name">WHATSAPP DIRECT</span>
+                  <span class="ch-sub">Chat langsung &amp; diskusi instan</span>
                 </div>
                 <span class="ch-arrow">►</span>
               </a>
 
-              <!-- GitHub Official -->
+              <!-- GitHub -->
               <a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" class="channel-item sound-click">
                 <span class="ch-icon">👾</span>
                 <div class="ch-meta">
-                  <span class="ch-name">GITHUB PROFILE (@wongsxs)</span>
-                  <span class="ch-sub">30+ Repositories &amp; Source Code</span>
+                  <span class="ch-name">GITHUB PROFILE</span>
+                  <span class="ch-sub">github.com/wongsxs (30+ Repos)</span>
                 </div>
                 <span class="ch-arrow">►</span>
               </a>
 
-              <!-- Email Direct -->
+              <!-- Email -->
               <a href="mailto:triw0224@gmail.com" class="channel-item sound-click">
                 <span class="ch-icon">✉</span>
                 <div class="ch-meta">
@@ -1235,21 +788,11 @@
                 </div>
                 <span class="ch-arrow">►</span>
               </a>
-
-              <!-- Student Badge -->
-              <div class="channel-item sound-click" id="studentBadgeItem">
-                <span class="ch-icon">🎓</span>
-                <div class="ch-meta">
-                  <span class="ch-name">INFORMATICS ENGINEERING</span>
-                  <span class="ch-sub">Mahasiswa Semester 5 &middot; Usia 21 Tahun</span>
-                </div>
-                <span class="ch-arrow">★</span>
-              </div>
             </div>
 
-            <div class="retro-quote-box">
+            <div class="retro-quote-box" style="margin-top: 18px;">
               <span class="quote-symbol">"</span>
-              <span>Terbuka untuk kolaborasi pembuatan sistem baru, pengembangan aplikasi web &amp; mobile, serta analisis proyek software.</span>
+              <span>Siap berkolaborasi dalam rekayasa aplikasi web, mobile, dan analisis arsitektur proyek skala kecil hingga besar.</span>
             </div>
           </div>
         </div>
@@ -1258,144 +801,114 @@
 
   </main>
 
-  <!-- MODAL POPUPS FOR PROJECT DETAILS -->
-  <!-- MODAL 1: PO BUS SYSTEM -->
+  <!-- MODAL DETAILS FOR PROJECTS -->
+  <!-- MODAL: PO BUS -->
   <div id="modalBus" class="retro-modal" aria-hidden="true" role="dialog">
     <div class="modal-backdrop"></div>
     <div class="modal-dialog retro-card">
       <div class="card-header-bar">
-        <span class="window-title">QUEST_INTEL: WEB_PO_BUS.DOC</span>
+        <span class="window-title">INTEL: WEB_PO_BUS.DOC</span>
         <button class="modal-close-btn sound-click" aria-label="Tutup">&times;</button>
       </div>
       <div class="card-body modal-scroll">
-        <div class="modal-hero-badge">STAGE 01 INTEL &amp; ANALISIS</div>
-        <h3 class="modal-title neon-cyan">WEB PO BUS (ASM PUTRA TRANS / RESERVASI BUS)</h3>
-        
+        <div class="modal-hero-badge">STAGE 01 INTEL</div>
+        <h3 class="modal-title neon-cyan">WEB PO BUS (ASM PUTRA TRANS)</h3>
         <p class="pixel-text">
-          <strong>Analisis Masalah:</strong> Perusahaan otobus antarkota membutuhkan sistem digital untuk mengeliminasi resiko tiket ganda (double-booking), memantau ketersediaan kursi secara visual, serta mencatat manifest penumpang dan jadwal armada secara terpusat.
+          Sistem manajemen pemesanan tiket bus interaktif yang mengeliminasi masalah *double-booking* kursi dan mengotomasi manifes supir serta agen tiket.
         </p>
-
-        <h4 class="neon-yellow modal-subtitle">ARSITEKTUR &amp; FITUR UTAMA:</h4>
+        <h4 class="neon-yellow modal-subtitle">ARSITEKTUR UTAMA:</h4>
         <ul class="modal-bullet-list">
-          <li><strong>2D Interactive Seat Matrix:</strong> Menggunakan struktur array 2 dimensi untuk memetakan denah kursi bus (eksekutif 2-2, sleeper, dsb.) dengan status real-time.</li>
-          <li><strong>Manajemen Rute &amp; Jadwal:</strong> Relasi database antara terminal asal, terminal tujuan, waktu tempuh, dan penyesuaian tarif dinamis.</li>
-          <li><strong>Validasi Tiket QR Code:</strong> Meng-generate QR Code unik pada setiap e-ticket untuk verifikasi cepat oleh kondektur bus di lapangan.</li>
-          <li><strong>GitHub Repository:</strong> Tersedia di <a href="https://github.com/wongsxs/asmputratrans" target="_blank" style="color:var(--neon-cyan);">wongsxs/asmputratrans</a>.</li>
+          <li><strong>2D Seat Picker:</strong> Matriks denah kursi dinamis sesuai konfigurasi armada.</li>
+          <li><strong>QR Code E-Ticket:</strong> Validasi cepat tiket penumpang di terminal.</li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/wongsxs/asmputratrans" target="_blank" style="color:var(--neon-cyan);">wongsxs/asmputratrans</a></li>
         </ul>
-
         <div class="modal-footer-btns">
-          <button class="retro-btn btn-primary modal-close-btn sound-click">TUTUP DOKUMEN</button>
-          <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer" class="retro-btn btn-secondary sound-click">BUKA GITHUB REPO</a>
+          <button class="retro-btn btn-primary modal-close-btn sound-click">TUTUP</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MODAL 2: CLEANING EQUIPMENT CORP -->
+  <!-- MODAL: CLEANING CORP -->
   <div id="modalClean" class="retro-modal" aria-hidden="true" role="dialog">
     <div class="modal-backdrop"></div>
     <div class="modal-dialog retro-card">
       <div class="card-header-bar">
-        <span class="window-title">QUEST_INTEL: CLEANING_CORP.DOC</span>
+        <span class="window-title">INTEL: CLEANING_CORP.DOC</span>
         <button class="modal-close-btn sound-click" aria-label="Tutup">&times;</button>
       </div>
       <div class="card-body modal-scroll">
-        <div class="modal-hero-badge">STAGE 02 INTEL &amp; ANALISIS</div>
+        <div class="modal-hero-badge">STAGE 02 INTEL</div>
         <h3 class="modal-title neon-yellow">WEB PERUSAHAAN ALAT KEBERSIHAN (COMPANY DAU)</h3>
-        
         <p class="pixel-text">
-          <strong>Analisis Masalah:</strong> Pasar B2B alat kebersihan komersil (rumah sakit, hotel, mall) memerlukan katalog produk teknis yang jelas dengan kemampuan meminta penawaran harga resmi (RFQ) tanpa harus mendaftar akun rumit.
+          Katalog digital B2B dan profil korporat untuk distributor perlengkapan pembersih industri (floor polisher, scrubber, chemical).
         </p>
-
-        <h4 class="neon-cyan modal-subtitle">ARSITEKTUR &amp; FITUR UTAMA:</h4>
+        <h4 class="neon-cyan modal-subtitle">ARSITEKTUR UTAMA:</h4>
         <ul class="modal-bullet-list">
-          <li><strong>Katalog Produk Terkategori:</strong> Menampilkan spesifikasi teknis mesin polisher, auto-scrubber, vacuum cleaner, dan chemical.</li>
-          <li><strong>Mesin RFQ &amp; Direct WhatsApp:</strong> Mengonversi daftar barang yang dipilih ke format teks pesan penawaran terstruktur langsung ke kontak sales via WhatsApp API.</li>
-          <li><strong>GitHub Repository:</strong> Tersedia di <a href="https://github.com/wongsxs/companyDAU" target="_blank" style="color:var(--neon-yellow);">wongsxs/companyDAU</a>.</li>
+          <li><strong>Katalog Terkategori:</strong> Menampilkan spesifikasi teknis mesin dan sanitasi.</li>
+          <li><strong>Direct RFQ:</strong> Permintaan penawaran otomatis langsung terhubung ke WhatsApp.</li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/wongsxs/companyDAU" target="_blank" style="color:var(--neon-yellow);">wongsxs/companyDAU</a></li>
         </ul>
-
         <div class="modal-footer-btns">
-          <button class="retro-btn btn-primary modal-close-btn sound-click">TUTUP DOKUMEN</button>
-          <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer" class="retro-btn btn-secondary sound-click">BUKA GITHUB REPO</a>
+          <button class="retro-btn btn-primary modal-close-btn sound-click">TUTUP</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MODAL 3: SMART TOURISM KEBUMEN -->
+  <!-- MODAL: SMART TOURISM -->
   <div id="modalTourism" class="retro-modal" aria-hidden="true" role="dialog">
     <div class="modal-backdrop"></div>
     <div class="modal-dialog retro-card">
       <div class="card-header-bar">
-        <span class="window-title">QUEST_INTEL: SMART_TOURISM.DOC</span>
+        <span class="window-title">INTEL: SMART_TOURISM.DOC</span>
         <button class="modal-close-btn sound-click" aria-label="Tutup">&times;</button>
       </div>
       <div class="card-body modal-scroll">
-        <div class="modal-hero-badge">STAGE 03 INTEL &amp; ANALISIS</div>
-        <h3 class="modal-title neon-green">SMART TOURISM KEBUMEN (KOTLIN MOBILE APP)</h3>
-        
+        <div class="modal-hero-badge">STAGE 03 INTEL</div>
+        <h3 class="modal-title neon-green">SMART TOURISM KEBUMEN (ANDROID)</h3>
         <p class="pixel-text">
-          <strong>Analisis Masalah:</strong> Memfasilitasi wisatawan lokal dan mancanegara dalam menemukan tempat wisata tersembunyi di Kabupaten Kebumen, informasi tiket, rute terbaik, dan fasilitas pendukung.
+          Aplikasi Android native Kotlin rekomendasi objek wisata di Kabupaten Kebumen dengan navigasi rute dan informasi fasilitas.
         </p>
-
-        <h4 class="neon-cyan modal-subtitle">ARSITEKTUR &amp; FITUR UTAMA:</h4>
+        <h4 class="neon-yellow modal-subtitle">ARSITEKTUR UTAMA:</h4>
         <ul class="modal-bullet-list">
-          <li><strong>Kotlin Native Android:</strong> Mengimplementasikan MVVM architecture, LiveData, dan Navigation Component.</li>
-          <li><strong>Integrasi Geolocation:</strong> Menampilkan jarak dari posisi pengguna ke lokasi objek wisata secara real-time.</li>
-          <li><strong>GitHub Repository:</strong> Tersedia di <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" style="color:var(--neon-green);">wongsxs/smart-tourism-kebumen-v1</a>.</li>
+          <li><strong>Kotlin MVVM:</strong> Clean architecture dengan LiveData &amp; ViewModel.</li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" style="color:var(--neon-green);">wongsxs/smart-tourism-kebumen-v1</a></li>
         </ul>
-
         <div class="modal-footer-btns">
-          <button class="retro-btn btn-primary modal-close-btn sound-click">TUTUP DOKUMEN</button>
-          <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer" class="retro-btn btn-secondary sound-click">BUKA GITHUB REPO</a>
+          <button class="retro-btn btn-primary modal-close-btn sound-click">TUTUP</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MODAL 4: ABSENSI GAMKI -->
+  <!-- MODAL: ABSENSI GAMKI -->
   <div id="modalGamki" class="retro-modal" aria-hidden="true" role="dialog">
     <div class="modal-backdrop"></div>
     <div class="modal-dialog retro-card">
       <div class="card-header-bar">
-        <span class="window-title">QUEST_INTEL: ABSENSI_GAMKI.DOC</span>
+        <span class="window-title">INTEL: ABSENSI_GAMKI.DOC</span>
         <button class="modal-close-btn sound-click" aria-label="Tutup">&times;</button>
       </div>
       <div class="card-body modal-scroll">
-        <div class="modal-hero-badge">STAGE 04 INTEL &amp; ANALISIS</div>
-        <h3 class="modal-title neon-pink">SISTEM WEB ABSENSI KEGIATAN GAMKI</h3>
-        
+        <div class="modal-hero-badge">STAGE 04 INTEL</div>
+        <h3 class="modal-title neon-pink">SISTEM WEB ABSENSI GAMKI</h3>
         <p class="pixel-text">
-          <strong>Analisis Masalah:</strong> Menggantikan absensi tanda tangan kertas yang lambat dan rawan hilang pada acara organisasi besar dengan aplikasi presensi digital berbasis web yang menghasilkan rekap kehadiran akurat secara instan.
+          Sistem absensi digital realtime untuk delegasi musyawarah organisasi GAMKI dengan live statistik kehadiran.
         </p>
-
-        <h4 class="neon-yellow modal-subtitle">ARSITEKTUR &amp; FITUR UTAMA:</h4>
+        <h4 class="neon-cyan modal-subtitle">ARSITEKTUR UTAMA:</h4>
         <ul class="modal-bullet-list">
-          <li><strong>Fast Identity Lookup:</strong> Validasi cepat nomor peserta/delegasi untuk menandai kehadiran dalam 1 detik.</li>
-          <li><strong>Live Attendance Counter:</strong> Dashboard statistik menampilkan kuorum dan persentase kehadiran peserta saat acara berlangsung.</li>
-          <li><strong>GitHub Repository:</strong> <a href="https://github.com/wongsxs/absensi-gamki" target="_blank" style="color:var(--neon-pink);">wongsxs/absensi-gamki</a>.</li>
+          <li><strong>Fast Check-in:</strong> Verifikasi kehadiran per delegasi dalam hitungan detik.</li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/wongsxs/absensi-gamki" target="_blank" style="color:var(--neon-pink);">wongsxs/absensi-gamki</a></li>
         </ul>
-
         <div class="modal-footer-btns">
-          <button class="retro-btn btn-primary modal-close-btn sound-click">TUTUP DOKUMEN</button>
-          <a href="#contact" class="retro-btn btn-secondary modal-close-btn sound-click">DISKUSIKAN SISTEM SERUPA</a>
+          <button class="retro-btn btn-primary modal-close-btn sound-click">TUTUP</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- TROPHY UNLOCK NOTIFICATION OVERLAY -->
-  <div id="trophyNotification" class="ps3-trophy-popup" aria-live="polite">
-    <div class="popup-box">
-      <div class="popup-icon">🏆</div>
-      <div class="popup-texts">
-        <div class="popup-header">YOU HAVE EARNED A TROPHY</div>
-        <div id="trophyPopupName" class="popup-name">PLATINUM: SECRET KONAMI MASTER!</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- RETRO FOOTER -->
+  <!-- FOOTER -->
   <footer class="retro-footer">
     <div class="footer-container">
       <div class="footer-status">
@@ -1405,10 +918,7 @@
         DEVELOPED BY <strong class="neon-cyan">TRI WAHYUDI</strong> &copy; 2026. ALL RIGHTS RESERVED.
       </div>
       <div class="footer-credits">
-        MAHASISWA TEKNIK INFORMATIKA SEMESTER 5 (21 TAHUN) &bull; ANALISIS &amp; PENGEMBANGAN PROJECT GITHUB @wongsxs.
-      </div>
-      <div class="footer-back-to-top">
-        <a href="#hero" class="retro-link sound-click">▲ KEMBALI KE ATAS [PRESS START] ▲</a>
+        MAHASISWA TEKNIK INFORMATIKA SEMESTER 5 (21 TAHUN) &bull; GITHUB @wongsxs.
       </div>
     </div>
   </footer>
