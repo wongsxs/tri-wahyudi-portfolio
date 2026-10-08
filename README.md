@@ -1,6 +1,6 @@
-# 🎮 Faisa Abdau - 16-Bit Retro Classic Portfolio
+# 🎮 Faisal Abdau - 16-Bit Retro Classic Portfolio
 
-Landing page bertema **16-Bit Retro Classic Arcade & Console (PS3 Tribute)** yang responsif di semua ukuran layar (Mobile, Tablet, Desktop) untuk **Faisa Abdau**.
+Landing page bertema **16-Bit Retro Classic Arcade & Console (PS3 Tribute)** yang responsif di semua ukuran layar (Mobile, Tablet, Desktop) untuk **Faisal Abdau**.
 
 ![Theme](https://img.shields.io/badge/Theme-16--Bit%20Retro%20Classic-magenta?style=for-the-badge)
 ![Audio](https://img.shields.io/badge/Audio-Web%20Audio%20Chiptune-cyan?style=for-the-badge)
@@ -11,7 +11,7 @@ Landing page bertema **16-Bit Retro Classic Arcade & Console (PS3 Tribute)** yan
 
 ## 🌟 Highlight & Fitur Utama
 
-- **16-Bit Arcade HUD & Status Bar:** Menampilkan status `PLAYER 1: FAISA ABDAU`, live score tracker, lives counter, CRT TV toggle, dan 16-bit sound toggle.
+- **16-Bit Arcade HUD & Status Bar:** Menampilkan status `PLAYER 1: FAISAL ABDAU`, live score tracker, lives counter, CRT TV toggle, dan 16-bit sound toggle.
 - **Synthesized 16-Bit Audio Engine:** Menggunakan Web Audio API asli browser (tanpa dependensi file MP3 eksternal). Menghasilkan suara blip, koin retro, arpeggio power-up, dan notifikasi PS3 Trophy Unlock.
 - **CRT Scanlines & Curved Screen Mode:** Opsi tombol `[📺 CRT: ON/OFF]` untuk menyalakan/mematikan filter tabung retro.
 - **Featured Projects Showcase:**
@@ -21,7 +21,7 @@ Landing page bertema **16-Bit Retro Classic Arcade & Console (PS3 Tribute)** yan
   - Unit konsol PS3 16-bit dengan slot disc eject/insert mekanis dan lampu LED dinamis.
   - Virtual DualShock 3 Gamepad interaktif: setiap tombol (D-Pad, △, ◯, ✕, ▢, Triggers) memiliki nada synthesizer tersendiri.
   - **Secret Cheat Code / Konami Code:** Masukkan `▲ ▲ ▼ ▼ ◀ ▶ ◀ ▶ ▢ ◯` (atau panah keyboard + B A) untuk membuka **Platinum Trophy Popup** ala PS3!
-  - Trophy Room koleksi game klasik Faisa Abdau.
+  - Trophy Room koleksi game klasik Faisal Abdau.
 - **Playable Mini Game Canvas: "PO Bus Highway Rush":** Game 16-bit langsung di browser lengkap dengan kontrol sentuh untuk smartphone dan keyboard untuk PC.
 - **Memory Card Slot 1 (Save Point / Contact):** Formulir bertema kartu memori PS3 untuk mengirimkan transmisi pesan dan kolaborasi proyek.
 
@@ -48,4 +48,4 @@ start index.html
 ---
 
 Dibuat dengan dedikasi tinggi untuk era 16-Bit dan gaming konsol legendaris PlayStation 3.  
-© 2026 **Faisa Abdau**. All Rights Reserved.
+© 2026 **Faisal Abdau**. All Rights Reserved.

@@ -1,5 +1,5 @@
 /**
- * FAISA ABDAU // 16-BIT RETRO CLASSIC PORTFOLIO
+ * FAISAL ABDAU // 16-BIT RETRO CLASSIC PORTFOLIO
  * Interactive Audio Engine, Gamepad Controller, PS3 Tribute & PO Bus Canvas Game
  */
 
@@ -377,9 +377,9 @@
   const copyPsnBtn = document.getElementById('copyPsnBtn');
   if (copyPsnBtn) {
     copyPsnBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText('FAISA_PS3_VETERAN').then(() => {
+      navigator.clipboard.writeText('FAISAL_PS3_VETERAN').then(() => {
         sfxCoin();
-        alert('PSN ID: "FAISA_PS3_VETERAN" berhasil disalin ke clipboard!');
+        alert('PSN ID: "FAISAL_PS3_VETERAN" berhasil disalin ke clipboard!');
       });
     });
   }
@@ -888,7 +888,7 @@
 
   // Ready log in console for retro gamer fans
   console.log(
-    '%c[16-BIT SYSTEM LOADED] Ready Player: FAISA ABDAU // PS3 Console Edition',
+    '%c[16-BIT SYSTEM LOADED] Ready Player: FAISAL ABDAU // PS3 Console Edition',
     'background: #110926; color: #00f0ff; font-size: 14px; font-weight: bold; padding: 8px;'
   );
 })();
