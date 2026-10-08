@@ -1,6 +1,6 @@
 /**
- * FAISAL ABDAU // 16-BIT RETRO CLASSIC PORTFOLIO
- * Interactive Audio Engine, Gamepad Controller, PS3 Tribute & PO Bus Canvas Game
+ * TRI WAHYUDI // 16-BIT RETRO CLASSIC PORTFOLIO
+ * Mahasiswa Teknik Informatika Sem 5 (21 Tahun) - Project Crafting & Architecture Analysis
  */
 
 (function () {
@@ -886,9 +886,41 @@
     }
   });
 
+  // ==========================================
+  // 8. GITHUB REPO FILTER TABS
+  // ==========================================
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const repoCards = document.querySelectorAll('.repo-card-box');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.filter;
+      sfxClick();
+
+      repoCards.forEach((card) => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Student Badge Click Sound
+  const studentBadgeItem = document.getElementById('studentBadgeItem');
+  if (studentBadgeItem) {
+    studentBadgeItem.addEventListener('click', () => {
+      sfxPowerUp();
+      alert('🎓 Mahasiswa Teknik Informatika S1 (Semester 5) - Usia 21 Tahun.\nFokus: Full-Stack Engineering, Android Kotlin, & System Analysis.');
+    });
+  }
+
   // Ready log in console for retro gamer fans
   console.log(
-    '%c[16-BIT SYSTEM LOADED] Ready Player: FAISAL ABDAU // PS3 Console Edition',
+    '%c[16-BIT SYSTEM LOADED] Ready Player: TRI WAHYUDI // Informatics Engineering Sem 5 (Age 21)',
     'background: #110926; color: #00f0ff; font-size: 14px; font-weight: bold; padding: 8px;'
   );
 })();
