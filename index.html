@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAISA ABDAU // 16-BIT RETRO ZONE</title>
+  <meta name="description" content="Portfolio 16-Bit Retro Classic Faisa Abdau - Web Developer & PS3 Console Enthusiast. Showcase Web PO Bus & Web Perusahaan Alat Kebersihan.">
+  
+  <!-- Pixel Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230f051d'/><rect x='2' y='4' width='12' height='8' fill='%2300f0ff'/><rect x='4' y='6' width='3' height='2' fill='%23ff007f'/><rect x='9' y='6' width='3' height='2' fill='%23ffcc00'/><rect x='6' y='10' width='4' height='2' fill='%2339ff14'/></svg>">
+</head>
+<body class="crt-active">
+  <!-- CRT Scanlines and Curvature Overlay -->
+  <div id="crtOverlay" class="crt-overlay" aria-hidden="true"></div>
+  <div class="crt-vignette" aria-hidden="true"></div>
+
+  <!-- Audio unlock banner for mobile browser autoplay policy -->
+  <div id="audioUnlockBanner" class="retro-banner-top">
+    <span>[!] KLIK UNTUK MENGAKTIFKAN 16-BIT SOUND FX</span>
+    <button id="enableSoundBtn" class="retro-btn btn-sm">AKTIFKAN SOUND</button>
+  </div>
+
+  <!-- RETRO TOP HUD / HEADER -->
+  <header class="retro-hud">
+    <div class="hud-container">
+      <div class="hud-item player-tag">
+        <span class="hud-label">1P</span>
+        <span class="hud-val neon-green">FAISA ABDAU</span>
+      </div>
+
+      <div class="hud-item score-tag">
+        <span class="hud-label">SCORE</span>
+        <span id="hudScore" class="hud-val neon-yellow">099500</span>
+      </div>
+
+      <div class="hud-item lives-tag">
+        <span class="hud-label">LIVES</span>
+        <span class="hud-val neon-red hearts-indicator">♥♥♥</span>
+      </div>
+
+      <div class="hud-item trophy-tag">
+        <span class="hud-label">PS3 TROPHY</span>
+        <span id="trophyCount" class="hud-val neon-cyan">🏆 x12</span>
+      </div>
+
+      <div class="hud-controls">
+        <button id="sfxToggleBtn" class="hud-btn" title="Toggle Sound FX" aria-label="Toggle Sound">
+          <span class="icon">🔊</span> <span class="btn-text">SFX: ON</span>
+        </button>
+        <button id="crtToggleBtn" class="hud-btn" title="Toggle CRT Filter" aria-label="Toggle CRT Scanline Effect">
+          <span class="icon">📺</span> <span class="btn-text">CRT: ON</span>
+        </button>
+        <button id="menuToggleBtn" class="hud-btn mobile-menu-btn" aria-label="Buka Menu Navigasi">
+          <span class="icon">☰</span> <span class="btn-text">MENU</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR -->
+  <nav id="retroNav" class="retro-nav">
+    <div class="nav-container">
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-item active"><span class="bracket">[</span>1. START<span class="bracket">]</span></a></li>
+        <li><a href="#about" class="nav-item"><span class="bracket">[</span>2. PROFILE<span class="bracket">]</span></a></li>
+        <li><a href="#projects" class="nav-item"><span class="bracket">[</span>3. QUESTS<span class="bracket">]</span></a></li>
+        <li><a href="#ps3-vault" class="nav-item"><span class="bracket">[</span>4. PS3 VAULT<span class="bracket">]</span></a></li>
+        <li><a href="#skills" class="nav-item"><span class="bracket">[</span>5. STATS<span class="bracket">]</span></a></li>
+        <li><a href="#arcade" class="nav-item"><span class="bracket">[</span>6. MINI GAME<span class="bracket">]</span></a></li>
+        <li><a href="#contact" class="nav-item"><span class="bracket">[</span>7. SAVE POINT<span class="bracket">]</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN WRAPPER -->
+  <main class="page-content">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="retro-card hero-card">
+        <div class="card-header-bar">
+          <span class="sys-dot red"></span>
+          <span class="sys-dot yellow"></span>
+          <span class="sys-dot green"></span>
+          <span class="window-title">SYSTEM BOOT // READY PLAYER ONE</span>
+          <span class="cartridge-badge">16-BIT VER 3.0</span>
+        </div>
+
+        <div class="hero-grid">
+          <!-- Sprite Character Avatar -->
+          <div class="hero-avatar-col">
+            <div class="pixel-frame avatar-wrapper">
+              <div class="pixel-avatar" id="heroAvatar">
+                <!-- SVG Pixel Art Character: Gamer with Headset & PS3 Controller -->
+                <svg viewBox="0 0 32 32" class="pixel-svg avatar-svg" shape-rendering="crispEdges">
+                  <!-- Background / Glow -->
+                  <rect width="32" height="32" fill="#18112d"/>
+                  <!-- Hair (Dark Brown / Black) -->
+                  <rect x="10" y="4" width="12" height="4" fill="#1b120c"/>
+                  <rect x="8" y="6" width="16" height="4" fill="#2d1c13"/>
+                  <!-- Headset band -->
+                  <rect x="9" y="3" width="14" height="2" fill="#00f0ff"/>
+                  <rect x="7" y="5" width="2" height="5" fill="#00f0ff"/>
+                  <rect x="23" y="5" width="2" height="5" fill="#00f0ff"/>
+                  <rect x="6" y="8" width="2" height="4" fill="#ff007f"/>
+                  <rect x="24" y="8" width="2" height="4" fill="#ff007f"/>
+                  <!-- Face (Skin Tone) -->
+                  <rect x="10" y="8" width="12" height="8" fill="#ffdbac"/>
+                  <rect x="11" y="16" width="10" height="2" fill="#f1c27d"/>
+                  <!-- Eyes (Retro 16-bit) -->
+                  <rect x="12" y="10" width="2" height="2" fill="#111"/>
+                  <rect x="18" y="10" width="2" height="2" fill="#111"/>
+                  <rect x="12" y="10" width="1" height="1" fill="#fff"/>
+                  <rect x="18" y="10" width="1" height="1" fill="#fff"/>
+                  <!-- Smile -->
+                  <rect x="14" y="13" width="4" height="1" fill="#c47a54"/>
+                  <!-- Gamer Shirt / Jacket -->
+                  <rect x="8" y="18" width="16" height="8" fill="#222738"/>
+                  <rect x="11" y="18" width="10" height="7" fill="#ff007f"/>
+                  <!-- PS3 Logo symbol on shirt (Square, Triangle, Circle, Cross) -->
+                  <rect x="13" y="20" width="2" height="2" fill="#00f0ff"/>
+                  <rect x="17" y="20" width="2" height="2" fill="#39ff14"/>
+                  <rect x="15" y="22" width="2" height="2" fill="#ffcc00"/>
+                  <!-- Hands holding PS3 Controller -->
+                  <rect x="8" y="23" width="4" height="3" fill="#ffdbac"/>
+                  <rect x="20" y="23" width="4" height="3" fill="#ffdbac"/>
+                  <!-- PS3 DualShock Controller -->
+                  <rect x="10" y="24" width="12" height="4" fill="#111116"/>
+                  <rect x="11" y="25" width="2" height="2" fill="#39ff14"/>
+                  <rect x="19" y="25" width="2" height="2" fill="#ff007f"/>
+                  <rect x="15" y="25" width="2" height="1" fill="#00f0ff"/>
+                  <!-- Legs -->
+                  <rect x="10" y="26" width="5" height="5" fill="#111936"/>
+                  <rect x="17" y="26" width="5" height="5" fill="#111936"/>
+                  <!-- Shoes -->
+                  <rect x="9" y="30" width="6" height="2" fill="#ff007f"/>
+                  <rect x="17" y="30" width="6" height="2" fill="#ff007f"/>
+                </svg>
+              </div>
+              <div class="avatar-status">
+                <span class="status-indicator"></span> LEVEL 99 DEV
+              </div>
+            </div>
+
+            <div class="mini-console-badge">
+              <span class="badge-label">MAIN WEAPON:</span>
+              <span class="badge-val">PS3 DUALSHOCK 3 & CODE EDITOR</span>
+            </div>
+          </div>
+
+          <!-- Hero Text Details -->
+          <div class="hero-info-col">
+            <div class="hero-title-box">
+              <div class="tag-pill neon-border">HI, I'M PLAYER ONE</div>
+              <h1 class="hero-name glitch-text" data-text="FAISA ABDAU">FAISA ABDAU</h1>
+              <p class="hero-subtitle">
+                <span class="pixel-bullet">►</span> WEB DEVELOPER &middot; FULL-STACK CRAFTER &middot; PS3 RETRO GAMER
+              </p>
+            </div>
+
+            <!-- RPG Dialogue Box with Typewriter effect -->
+            <div class="dialogue-box pixel-box">
+              <div class="dialogue-speaker">
+                <span class="speaker-name">FAISA.EXE:</span>
+                <span class="speaker-status">TALKING...</span>
+              </div>
+              <p id="dialogueText" class="dialogue-message">
+                "Selamat datang di markas 16-Bit saya! Saya membangun website modern berkinerja tinggi, dari sistem operasional PO Bus hingga portal industri Alat Kebersihan, ditemani maraton game klasik konsol PS3!"
+              </p>
+              <div class="dialogue-footer">
+                <span class="press-space-hint blink">TEKAN TOMBOL DI BAWAH UNTUK MULAI ▼</span>
+              </div>
+            </div>
+
+            <!-- Hero Action Buttons -->
+            <div class="hero-buttons">
+              <a href="#projects" class="retro-btn btn-primary sound-click">
+                <span class="btn-icon">🎮</span> LIHAT PROJECT
+              </a>
+              <a href="#ps3-vault" class="retro-btn btn-secondary sound-click">
+                <span class="btn-icon">🏆</span> PS3 VAULT
+              </a>
+              <a href="#contact" class="retro-btn btn-accent sound-click">
+                <span class="btn-icon">💾</span> HUBUNGI SAYA
+              </a>
+            </div>
+
+            <div class="hero-stats-quick">
+              <div class="quick-stat">
+                <span class="stat-num neon-green">100%</span>
+                <span class="stat-text">RESPONSIF</span>
+              </div>
+              <div class="quick-stat">
+                <span class="stat-num neon-cyan">02+</span>
+                <span class="stat-text">MAJOR QUESTS</span>
+              </div>
+              <div class="quick-stat">
+                <span class="stat-num neon-yellow">60 FPS</span>
+                <span class="stat-text">PERFORMANCE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT & HOBBY SECTION -->
+    <section id="about" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="title-bracket">&lt;</span> PLAYER PROFILE &amp; HOBBY <span class="title-bracket">&gt;</span></h2>
+        <p class="section-desc">Mengenal karakter Faisa Abdau di dunia koding &amp; dunia konsol klasik</p>
+      </div>
+
+      <div class="grid-2-col">
+        <!-- Bio Card -->
+        <div class="retro-card">
+          <div class="card-header-bar">
+            <span class="window-title">CHAR_PROFILE.DAT</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-heading neon-cyan">SIAPA FAISA ABDAU?</h3>
+            <p class="pixel-text">
+              Saya adalah seorang web developer yang passionate dalam membangun aplikasi web yang fungsional, cepat, dan memberikan solusi nyata untuk kebutuhan bisnis. Mulai dari sistem reservasi dan logistik hingga profile perusahaan manufaktur.
+            </p>
+            <div class="pixel-divider"></div>
+            <div class="attribute-list">
+              <div class="attr-row">
+                <span class="attr-key">NAMA LENGKAP:</span>
+                <span class="attr-val">Faisa Abdau</span>
+              </div>
+              <div class="attr-row">
+                <span class="attr-key">CLASS:</span>
+                <span class="attr-val">Full-Stack Web Architect</span>
+              </div>
+              <div class="attr-row">
+                <span class="attr-key">ALIGNMENT:</span>
+                <span class="attr-val">Clean Code &amp; Pixel Perfection</span>
+              </div>
+              <div class="attr-row">
+                <span class="attr-key">STATUS:</span>
+                <span class="attr-val neon-green">READY FOR NEW QUESTS!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hobby Card: PS3 Console -->
+        <div class="retro-card ps3-highlight-card">
+          <div class="card-header-bar">
+            <span class="window-title">HOBBY_SYSTEM // PLAYSTATION 3</span>
+            <span class="cartridge-badge pulse">ACTIVE PASSION</span>
+          </div>
+          <div class="card-body">
+            <div class="hobby-header-flex">
+              <div class="ps3-logo-badge">
+                <span class="ps-symbol triangle">△</span>
+                <span class="ps-symbol circle">◯</span>
+                <span class="ps-symbol cross">✕</span>
+                <span class="ps-symbol square">▢</span>
+              </div>
+              <div>
+                <h3 class="card-heading neon-pink">PLAYING PS3 CONSOLE</h3>
+                <span class="sub-badge">THE 7TH GENERATION LEGEND</span>
+              </div>
+            </div>
+
+            <p class="pixel-text">
+              Bukan sekadar hobi biasa! Konsol PlayStation 3 adalah sumber inspirasi kreativitas dan ketekunan saya. Arsitektur prosesor <em>Cell Broadband Engine</em> yang legendaris, koleksi judul game masterpiece, serta sensasi getaran controller DualShock 3 melatih fokus pemecahan masalah dan strategi di dunia pemrograman.
+            </p>
+
+            <div class="ps3-feature-tags">
+              <span class="retro-tag"><span class="tag-icon">🎮</span> DUALSHOCK 3</span>
+              <span class="retro-tag"><span class="tag-icon">📀</span> BLU-RAY CLASSICS</span>
+              <span class="retro-tag"><span class="tag-icon">🏆</span> TROPHY HUNTING</span>
+              <span class="retro-tag"><span class="tag-icon">⚡</span> 1080P HD RETRO</span>
+            </div>
+
+            <div class="ps3-callout">
+              <span class="callout-icon">💡</span>
+              <span class="callout-text">"Koding adalah puzzle logika, dan bermain PS3 adalah tempat mengasah refleks serta mental pantang menyerah!"</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION (STAGE SELECT) -->
+    <section id="projects" class="section-container">
+      <div class="section-header">
+        <div class="stage-tag">MISSION BRIEFING</div>
+        <h2 class="section-title"><span class="title-bracket">[</span> STAGE SELECT: FEATURED PROJECTS <span class="title-bracket">]</span></h2>
+        <p class="section-desc">Pilih stage untuk memeriksa arsitektur, fitur, dan teknologi yang digunakan</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- PROJECT 1: WEB PO BUS -->
+        <div class="project-stage-card retro-card" data-stage="1">
+          <div class="stage-ribbon">STAGE 01</div>
+          
+          <div class="card-header-bar">
+            <span class="window-title">STAGE_01: PO_BUS_SYSTEM.EXE</span>
+            <span class="status-pill clear">CLEARED ★★★</span>
+          </div>
+
+          <div class="project-preview-screen">
+            <!-- Retro Pixel Art Bus & Road Scene -->
+            <div class="pixel-scene bus-scene">
+              <div class="scene-sky">
+                <div class="pixel-moon"></div>
+                <div class="pixel-star s1"></div>
+                <div class="pixel-star s2"></div>
+                <div class="pixel-star s3"></div>
+              </div>
+              <div class="scene-city"></div>
+              <div class="scene-road">
+                <div class="road-lines"></div>
+                <!-- Pixel Art PO Bus -->
+                <div class="pixel-bus" id="animatedBus">
+                  <svg viewBox="0 0 48 24" class="pixel-svg" shape-rendering="crispEdges">
+                    <!-- Bus Body (Cyan & White Modern Livery) -->
+                    <rect x="4" y="6" width="38" height="12" fill="#00f0ff"/>
+                    <rect x="6" y="4" width="34" height="2" fill="#ffffff"/>
+                    <rect x="2" y="8" width="42" height="10" fill="#00d4e3"/>
+                    <!-- Bus Roof AC Unit -->
+                    <rect x="14" y="2" width="16" height="2" fill="#e0e0e0"/>
+                    <rect x="16" y="1" width="12" height="1" fill="#888888"/>
+                    <!-- Windshield and Windows -->
+                    <rect x="36" y="6" width="7" height="6" fill="#1b2a47"/>
+                    <rect x="28" y="6" width="6" height="5" fill="#1b2a47"/>
+                    <rect x="20" y="6" width="6" height="5" fill="#1b2a47"/>
+                    <rect x="12" y="6" width="6" height="5" fill="#1b2a47"/>
+                    <rect x="4" y="6" width="6" height="5" fill="#1b2a47"/>
+                    <!-- Window Reflection -->
+                    <rect x="38" y="7" width="2" height="4" fill="#a4f2ff"/>
+                    <rect x="30" y="7" width="2" height="3" fill="#a4f2ff"/>
+                    <rect x="22" y="7" width="2" height="3" fill="#a4f2ff"/>
+                    <rect x="14" y="7" width="2" height="3" fill="#a4f2ff"/>
+                    <!-- PO Bus Livery Stripes -->
+                    <rect x="2" y="12" width="42" height="2" fill="#ff007f"/>
+                    <rect x="2" y="14" width="42" height="1" fill="#ffcc00"/>
+                    <!-- Headlights & Taillights -->
+                    <rect x="43" y="13" width="2" height="2" fill="#ffff55"/>
+                    <rect x="1" y="13" width="1" height="2" fill="#ff2222"/>
+                    <!-- Wheels (Front & Rear) -->
+                    <rect x="8" y="16" width="6" height="6" fill="#111111"/>
+                    <rect x="10" y="18" width="2" height="2" fill="#aaaaaa"/>
+                    <rect x="32" y="16" width="6" height="6" fill="#111111"/>
+                    <rect x="34" y="18" width="2" height="2" fill="#aaaaaa"/>
+                    <!-- Exhaust Puff -->
+                    <rect x="0" y="16" width="2" height="2" fill="#555555" class="exhaust-puff"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="screen-overlay-badge">INTERCITY TICKETING &amp; FLEET MANAGEMENT</div>
+          </div>
+
+          <div class="card-body">
+            <h3 class="project-title neon-cyan">WEB PO BUS (PORTAL TIKET BUS &amp; ARMADA)</h3>
+            <p class="pixel-text">
+              Platform berbasis web lengkap untuk perusahaan Otobus (PO Bus) yang mengotomasi pemesanan tiket online, pemilihan kursi interaktif, penjadwalan trayek antarkota, manifes penumpang, serta dashboard manajemen armada bus secara realtime.
+            </p>
+
+            <div class="project-features-list">
+              <div class="feat-item"><span class="feat-icon">✔</span> Pilih Kursi 2D Interaktif (Seat Picker)</div>
+              <div class="feat-item"><span class="feat-icon">✔</span> Jadwal &amp; Rute Perjalanan Realtime</div>
+              <div class="feat-item"><span class="feat-icon">✔</span> Cetak E-Ticket &amp; QR Code Validator</div>
+              <div class="feat-item"><span class="feat-icon">✔</span> Dashboard Manajemen Kasir &amp; Agen</div>
+            </div>
+
+            <div class="tech-stack-row">
+              <span class="tech-pill">LARAVEL / PHP</span>
+              <span class="tech-pill">JAVASCRIPT</span>
+              <span class="tech-pill">MYSQL</span>
+              <span class="tech-pill">BOOTSTRAP / TAILWIND</span>
+              <span class="tech-pill">QR GENERATOR</span>
+            </div>
+
+            <div class="project-actions">
+              <button class="retro-btn btn-primary open-modal-btn sound-click" data-modal="modalBus">
+                <span class="btn-icon">🔍</span> DETAIL QUEST
+              </button>
+              <button class="retro-btn btn-secondary sound-click btn-interactive-demo" data-demo="bus">
+                <span class="btn-icon">⚡</span> TEST RUN DEMO
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: WEB PERUSAHAAN ALAT KEBERSIHAN -->
+        <div class="project-stage-card retro-card" data-stage="2">
+          <div class="stage-ribbon">STAGE 02</div>
+
+          <div class="card-header-bar">
+            <span class="window-title">STAGE_02: CLEANING_CORP.EXE</span>
+            <span class="status-pill clear">CLEARED ★★★</span>
+          </div>
+
+          <div class="project-preview-screen">
+            <!-- Retro Pixel Art Cleaning Tool Scene -->
+            <div class="pixel-scene clean-scene">
+              <div class="scene-sparkles">
+                <div class="sparkle sp1">✦</div>
+                <div class="sparkle sp2">✦</div>
+                <div class="sparkle sp3">✦</div>
+              </div>
+              <div class="clean-floor"></div>
+              <!-- Pixel Art Cleaning Machine / Sweeper -->
+              <div class="pixel-cleaner" id="animatedCleaner">
+                <svg viewBox="0 0 48 24" class="pixel-svg" shape-rendering="crispEdges">
+                  <!-- Industrial Cleaning Sweeper Machine -->
+                  <!-- Body (Yellow & Heavy Duty Charcoal) -->
+                  <rect x="10" y="6" width="28" height="12" fill="#ffcc00"/>
+                  <rect x="8" y="8" width="32" height="10" fill="#e5b800"/>
+                  <rect x="6" y="10" width="36" height="6" fill="#2d3142"/>
+                  <!-- Clean Water Tank (Blue translucent) -->
+                  <rect x="14" y="4" width="10" height="4" fill="#00f0ff"/>
+                  <rect x="16" y="5" width="6" height="2" fill="#a4f2ff"/>
+                  <!-- Control Panel / Handle -->
+                  <rect x="36" y="2" width="4" height="10" fill="#222"/>
+                  <rect x="38" y="1" width="6" height="2" fill="#ff007f"/>
+                  <rect x="34" y="6" width="4" height="3" fill="#39ff14"/>
+                  <!-- Rotary Scrubbing Brushes (Front Bottom) -->
+                  <rect x="6" y="16" width="8" height="4" fill="#00f0ff" class="brush-spin"/>
+                  <rect x="7" y="18" width="6" height="4" fill="#ffffff"/>
+                  <!-- Heavy Duty Wheels -->
+                  <rect x="18" y="16" width="6" height="6" fill="#111111"/>
+                  <rect x="20" y="18" width="2" height="2" fill="#dddddd"/>
+                  <rect x="30" y="16" width="6" height="6" fill="#111111"/>
+                  <rect x="32" y="18" width="2" height="2" fill="#dddddd"/>
+                  <!-- Suction Squeegee at rear -->
+                  <rect x="38" y="17" width="5" height="3" fill="#ff007f"/>
+                  <!-- Sparkling bubbles coming out -->
+                  <circle cx="4" cy="18" r="2" fill="#a4f2ff"/>
+                  <circle cx="2" cy="14" r="1.5" fill="#a4f2ff"/>
+                </svg>
+              </div>
+            </div>
+            <div class="screen-overlay-badge">B2B INDUSTRIAL CATALOGUE &amp; COMPANY PROFILE</div>
+          </div>
+
+          <div class="card-body">
+            <h3 class="project-title neon-yellow">WEB PERUSAHAAN ALAT KEBERSIHAN (HYGIENE CORP)</h3>
+            <p class="pixel-text">
+              Website profil perusahaan B2B dan katalog digital interaktif untuk distributor alat kebersihan industri, mesin polisher, chemical sanitasi, dan perlengkapan janitorial lengkap dengan fitur permintaan penawaran (RFQ) instan.
+            </p>
+
+            <div class="project-features-list">
+              <div class="feat-item"><span class="feat-icon">✔</span> Katalog Produk Filter Kategori Multi-Level</div>
+              <div class="feat-item"><span class="feat-icon">✔</span> Request for Quotation (RFQ) Otomatis</div>
+              <div class="feat-item"><span class="feat-icon">✔</span> Integrasi WhatsApp Business Checkout</div>
+              <div class="feat-item"><span class="feat-icon">✔</span> Desain Responsif Mobile-First &amp; SEO Friendly</div>
+            </div>
+
+            <div class="tech-stack-row">
+              <span class="tech-pill">MODERN JS</span>
+              <span class="tech-pill">HTML5 &amp; CSS3</span>
+              <span class="tech-pill">RESPONSIVE UI</span>
+              <span class="tech-pill">WHATSAPP API</span>
+              <span class="tech-pill">SEO OPTIMIZED</span>
+            </div>
+
+            <div class="project-actions">
+              <button class="retro-btn btn-primary open-modal-btn sound-click" data-modal="modalClean">
+                <span class="btn-icon">🔍</span> DETAIL QUEST
+              </button>
+              <button class="retro-btn btn-secondary sound-click btn-interactive-demo" data-demo="clean">
+                <span class="btn-icon">⚡</span> TEST RUN DEMO
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PS3 CONSOLE VAULT SECTION (TRIBUTE & INTERACTIVE CONTROLLER) -->
+    <section id="ps3-vault" class="section-container">
+      <div class="section-header">
+        <div class="stage-tag special-tag">BONUS STAGE</div>
+        <h2 class="section-title"><span class="title-bracket">[</span> PLAYSTATION 3 CONSOLE VAULT <span class="title-bracket">]</span></h2>
+        <p class="section-desc">Interactive 16-Bit PS3 Tribute: Controller Soundboard, Trophy Room &amp; Secret Cheats</p>
+      </div>
+
+      <div class="ps3-station-wrapper retro-card">
+        <div class="card-header-bar">
+          <span class="window-title">PS3_CELL_ENGINE // DUALSHOCK_3_INTERFACE</span>
+          <span class="status-pill online">SYSTEM ONLINE</span>
+        </div>
+
+        <div class="ps3-layout-grid">
+          <!-- Left: PS3 Console Unit & Disc Slot -->
+          <div class="ps3-hardware-col">
+            <div class="ps3-console-chassis">
+              <div class="chassis-top">
+                <div class="ps3-emboss-text">PLAYSTATION 3</div>
+                <div class="chassis-vent"></div>
+              </div>
+
+              <!-- Blu-ray Disc Slot -->
+              <div class="disc-slot-container">
+                <div class="disc-slot-lip"></div>
+                <div id="ejectDisc" class="inserted-disc">
+                  <span class="disc-label">FAISA_PORTFOLIO.ISO</span>
+                </div>
+              </div>
+
+              <div class="chassis-bottom">
+                <div class="indicator-group">
+                  <div class="led-block">
+                    <span id="ps3PowerLed" class="led-light led-green"></span>
+                    <span class="led-label">POWER</span>
+                  </div>
+                  <div class="led-block">
+                    <span class="led-light led-blue blink-slow"></span>
+                    <span class="led-label">BLU-RAY</span>
+                  </div>
+                  <div class="led-block">
+                    <span class="led-light led-orange"></span>
+                    <span class="led-label">HDD</span>
+                  </div>
+                </div>
+
+                <div class="console-buttons">
+                  <button id="ps3EjectBtn" class="ps3-touch-btn sound-click" title="Eject / Insert Game Disc">
+                    ⏏ EJECT
+                  </button>
+                  <button id="ps3PowerBtn" class="ps3-touch-btn sound-click" title="Toggle Console Power">
+                    ⏻ POWER
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Console Status Readout -->
+            <div class="ps3-readout pixel-box">
+              <div class="readout-title">XMB CONSOLE MONITOR</div>
+              <div class="readout-line"><span class="neon-cyan">CPU:</span> Cell Broadband Engine @ 3.2 GHz</div>
+              <div class="readout-line"><span class="neon-pink">GPU:</span> RSX 'Reality Synthesizer'</div>
+              <div class="readout-line"><span class="neon-yellow">STATUS:</span> <span id="ps3StatusText">RUNNING SMOOTH (0 ERRORS)</span></div>
+              <div class="readout-line"><span class="neon-green">CURRENT GAME:</span> "Web Po Bus &amp; Cleaning Corp HD"</div>
+            </div>
+          </div>
+
+          <!-- Center/Right: Interactive DualShock 3 Controller & Soundboard -->
+          <div class="ps3-controller-col">
+            <div class="controller-instruction">
+              <span class="instruction-badge">KLIK TOMBOL CONTROLLER DI BAWAH:</span>
+              <p>Setiap tombol memicu efek audio 16-bit asli &amp; combo rahasia!</p>
+            </div>
+
+            <!-- Virtual DualShock 3 Gamepad UI -->
+            <div class="virtual-gamepad">
+              <div class="gamepad-top-triggers">
+                <button class="trigger-btn pad-btn" data-key="L1">L1</button>
+                <button class="trigger-btn pad-btn" data-key="L2">L2</button>
+                <div class="gamepad-cable"></div>
+                <button class="trigger-btn pad-btn" data-key="R2">R2</button>
+                <button class="trigger-btn pad-btn" data-key="R1">R1</button>
+              </div>
+
+              <div class="gamepad-body">
+                <!-- D-PAD (Left) -->
+                <div class="dpad-cluster">
+                  <button class="dpad-btn up pad-btn" data-key="UP" title="Up">▲</button>
+                  <div class="dpad-horizontal">
+                    <button class="dpad-btn left pad-btn" data-key="LEFT" title="Left">◀</button>
+                    <div class="dpad-center"></div>
+                    <button class="dpad-btn right pad-btn" data-key="RIGHT" title="Right">▶</button>
+                  </div>
+                  <button class="dpad-btn down pad-btn" data-key="DOWN" title="Down">▼</button>
+                </div>
+
+                <!-- Center Controls: SELECT, PS BUTTON, START -->
+                <div class="gamepad-center-cluster">
+                  <div class="gamepad-brand">SONY</div>
+                  <div class="mid-btns-row">
+                    <button class="mid-btn pad-btn" data-key="SELECT">SELECT</button>
+                    <button id="psHomeBtn" class="ps-home-btn pad-btn" data-key="PS" title="PlayStation Home Button">
+                      <span class="ps-logo-micro">PS</span>
+                    </button>
+                    <button class="mid-btn pad-btn" data-key="START">START</button>
+                  </div>
+                  <div class="analog-cluster">
+                    <div class="analog-stick left-stick pad-btn" data-key="L3">L3</div>
+                    <div class="analog-stick right-stick pad-btn" data-key="R3">R3</div>
+                  </div>
+                </div>
+
+                <!-- Action Buttons (Right: △, ◯, ✕, ▢) -->
+                <div class="action-cluster">
+                  <button class="action-btn btn-triangle pad-btn" data-key="TRIANGLE" title="Triangle">
+                    <span class="sym">△</span>
+                  </button>
+                  <div class="action-horizontal">
+                    <button class="action-btn btn-square pad-btn" data-key="SQUARE" title="Square">
+                      <span class="sym">▢</span>
+                    </button>
+                    <div class="action-center-spacer"></div>
+                    <button class="action-btn btn-circle pad-btn" data-key="CIRCLE" title="Circle">
+                      <span class="sym">◯</span>
+                    </button>
+                  </div>
+                  <button class="action-btn btn-cross pad-btn" data-key="CROSS" title="Cross">
+                    <span class="sym">✕</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Last Key Pressed Feedback Bar -->
+              <div class="gamepad-feedback">
+                <span class="fb-label">INPUT TERAKHIR:</span>
+                <span id="lastPressedKey" class="fb-val neon-yellow">[TEKAN TOMBOL CONTROLLER]</span>
+                <span class="fb-combo-hint">(Coba Combo: ▲ ▲ ▼ ▼ ◀ ▶ ◀ ▶ ▢ ◯)</span>
+              </div>
+            </div>
+
+            <!-- PS3 Trophies Showcase -->
+            <div class="trophy-room-box">
+              <div class="trophy-title-row">
+                <span class="trophy-heading">🏆 TROPHY ROOM (FAISA ABDAU COLLECTION)</span>
+                <span class="trophy-rank">LEVEL 25 &bull; 98% COMPLETION</span>
+              </div>
+
+              <div class="trophy-list">
+                <div class="trophy-card platinum">
+                  <div class="trophy-icon">🏆</div>
+                  <div class="trophy-info">
+                    <div class="t-name">PLATINUM: RETRO SYSTEM ARCHITECT</div>
+                    <div class="t-desc">Membangun Web PO Bus &amp; Cleaning Corp dengan performa 16-Bit responsif.</div>
+                  </div>
+                  <div class="t-grade">PLATINUM</div>
+                </div>
+
+                <div class="trophy-card gold">
+                  <div class="trophy-icon">🥇</div>
+                  <div class="trophy-info">
+                    <div class="t-name">GOLD: PS3 CONSOLE AFICIONADO</div>
+                    <div class="t-desc">Mengoleksi &amp; menamatkan seri legendaris era konsol PlayStation 3.</div>
+                  </div>
+                  <div class="t-grade">GOLD</div>
+                </div>
+
+                <div class="trophy-card silver">
+                  <div class="trophy-icon">🥈</div>
+                  <div class="trophy-info">
+                    <div class="t-name">SILVER: HIGHWAY CAPTAIN</div>
+                    <div class="t-desc">Menguasai sistem reservasi tiket kursi PO Bus antarkota tanpa delay.</div>
+                  </div>
+                  <div class="t-grade">SILVER</div>
+                </div>
+
+                <div class="trophy-card bronze">
+                  <div class="trophy-icon">🥉</div>
+                  <div class="trophy-info">
+                    <div class="t-name">BRONZE: SANITATION MASTER</div>
+                    <div class="t-desc">Mengembangkan katalog mesin pembersih industri siap pakai.</div>
+                  </div>
+                  <div class="t-grade">BRONZE</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS & STATS (CHARACTER STATUS SHEET) -->
+    <section id="skills" class="section-container">
+      <div class="section-header">
+        <div class="stage-tag">CHARACTER STATUS</div>
+        <h2 class="section-title"><span class="title-bracket">[</span> ATTRIBUTES &amp; TECH INVENTORY <span class="title-bracket">]</span></h2>
+        <p class="section-desc">Statistik kemampuan tempur Faisa Abdau di dunia web development</p>
+      </div>
+
+      <div class="stats-grid">
+        <!-- RPG Parameter Gauges -->
+        <div class="retro-card">
+          <div class="card-header-bar">
+            <span class="window-title">BASE_STATS.RPG</span>
+          </div>
+          <div class="card-body">
+            <!-- HP & MP Bars -->
+            <div class="bar-stat-group">
+              <div class="stat-bar-header">
+                <span class="stat-name">HP (ENDURANCE):</span>
+                <span class="stat-val">999 / 999</span>
+              </div>
+              <div class="stat-gauge-track">
+                <div class="stat-gauge-fill fill-green" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <div class="bar-stat-group">
+              <div class="stat-bar-header">
+                <span class="stat-name">MP (LOGIC &amp; CODE):</span>
+                <span class="stat-val">950 / 950</span>
+              </div>
+              <div class="stat-gauge-track">
+                <div class="stat-gauge-fill fill-cyan" style="width: 95%;"></div>
+              </div>
+            </div>
+
+            <div class="bar-stat-group">
+              <div class="stat-bar-header">
+                <span class="stat-name">PS3 GAMING FOCUS:</span>
+                <span class="stat-val">99 / 100</span>
+              </div>
+              <div class="stat-gauge-track">
+                <div class="stat-gauge-fill fill-pink" style="width: 99%;"></div>
+              </div>
+            </div>
+
+            <div class="bar-stat-group">
+              <div class="stat-bar-header">
+                <span class="stat-name">RESPONSIVE DESIGN:</span>
+                <span class="stat-val">98 / 100</span>
+              </div>
+              <div class="stat-gauge-track">
+                <div class="stat-gauge-fill fill-yellow" style="width: 98%;"></div>
+              </div>
+            </div>
+
+            <div class="pixel-divider"></div>
+
+            <div class="perk-list">
+              <div class="perk-item">
+                <span class="perk-bullet">★</span>
+                <span><strong>BUG RESISTANCE:</strong> Mampu men-debug error rumit dengan cepat dan teliti.</span>
+              </div>
+              <div class="perk-item">
+                <span class="perk-bullet">★</span>
+                <span><strong>RESPONSIVE AURA:</strong> Tampilan konsisten di layar smartphone, tablet, maupun desktop 4K.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inventory Equipment -->
+        <div class="retro-card">
+          <div class="card-header-bar">
+            <span class="window-title">EQUIPMENT_INVENTORY.BAG</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-heading neon-cyan">TECH STACK SLOTS</h3>
+            <div class="inventory-slots">
+              <div class="inv-slot" title="Frontend Core">
+                <div class="slot-icon">🌐</div>
+                <div class="slot-title">HTML5 / CSS3 / JS</div>
+                <div class="slot-level">LV.95</div>
+              </div>
+
+              <div class="inv-slot" title="Backend Power">
+                <div class="slot-icon">🐘</div>
+                <div class="slot-title">PHP / LARAVEL</div>
+                <div class="slot-level">LV.90</div>
+              </div>
+
+              <div class="inv-slot" title="Database Master">
+                <div class="slot-icon">🗄️</div>
+                <div class="slot-title">MYSQL / SQL</div>
+                <div class="slot-level">LV.88</div>
+              </div>
+
+              <div class="inv-slot" title="Responsive Layout">
+                <div class="slot-icon">📱</div>
+                <div class="slot-title">RESPONSIVE UI</div>
+                <div class="slot-level">LV.98</div>
+              </div>
+
+              <div class="inv-slot" title="Gaming Station">
+                <div class="slot-icon">🎮</div>
+                <div class="slot-title">PS3 DUALSHOCK 3</div>
+                <div class="slot-level">LV.99</div>
+              </div>
+
+              <div class="inv-slot" title="VCS & Workflow">
+                <div class="slot-icon">🐙</div>
+                <div class="slot-title">GIT / GITHUB</div>
+                <div class="slot-level">LV.92</div>
+              </div>
+            </div>
+
+            <div class="pixel-divider"></div>
+
+            <div class="xp-progress-box">
+              <div class="xp-labels">
+                <span>NEXT LEVEL PROGRESS</span>
+                <span class="neon-green">8,850 / 10,000 EXP</span>
+              </div>
+              <div class="stat-gauge-track">
+                <div class="stat-gauge-fill fill-yellow" style="width: 88.5%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MINI GAME ARCADE ARENA (CANVAS RETRO GAME) -->
+    <section id="arcade" class="section-container">
+      <div class="section-header">
+        <div class="stage-tag special-tag">PLAYABLE ARCADE</div>
+        <h2 class="section-title"><span class="title-bracket">[</span> ARCADE ARENA: PO BUS RUNNER <span class="title-bracket">]</span></h2>
+        <p class="section-desc">Mainkan game 16-Bit retro langsung di browser! Kendarai PO Bus, kumpulkan coin, dan hindari rintangan!</p>
+      </div>
+
+      <div class="arcade-cabinet-wrapper retro-card">
+        <div class="cabinet-marquee">
+          <span class="marquee-bulb">●</span>
+          <span class="marquee-title">★ PO BUS 16-BIT HIGHWAY RUSH ★</span>
+          <span class="marquee-bulb">●</span>
+        </div>
+
+        <div class="arcade-screen-frame">
+          <div class="game-hud-bar">
+            <div>HIGH: <span id="gameHighScore" class="neon-yellow">0</span></div>
+            <div>SCORE: <span id="gameScore" class="neon-green">0</span></div>
+            <div>COINS: <span id="gameCoins" class="neon-cyan">0</span></div>
+            <div>LIVES: <span id="gameLives" class="neon-red">♥♥♥</span></div>
+          </div>
+
+          <!-- HTML5 Canvas for the 16-bit mini game -->
+          <div class="canvas-wrapper">
+            <canvas id="gameCanvas" width="640" height="360"></canvas>
+            
+            <!-- Game Over / Start Overlay -->
+            <div id="gameOverlay" class="game-overlay">
+              <div class="overlay-content">
+                <h3 id="overlayTitle" class="neon-yellow">INSERT COIN TO PLAY</h3>
+                <p id="overlaySubtitle">Kendalikan Bus Faisa Abdau di jalan raya!</p>
+                <div class="controls-guide">
+                  <div>[▲ / JUMP] [◀ / KIRI] [▶ / KANAN]</div>
+                  <div class="mobile-note">(Atau gunakan tombol virtual di bawah pada HP)</div>
+                </div>
+                <button id="startGameBtn" class="retro-btn btn-primary sound-click">
+                  ▶ START GAME
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Virtual Controls -->
+          <div class="mobile-arcade-controls">
+            <button id="ctrlLeft" class="arcade-touch-btn" aria-label="Gerak Kiri">◀ KIRI</button>
+            <button id="ctrlJump" class="arcade-touch-btn jump-btn" aria-label="Lompat">▲ LOMPAT</button>
+            <button id="ctrlRight" class="arcade-touch-btn" aria-label="Gerak Kanan">▶ KANAN</button>
+          </div>
+        </div>
+
+        <div class="cabinet-coin-slot">
+          <span class="slot-text">INSERT COIN [100 CREDITS FREE]</span>
+          <div class="coin-entry"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT & MEMORY CARD SAVE POINT -->
+    <section id="contact" class="section-container">
+      <div class="section-header">
+        <div class="stage-tag">FINAL STAGE</div>
+        <h2 class="section-title"><span class="title-bracket">[</span> MEMORY CARD SAVE POINT: HUBUNGI SAYA <span class="title-bracket">]</span></h2>
+        <p class="section-desc">Kirim pesan, tawaran kolaborasi, atau diskusikan project Anda langsung ke Faisa Abdau</p>
+      </div>
+
+      <div class="grid-2-col">
+        <!-- Memory Card Form -->
+        <div class="retro-card">
+          <div class="card-header-bar">
+            <span class="window-title">SAVE_SLOT_01: NEW_MESSAGE</span>
+            <span class="cartridge-badge">8MB MEMORY CARD</span>
+          </div>
+
+          <div class="card-body">
+            <form id="contactForm" class="retro-form" onsubmit="return false;">
+              <div class="form-group">
+                <label for="senderName" class="form-label">
+                  <span class="input-bullet">►</span> NAMA PLAYER / PERUSAHAAN:
+                </label>
+                <input type="text" id="senderName" class="retro-input" placeholder="Masukkan nama Anda..." required>
+              </div>
+
+              <div class="form-group">
+                <label for="senderEmail" class="form-label">
+                  <span class="input-bullet">►</span> EMAIL KONTAK:
+                </label>
+                <input type="email" id="senderEmail" class="retro-input" placeholder="contoh@email.com..." required>
+              </div>
+
+              <div class="form-group">
+                <label for="projectType" class="form-label">
+                  <span class="input-bullet">►</span> TOPIK QUEST / PROJECT:
+                </label>
+                <select id="projectType" class="retro-input retro-select">
+                  <option value="bus">Pengembangan Web Sistem PO Bus / Reservasi</option>
+                  <option value="clean">Web Perusahaan / Katalog Alat Kebersihan</option>
+                  <option value="fullstack">Custom Web Application / Fullstack</option>
+                  <option value="ps3">Diskusi Gaming / Koleksi Konsol PS3</option>
+                  <option value="other">Kolaborasi &amp; Lainnya</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="senderMessage" class="form-label">
+                  <span class="input-bullet">►</span> TRANSMISI PESAN:
+                </label>
+                <textarea id="senderMessage" rows="4" class="retro-input" placeholder="Tuliskan detail kebutuhan atau pesan Anda di sini..." required></textarea>
+              </div>
+
+              <button type="submit" id="saveMsgBtn" class="retro-btn btn-primary btn-block sound-click">
+                <span class="btn-icon">💾</span> SAVE DATA &amp; KIRIM PESAN
+              </button>
+
+              <div id="saveSuccessAlert" class="save-status-box hidden">
+                <span class="save-check">✔</span>
+                <span>SAVE COMPLETED! Pesan Anda berhasil disiapkan ke transmisi Faisa Abdau!</span>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Direct Channels & Social Links -->
+        <div class="retro-card">
+          <div class="card-header-bar">
+            <span class="window-title">COMMUNICATION_CHANNELS.IO</span>
+          </div>
+
+          <div class="card-body">
+            <h3 class="card-heading neon-yellow">LINK TRANSMISI LANGSUNG</h3>
+            <p class="pixel-text">
+              Anda juga dapat terhubung langsung melalui kanal pesan instan dan media sosial di bawah:
+            </p>
+
+            <div class="channel-buttons-list">
+              <!-- WhatsApp Direct -->
+              <a href="https://wa.me/?text=Halo%20Faisa%20Abdau,%20saya%20tertarik%20dengan%20portfolio%20web%20Anda!" target="_blank" rel="noopener noreferrer" class="channel-item wa-channel sound-click">
+                <span class="ch-icon">📱</span>
+                <div class="ch-meta">
+                  <span class="ch-name">WHATSAPP DIRECT</span>
+                  <span class="ch-sub">Chat langsung respons cepat</span>
+                </div>
+                <span class="ch-arrow">►</span>
+              </a>
+
+              <!-- GitHub -->
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="channel-item sound-click">
+                <span class="ch-icon">👾</span>
+                <div class="ch-meta">
+                  <span class="ch-name">GITHUB REPOSITORY</span>
+                  <span class="ch-sub">Lihat source code &amp; commit</span>
+                </div>
+                <span class="ch-arrow">►</span>
+              </a>
+
+              <!-- Email Direct -->
+              <a href="mailto:faisaabdau@example.com" class="channel-item sound-click">
+                <span class="ch-icon">✉</span>
+                <div class="ch-meta">
+                  <span class="ch-name">EMAIL DIRECT</span>
+                  <span class="ch-sub">Kirim surat resmi / penawaran</span>
+                </div>
+                <span class="ch-arrow">►</span>
+              </a>
+
+              <!-- PSN ID / Trophy Showcase -->
+              <div class="channel-item psn-channel sound-click" id="copyPsnBtn">
+                <span class="ch-icon">🎮</span>
+                <div class="ch-meta">
+                  <span class="ch-name">PLAYSTATION NETWORK (PSN)</span>
+                  <span class="ch-sub">ID: FAISA_PS3_VETERAN (Klik untuk salin)</span>
+                </div>
+                <span class="ch-arrow">📋</span>
+              </div>
+            </div>
+
+            <div class="retro-quote-box">
+              <span class="quote-symbol">"</span>
+              <span>Kombinasi performa tinggi, tampilan retro klasik, dan fleksibilitas modern siap membawa bisnis Anda naik level.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL POPUPS FOR PROJECT DETAILS -->
+  <!-- MODAL 1: PO BUS SYSTEM -->
+  <div id="modalBus" class="retro-modal" aria-hidden="true" role="dialog">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog retro-card">
+      <div class="card-header-bar">
+        <span class="window-title">QUEST_INTEL: WEB_PO_BUS.DOC</span>
+        <button class="modal-close-btn sound-click" aria-label="Tutup">&times;</button>
+      </div>
+      <div class="card-body modal-scroll">
+        <div class="modal-hero-badge">STAGE 01 INTEL BRIEFING</div>
+        <h3 class="modal-title neon-cyan">WEB PO BUS (SISTEM RESERVASI &amp; OPERASIONAL BUS)</h3>
+        
+        <p class="pixel-text">
+          Sistem manajemen terintegrasi untuk perusahaan Otobus yang dirancang untuk menggantikan sistem pencatatan tiket manual menjadi sistem online modern yang akurat dan mencegah double-booking kursi.
+        </p>
+
+        <h4 class="neon-yellow modal-subtitle">FITUR UTAMA:</h4>
+        <ul class="modal-bullet-list">
+          <li><strong>2D Interactive Seat Map:</strong> Penumpang dapat memilih nomor kursi favorit (eksekutif, sleeper, patas) dengan status kursi terupdate real-time.</li>
+          <li><strong>Manajemen Rute &amp; Tarif Fleksibel:</strong> Pengaturan kota asal, kota tujuan, titik naik/turun (pool/terminal), serta penyesuaian tarif masa mudik/peak season.</li>
+          <li><strong>Manifest &amp; Validasi Tiket QR Code:</strong> Supir dan kondektur memiliki alat pemindai QR tiket untuk verifikasi penumpang saat naik.</li>
+          <li><strong>Laporan Keuangan &amp; Penjualan Agen:</strong> Rekap pendapatan harian, bulanan, komisi agen, dan laporan okupansi bus.</li>
+        </ul>
+
+        <h4 class="neon-pink modal-subtitle">TEKNOLOGI YANG DIGUNAKAN:</h4>
+        <div class="tech-stack-row">
+          <span class="tech-pill">LARAVEL / PHP</span>
+          <span class="tech-pill">JAVASCRIPT (ES6+)</span>
+          <span class="tech-pill">MYSQL RELATIONAL DB</span>
+          <span class="tech-pill">AJAX REALTIME</span>
+          <span class="tech-pill">QR CODE SCANNER</span>
+        </div>
+
+        <div class="modal-footer-btns">
+          <button class="retro-btn btn-primary modal-close-btn sound-click">TUTUP DOKUMEN</button>
+          <a href="#contact" class="retro-btn btn-secondary modal-close-btn sound-click">KONSULTASI PROJECT INI</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: CLEANING EQUIPMENT CORP -->
+  <div id="modalClean" class="retro-modal" aria-hidden="true" role="dialog">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog retro-card">
+      <div class="card-header-bar">
+        <span class="window-title">QUEST_INTEL: CLEANING_CORP.DOC</span>
+        <button class="modal-close-btn sound-click" aria-label="Tutup">&times;</button>
+      </div>
+      <div class="card-body modal-scroll">
+        <div class="modal-hero-badge">STAGE 02 INTEL BRIEFING</div>
+        <h3 class="modal-title neon-yellow">WEB PERUSAHAAN ALAT KEBERSIHAN</h3>
+        
+        <p class="pixel-text">
+          Website representasi korporat dan e-catalog produk alat kebersihan komersil dan industri, mulai dari mesin floor polisher, ride-on scrubber, vacuum cleaner industri, hingga bahan kimia sanitasi rumah sakit dan hotel.
+        </p>
+
+        <h4 class="neon-cyan modal-subtitle">FITUR UTAMA:</h4>
+        <ul class="modal-bullet-list">
+          <li><strong>Katalog Produk Terstruktur:</strong> Navigasi kategori cerdas berdasarkan tipe mesin, spesifikasi watt, kapasitas tangki, dan merek.</li>
+          <li><strong>Form Permintaan Penawaran (RFQ):</strong> Klien institusi (B2B) dapat mencantumkan kuantiti yang diinginkan dan langsung menerima draf penawaran resmi.</li>
+          <li><strong>Quick WhatsApp Integration:</strong> Tombol interaktif yang otomatis mengisi format teks pemesanan produk ke admin penjualan.</li>
+          <li><strong>Download Lembar Spesifikasi (Brosur PDF):</strong> Pengunjung dapat mengunduh datasheet teknis produk dalam 1 klik.</li>
+          <li><strong>Desain Ultra Responsif:</strong> Memastikan klien di lapangan dapat membuka katalog dengan mulus melalui HP maupun laptop.</li>
+        </ul>
+
+        <h4 class="neon-pink modal-subtitle">TEKNOLOGI YANG DIGUNAKAN:</h4>
+        <div class="tech-stack-row">
+          <span class="tech-pill">HTML5 SEMANTIC</span>
+          <span class="tech-pill">CSS3 GRID &amp; FLEXBOX</span>
+          <span class="tech-pill">VANILLA JAVASCRIPT</span>
+          <span class="tech-pill">SEO &amp; OPEN GRAPH</span>
+          <span class="tech-pill">LIGHTSPEED ASSET OPTIMIZATION</span>
+        </div>
+
+        <div class="modal-footer-btns">
+          <button class="retro-btn btn-primary modal-close-btn sound-click">TUTUP DOKUMEN</button>
+          <a href="#contact" class="retro-btn btn-secondary modal-close-btn sound-click">BANGUN WEB SERUPA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TROPHY UNLOCK NOTIFICATION OVERLAY (AUTHENTIC PS3 TRIBUTE!) -->
+  <div id="trophyNotification" class="ps3-trophy-popup" aria-live="polite">
+    <div class="popup-box">
+      <div class="popup-icon">🏆</div>
+      <div class="popup-texts">
+        <div class="popup-header">YOU HAVE EARNED A TROPHY</div>
+        <div id="trophyPopupName" class="popup-name">PLATINUM: SECRET KONAMI MASTER!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RETRO FOOTER -->
+  <footer class="retro-footer">
+    <div class="footer-container">
+      <div class="footer-status">
+        <span class="blink">●</span> 16-BIT RETRO EDITION &bull; SYSTEM RUNNING SMOOTH
+      </div>
+      <div class="footer-copy">
+        DEVELOPED BY <strong class="neon-cyan">FAISA ABDAU</strong> &copy; 2026. ALL RIGHTS RESERVED.
+      </div>
+      <div class="footer-credits">
+        DIBUAT DENGAN TEMA 16-BIT RETRO CLASSIC &amp; DEDIKASI TINGGI UNTUK GAMING KONSOL PS3.
+      </div>
+      <div class="footer-back-to-top">
+        <a href="#hero" class="retro-link sound-click">▲ KEMBALI KE ATAS [PRESS START] ▲</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
