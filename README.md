@@ -1,47 +1,42 @@
-# 💻 Tri Wahyudi - Windows 98 / 95 Classic IT Portfolio
+# 🚀 Tri Wahyudi — Modern Bento Grid Portfolio
 
-Portfolio bertema **Classic 90s IT Desktop Environment (Windows 98 Second Edition)** yang interaktif, responsif, dan kaya fitur untuk **Tri Wahyudi**, Mahasiswa Teknik Informatika Semester 5 (21 Tahun).
+Portfolio bertema **Modern Bento Grid & Clean Glassmorphism** yang elegan, profesional, dan berfokus penuh pada rekayasa perangkat lunak untuk **Tri Wahyudi**, Mahasiswa S1 Teknik Informatika Semester 5 (21 Tahun).
 
-![Developer](https://img.shields.io/badge/Developer-Tri%20Wahyudi-green?style=for-the-badge)
+![Developer](https://img.shields.io/badge/Developer-Tri%20Wahyudi-blue?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Mahasiswa-TI%20Semester%205%20(21%20Th)-cyan?style=for-the-badge)
-![Theme](https://img.shields.io/badge/OS%20Theme-Windows%2098%20IT-blue?style=for-the-badge)
+![Theme](https://img.shields.io/badge/Design-Modern%20Bento%20Grid-emerald?style=for-the-badge)
 ![GitHub](https://img.shields.io/badge/GitHub-30%2B%20Repos%20@wongsxs-magenta?style=for-the-badge)
 
 ---
 
-## 🌟 Fitur & Pengalaman Pengguna (90s IT OS)
+## 🌟 Keunggulan Desain & Fitur
 
-Website dirancang layaknya sistem operasi Windows 98 sungguhan dengan nuansa otentik era 90-an:
+1. 🍱 **Bento Grid Architecture:**
+   - Layout modular modern (inspirasi *Apple*, *Linear*, *Vercel*) yang membagi profil, statistik keahlian, dan filosofi rekayasa dalam satu tampilan yang harmonis dan nyaman dibaca.
+   - Dark mode estetik dengan ambient glow halus dan tipografi bersih (*Plus Jakarta Sans* & *JetBrains Mono*).
 
-1. 💻 **Desktop & Window Manager:**
-   - Background klasik teal (`#008080`) dengan icon desktop interaktif.
-   - Window draggable (bisa digeser), minimize ke taskbar, maximize, dan tutup dengan efek suara 90-an.
-   - Focus management (z-index) otomatis saat window diklik.
-   - Responsif di layar HP / mobile (window menyesuaikan ukuran secara fluid).
+2. 🚀 **Showcase 4 Project Utama:**
+   - **Web PO Bus (ASM Putra Trans):** Sistem reservasi tiket bus antarkota dengan denah pemilihan kursi 2D dinamis dan tiket QR Code.
+   - **Web Perusahaan (Company DAU):** Portal B2B distributor peralatan kebersihan industri dengan kalkulator RFQ otomatis terhubung ke WhatsApp.
+   - **Smart Tourism Kebumen (Android App):** Aplikasi native Kotlin berarsitektur MVVM dan integrasi navigasi rute GPS.
+   - **Sistem Web Absensi GAMKI:** Sistem pencatatan kehadiran presisi dengan dashboard kuorum live.
 
-2. 🪟 **Start Menu & Taskbar:**
-   - Tombol `Start` dengan logo kotak Windows klasik dan banner vertikal `Yuudev 98`.
-   - Taskbar aktif di bagian bawah dengan daftar program yang sedang terbuka.
-   - System tray dengan **Jam Realtime**, toggle efek suara synth (🔊/🔇), dan toggle filter scanline CRT (📺).
-   - Dialog "Shut Down Computer" dengan opsi Restart & Shutdown nostalgia.
+3. 📂 **Filter Interaktif 30+ Repositori:**
+   - Filter instan per kategori (*Semua, Web & Full-Stack, Android Kotlin, IoT & Embedded*).
 
-3. 📁 **Aplikasi & Konten:**
-   - **System Properties (My Computer):** Spesifikasi mahasiswa S1 Teknik Informatika (Semester 5, 21 Tahun) & passion analisis sistem.
-   - **C:\Projects (File Explorer):** Showcase 4 project utama (Web PO Bus ASM Putra Trans, Web Perusahaan Company DAU, Smart Tourism Android Kotlin, Web Absensi GAMKI) serta filter 30+ repositori GitHub.
-   - **Resume.txt (Notepad):** Ringkasan CV dan riwayat proyek berformat teks DOS/Notepad klasik.
-   - **Device Manager (Skills):** Visualisasi driver keahlian teknis (PHP/Laravel, TS/JS, Kotlin, MySQL, ESP32, Git).
-   - **Minesweeper.exe:** Game klasik Minesweeper yang **dapat dimainkan langsung** (grid 9x9, timer, bendera 🚩, efek suara bom/menang).
-   - **PO_Bus_Rush.exe:** Game mini 16-bit HTML5 Canvas kemudi Bus PO ASM Putra Trans menghindari rintangan di jalan raya.
-   - **Outlook Express (Kontak):** Form pengiriman pesan dengan validasi + link langsung ke WhatsApp & GitHub `@wongsxs`.
+4. 📐 **Matriks Keahlian & Analisis Sistem:**
+   - Penekanan kuat pada *System Architecture Analysis (96%)*, normalisasi database relasional, dan clean modular code.
+
+5. ✉️ **Saluran Kontak Langsung:**
+   - Formulir pesan langsung + tautan instan ke WhatsApp Direct, Email resmi, dan GitHub `@wongsxs`.
 
 ---
 
-## 🚀 Cara Menjalankan
+## 💻 Cara Menjalankan
 
-Buka langsung file `index.html` di browser apa pun:
+Buka file `index.html` langsung di browser:
 
 ```powershell
-# Buka via terminal Windows
 start index.html
 ```
 
