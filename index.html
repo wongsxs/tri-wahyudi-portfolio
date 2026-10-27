@@ -4,250 +4,499 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="color-scheme" content="dark light">
-  <title>Tri Wahyudi</title>
-  <meta name="description" content="Tri Wahyudi — Mahasiswa Teknik Informatika (Semester 5). Suka bangun aplikasi web Laravel, Android Kotlin, dan sistem embedded ESP32.">
+  <title>Tri Wahyudi — Software Engineer &amp; System Architect</title>
+  <meta name="description" content="Tri Wahyudi — Mahasiswa S1 Teknik Informatika Semester 5 (21 Tahun). Spesialisasi Full-Stack Web, Android Kotlin, IoT ESP32, dan Analisis Arsitektur Sistem.">
 
-  <!-- Inter & JetBrains Mono Fonts -->
+  <!-- Inter & JetBrains Mono Fonts (SF Pro & SF Mono vibe) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2318181b'/><text x='50%25' y='65%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='16' fill='%23fafafa'>W</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%23000'/><text x='50%25' y='65%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='16' fill='%232997ff'>W</text></svg>">
 </head>
-<body>
+<body class="apple-dark">
 
-  <div class="wrapper">
-    <!-- HEADER -->
-    <header class="header">
-      <div class="header-main">
-        <h1 class="name">Tri Wahyudi</h1>
-        <p class="role">Mahasiswa Teknik Informatika &bull; Semester 5 (21 Th)</p>
-      </div>
-      <nav class="social-nav">
-        <a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub ↗</a>
-        <a href="mailto:triw0224@gmail.com" class="nav-link">Email ↗</a>
-        <a href="https://wa.me/?text=Halo%20Wahyu" target="_blank" rel="noopener noreferrer" class="nav-link">WhatsApp ↗</a>
+  <!-- =========================================================================
+       APPLE FROSTED NAVBAR
+       ========================================================================= -->
+  <header class="apple-nav">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-avatar">W</span>
+        <span class="brand-name">Tri Wahyudi</span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="#projects" class="menu-link">Project</a>
+        <a href="#repos" class="menu-link">Repositori</a>
+        <a href="#specs" class="menu-link">Tech Specs</a>
+        <a href="#contact" class="menu-link">Kontak</a>
       </nav>
-    </header>
 
-    <!-- BIO / INTRO -->
-    <section class="section">
-      <p class="lead">
-        Halo, gue Wahyu. Mahasiswa S1 Teknik Informatika yang suka ngerancang dan ngebangun aplikasi. Sehari-hari gue fokus di backend web (PHP/Laravel), mobile app (Android Kotlin native), serta ngoprek mikrokontroler IoT (ESP32).
-      </p>
-      <p class="lead text-muted">
-        Gue paling antusias pas berhadapan sama alur logic bisnis nyata — dari ngurus skema database biar gak ada celah data kembar, nanganin sistem reservasi real-time, sampai bikin antarmuka yang enteng dan gampang dipake.
-      </p>
-    </section>
-
-    <!-- SELECTED PROJECTS -->
-    <section class="section">
-      <h2 class="section-title">Project Pilihan</h2>
-      
-      <div class="projects-list">
-        <!-- Project 1: PO BUS -->
-        <article class="project-entry">
-          <div class="project-meta">
-            <h3 class="project-name">
-              <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer">
-                Web PO Bus (ASM Putra Trans)
-                <span class="arrow-ext">↗</span>
-              </a>
-            </h3>
-            <span class="project-year">2026</span>
-          </div>
-          <p class="project-summary">
-            Sistem pemesanan tiket dan operasional armada bus antarkota. Fitur utamanya denah pemilihan kursi 2D dinamis biar penumpang gak bisa milih kursi yang sama di waktu barengan (*double-booking prevention*), serta tiket digital dengan QR code validator buat kru terminal.
-          </p>
-          <div class="project-tags">
-            <span class="tag">PHP</span>
-            <span class="tag">Laravel</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">MySQL</span>
-            <span class="tag">QR Code</span>
-          </div>
-        </article>
-
-        <!-- Project 2: COMPANY DAU -->
-        <article class="project-entry">
-          <div class="project-meta">
-            <h3 class="project-name">
-              <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer">
-                Web Perusahaan Alat Kebersihan (Company DAU)
-                <span class="arrow-ext">↗</span>
-              </a>
-            </h3>
-            <span class="project-year">2026</span>
-          </div>
-          <p class="project-summary">
-            Portal korporat &amp; katalog produk B2B distributor peralatan kebersihan industri (mesin floor polisher, auto scrubber, vacuum). Dilengkapi kalkulator request penawaran harga (RFQ) otomatis yang langsung tersambung ke WhatsApp sales.
-          </p>
-          <div class="project-tags">
-            <span class="tag">PHP</span>
-            <span class="tag">HTML/CSS</span>
-            <span class="tag">B2B Commerce</span>
-            <span class="tag">WhatsApp API</span>
-          </div>
-        </article>
-
-        <!-- Project 3: SMART TOURISM -->
-        <article class="project-entry">
-          <div class="project-meta">
-            <h3 class="project-name">
-              <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer">
-                Smart Tourism Kebumen (Android App)
-                <span class="arrow-ext">↗</span>
-              </a>
-            </h3>
-            <span class="project-year">2026</span>
-          </div>
-          <p class="project-summary">
-            Aplikasi mobile Android native untuk eksplorasi objek wisata di Kabupaten Kebumen. Dibangun dengan arsitektur MVVM, Navigation Component, serta integrasi koordinat GPS lokasi wisata dan informasi fasilitas publik di sekitarnya.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Kotlin</span>
-            <span class="tag">Android SDK</span>
-            <span class="tag">MVVM</span>
-            <span class="tag">Google Maps</span>
-          </div>
-        </article>
-
-        <!-- Project 4: ABSENSI GAMKI -->
-        <article class="project-entry">
-          <div class="project-meta">
-            <h3 class="project-name">
-              <a href="https://github.com/wongsxs/absensi-gamki" target="_blank" rel="noopener noreferrer">
-                Sistem Web Absensi Musyawarah GAMKI
-                <span class="arrow-ext">↗</span>
-              </a>
-            </h3>
-            <span class="project-year">2026</span>
-          </div>
-          <p class="project-summary">
-            Sistem absensi digital untuk delegasi kegiatan musyawarah organisasi. Fokus utama di verifikasi ID peserta yang cepat agar registrasi lancar, serta live dashboard counter kehadiran untuk memantau kuorum sidang secara otomatis.
-          </p>
-          <div class="project-tags">
-            <span class="tag">JavaScript</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">Database Relasional</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- OTHER REPOSITORIES -->
-    <section class="section">
-      <div class="section-meta-row">
-        <h2 class="section-title">Eksplorasi Repositori Lainnya</h2>
-        <a href="https://github.com/wongsxs?tab=repositories" target="_blank" rel="noopener noreferrer" class="link-subtle">
-          Lihat semua di GitHub (30+) ↗
+      <div class="nav-cta-wrap">
+        <button id="copyEmailBtn" class="pill-btn pill-btn-subtle" title="Salin Email">
+          <span class="copy-icon">📋</span>
+          <span class="copy-text">Salin Email</span>
+        </button>
+        <a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" class="pill-btn pill-btn-primary">
+          <span>GitHub</span>
+          <span class="arrow-glyph">↗</span>
         </a>
       </div>
+    </div>
+  </header>
 
-      <div class="repo-compact-list">
-        <a href="https://github.com/wongsxs/ESP32project" target="_blank" rel="noopener noreferrer" class="repo-row">
-          <div class="repo-left">
-            <span class="repo-title">ESP32project</span>
-            <span class="repo-desc">Embedded firmware C++ &amp; otomasi komunikasi mikrokontroler ESP32</span>
-          </div>
-          <span class="repo-pill">C++ / IoT</span>
-        </a>
-
-        <div class="repo-row">
-          <div class="repo-left">
-            <span class="repo-title">kt-cloud</span>
-            <span class="repo-desc">Personal cloud storage service via Google Drive API backend</span>
-          </div>
-          <span class="repo-pill">TypeScript</span>
-        </div>
-
-        <div class="repo-row">
-          <div class="repo-left">
-            <span class="repo-title">YuuFarm</span>
-            <span class="repo-desc">Sistem monitoring siklus dan manajemen agrikultur</span>
-          </div>
-          <span class="repo-pill">Web Fullstack</span>
-        </div>
-
-        <div class="repo-row">
-          <div class="repo-left">
-            <span class="repo-title">MAC-Project</span>
-            <span class="repo-desc">Eksperimen protokol komunikasi jaringan hardware</span>
-          </div>
-          <span class="repo-pill">C++ / Network</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- TECH STACK & TOOLS -->
-    <section class="section">
-      <h2 class="section-title">Teknologi yang Biasa Dipakai</h2>
-      <div class="tech-grid">
-        <div class="tech-group">
-          <h3 class="tech-group-title">Backend &amp; Languages</h3>
-          <p class="tech-group-items">PHP, Laravel, JavaScript, TypeScript, Kotlin, C++</p>
-        </div>
-        <div class="tech-group">
-          <h3 class="tech-group-title">Mobile &amp; Frontend</h3>
-          <p class="tech-group-items">Android SDK (Kotlin Native), MVVM, HTML5, Modern CSS</p>
-        </div>
-        <div class="tech-group">
-          <h3 class="tech-group-title">Database &amp; Tools</h3>
-          <p class="tech-group-items">MySQL, Schema Normalization, Git, GitHub, REST APIs</p>
-        </div>
-        <div class="tech-group">
-          <h3 class="tech-group-title">Hardware &amp; IoT</h3>
-          <p class="tech-group-items">ESP32, Arduino IDE, Sensor Integration, Microcontrollers</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT / GET IN TOUCH -->
-    <section class="section">
-      <h2 class="section-title">Kontak</h2>
-      <p class="text-muted" style="margin-bottom: 20px;">
-        Terbuka untuk diskusi proyek web/mobile, tawaran freelance, atau peluang magang (internship). Silakan hubungi langsung:
-      </p>
-
-      <div class="contact-links-list">
-        <div class="contact-item">
-          <span class="contact-label">Email</span>
-          <a href="mailto:triw0224@gmail.com" class="contact-val">triw0224@gmail.com ↗</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">WhatsApp</span>
-          <a href="https://wa.me/?text=Halo%20Wahyu,%20saya%20tertarik%20diskusi%20project" target="_blank" rel="noopener noreferrer" class="contact-val">Chat WhatsApp ↗</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">GitHub</span>
-          <a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" class="contact-val">github.com/wongsxs ↗</a>
-        </div>
-      </div>
-
-      <!-- Simple clean direct form -->
-      <form id="contactForm" class="contact-form" onsubmit="return false;">
-        <h3 class="form-heading">Atau kirim pesan cepat:</h3>
-        
-        <div class="form-row">
-          <input type="text" id="senderName" class="input-field" placeholder="Nama Anda" required>
-          <input type="email" id="senderEmail" class="input-field" placeholder="Email Anda" required>
-        </div>
-        
-        <textarea id="senderMessage" class="input-field textarea-field" rows="3" placeholder="Pesan atau ringkasan project yang mau dibahas..." required></textarea>
-        
-        <div class="form-action">
-          <button type="submit" class="submit-btn">Kirim Pesan</button>
-          <span id="formFeedback" class="form-feedback hidden">Pesan terkirim! Terima kasih, Wahyu akan segera membalas ke email Anda.</span>
-        </div>
-      </form>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <p>&copy; 2026 Tri Wahyudi &bull; Dibuat sederhana tanpa AI slop.</p>
-    </footer>
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="apple-toast hidden" role="status" aria-live="polite">
+    <span class="toast-dot"></span>
+    <span class="toast-message">Email berhasil disalin ke clipboard!</span>
   </div>
+
+  <main>
+    <!-- =========================================================================
+         HERO SECTION (APPLE KEYNOTE / PRO STYLE)
+         ========================================================================= -->
+    <section id="hero" class="hero-section">
+      <div class="content-container">
+        <div class="hero-eyebrow">
+          <span class="status-indicator"></span>
+          <span>S1 TEKNIK INFORMATIKA &bull; SEMESTER 5 &bull; 21 TAHUN</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Tri Wahyudi<span class="dot-accent">.</span><br>
+          <span class="headline-gradient">Engineering Software with Intent.</span>
+        </h1>
+
+        <p class="hero-lead">
+          Fokus pada rekayasa sistem yang andal dan terstruktur. Mengembangkan sistem reservasi armada web skala penuh, aplikasi mobile Android native berbasis Kotlin, katalog korporat B2B, hingga otomasi perangkat keras mikrokontroler ESP32.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="apple-btn apple-btn-accent">
+            <span>Lihat Karya Utama</span>
+            <span class="arrow-glyph">↓</span>
+          </a>
+          <a href="#contact" class="apple-btn apple-btn-glass">
+            <span>Mulai Diskusi</span>
+            <span class="arrow-glyph">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         APPLE FEATURED BENTO SHOWCASE (WITH INTERACTIVE COMPONENTS)
+         ========================================================================= -->
+    <section id="projects" class="section-showcase">
+      <div class="content-container">
+        <div class="section-header">
+          <span class="section-eyebrow">FEATURED CREATIONS</span>
+          <h2 class="section-title">Karya Pilihan &amp; Arsitektur</h2>
+          <p class="section-desc">Setiap proyek dibangun untuk menyelesaikan permasalahan proses bisnis nyata.</p>
+        </div>
+
+        <div class="apple-bento-grid">
+
+          <!-- 1. HERO SHOWCASE CARD: WEB PO BUS (LARGE 2-COLUMN WITH INTERACTIVE 2D SEAT PICKER) -->
+          <article class="bento-tile tile-large">
+            <div class="tile-header">
+              <span class="tile-badge">STAGE 01 &bull; WEB PRODUCTION</span>
+              <h3 class="tile-title">Web PO Bus (ASM Putra Trans)</h3>
+              <p class="tile-subtitle">
+                Sistem reservasi tiket dan manajemen armada bus antarkota dengan denah kursi 2D dinamis pencegah <em>double-booking</em> dan validasi tiket QR Code.
+              </p>
+            </div>
+
+            <!-- INTERACTIVE COMPONENT: 2D SEAT PICKER PREVIEW -->
+            <div class="interactive-preview-box">
+              <div class="preview-bar">
+                <span class="preview-label">INTERACTIVE DEMO: DENAH KURSI 2D (KLIK KURSI)</span>
+                <span id="seatStatusIndicator" class="preview-status">PILIH KURSI UNTUK TEST</span>
+              </div>
+
+              <div class="bus-cockpit">
+                <span class="bus-steering">🛞 Supir</span>
+                <span class="bus-door">Pintu Masuk</span>
+              </div>
+
+              <!-- Interactive Seat Matrix -->
+              <div class="seat-grid" id="busSeatGrid">
+                <!-- Row 1 -->
+                <button class="seat-btn available" data-seat="1A">1A</button>
+                <button class="seat-btn available" data-seat="1B">1B</button>
+                <div class="seat-aisle"></div>
+                <button class="seat-btn booked" data-seat="1C" disabled title="Sudah Dipesan">1C</button>
+                <button class="seat-btn booked" data-seat="1D" disabled title="Sudah Dipesan">1D</button>
+
+                <!-- Row 2 -->
+                <button class="seat-btn booked" data-seat="2A" disabled title="Sudah Dipesan">2A</button>
+                <button class="seat-btn available" data-seat="2B">2B</button>
+                <div class="seat-aisle"></div>
+                <button class="seat-btn available" data-seat="2C">2C</button>
+                <button class="seat-btn available" data-seat="2D">2D</button>
+
+                <!-- Row 3 -->
+                <button class="seat-btn available" data-seat="3A">3A</button>
+                <button class="seat-btn available" data-seat="3B">3B</button>
+                <div class="seat-aisle"></div>
+                <button class="seat-btn available" data-seat="3C">3C</button>
+                <button class="seat-btn available" data-seat="3D">3D</button>
+              </div>
+
+              <div class="seat-legend">
+                <span class="legend-item"><span class="legend-box available"></span> Tersedia</span>
+                <span class="legend-item"><span class="legend-box selected"></span> Dipilih</span>
+                <span class="legend-item"><span class="legend-box booked"></span> Dipesan</span>
+              </div>
+            </div>
+
+            <div class="tile-bottom">
+              <div class="tech-chips">
+                <span class="spec-chip">PHP 8.x</span>
+                <span class="spec-chip">Laravel</span>
+                <span class="spec-chip">JavaScript</span>
+                <span class="spec-chip">MySQL</span>
+                <span class="spec-chip">QR Generator</span>
+              </div>
+              <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer" class="tile-action-link">
+                <span>Buka Repositori asmputratrans</span>
+                <span class="arrow-glyph">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- 2. CARD: SMART TOURISM KEBUMEN (WITH ANDROID PHONE MOCKUP PREVIEW) -->
+          <article class="bento-tile">
+            <div class="tile-header">
+              <span class="tile-badge">STAGE 02 &bull; MOBILE ANDROID NATIVE</span>
+              <h3 class="tile-title">Smart Tourism Kebumen</h3>
+              <p class="tile-subtitle">
+                Aplikasi Android Kotlin native untuk memandu wisatawan menjelajahi destinasi Kabupaten Kebumen.
+              </p>
+            </div>
+
+            <!-- INTERACTIVE COMPONENT: PHONE MOCKUP UI -->
+            <div class="phone-mockup-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="app-header-demo">
+                  <span class="app-title-demo">Wisata Kebumen</span>
+                  <span class="app-badge-demo">GPS ON</span>
+                </div>
+                <div class="app-card-demo">
+                  <span class="card-icon-demo">🌊</span>
+                  <div>
+                    <strong>Pantai Menganti</strong>
+                    <small>Rute &bull; 28 Km dari Pusat Kota</small>
+                  </div>
+                </div>
+                <div class="app-card-demo">
+                  <span class="card-icon-demo">🏰</span>
+                  <div>
+                    <strong>Benteng Van Der Wijck</strong>
+                    <small>Wisata Sejarah &bull; Gombong</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile-bottom">
+              <div class="tech-chips">
+                <span class="spec-chip">Kotlin</span>
+                <span class="spec-chip">Android SDK</span>
+                <span class="spec-chip">MVVM</span>
+                <span class="spec-chip">Maps API</span>
+              </div>
+              <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer" class="tile-action-link">
+                <span>Buka Repositori smart-tourism</span>
+                <span class="arrow-glyph">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- 3. CARD: COMPANY DAU B2B CATALOG -->
+          <article class="bento-tile">
+            <div class="tile-header">
+              <span class="tile-badge">STAGE 03 &bull; CORPORATE B2B COMMERCE</span>
+              <h3 class="tile-title">Company DAU</h3>
+              <p class="tile-subtitle">
+                Portal katalog B2B distributor peralatan kebersihan industri dengan kalkulator RFQ WhatsApp instan.
+              </p>
+            </div>
+
+            <!-- VISUAL COMPONENT: B2B RFQ PREVIEW -->
+            <div class="rfq-preview-box">
+              <div class="rfq-item">
+                <span class="rfq-ic">⚙️</span>
+                <div class="rfq-info">
+                  <strong>Industrial Floor Scrubber 20"</strong>
+                  <small>Kapasitas Tangki 50L &bull; Heavy Duty</small>
+                </div>
+              </div>
+              <div class="rfq-action-row">
+                <span class="rfq-tag">Direct WhatsApp RFQ</span>
+                <span class="rfq-btn-mock">Minta Penawaran ↗</span>
+              </div>
+            </div>
+
+            <div class="tile-bottom">
+              <div class="tech-chips">
+                <span class="spec-chip">PHP</span>
+                <span class="spec-chip">HTML5 / CSS3</span>
+                <span class="spec-chip">B2B RFQ</span>
+                <span class="spec-chip">WhatsApp API</span>
+              </div>
+              <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer" class="tile-action-link">
+                <span>Buka Repositori companyDAU</span>
+                <span class="arrow-glyph">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- 4. CARD: ESP32 IOT & EMBEDDED (LIVE SERIAL TELEMETRY TERMINAL) -->
+          <article class="bento-tile tile-large">
+            <div class="tile-header">
+              <span class="tile-badge">STAGE 04 &bull; HARDWARE &amp; IOT</span>
+              <h3 class="tile-title">ESP32 Firmware &amp; Telemetry</h3>
+              <p class="tile-subtitle">
+                Mikrokontroler ESP32 berbasis C++ untuk komunikasi sensor dan otomasi hardware realtime.
+              </p>
+            </div>
+
+            <!-- INTERACTIVE COMPONENT: SERIAL MONITOR TERMINAL -->
+            <div class="serial-terminal-box">
+              <div class="terminal-bar">
+                <span class="terminal-dots">
+                  <span class="t-dot red"></span>
+                  <span class="t-dot yellow"></span>
+                  <span class="t-dot green"></span>
+                </span>
+                <span class="terminal-title">ESP32-WROOM-32 Serial Monitor @ 115200 baud</span>
+                <span class="terminal-status"><span class="pulse-green"></span> CONNECTED</span>
+              </div>
+              <div class="terminal-console" id="terminalLog">
+                <div class="log-line">[00:00:01] Booting ESP32 SDK v4.4-dev...</div>
+                <div class="log-line">[00:00:02] Initializing GPIO pins: 4, 16, 17, 21... OK</div>
+                <div class="log-line">[00:00:03] WiFi Station connected. IP: 192.168.1.104</div>
+                <div class="log-line success">[00:00:04] Telemetry Engine Online &bull; Ready for transmission</div>
+              </div>
+            </div>
+
+            <div class="tile-bottom">
+              <div class="tech-chips">
+                <span class="spec-chip">C++ / Arduino</span>
+                <span class="spec-chip">ESP32 Microcontroller</span>
+                <span class="spec-chip">GPIO Telemetry</span>
+                <span class="spec-chip">UART Serial</span>
+              </div>
+              <a href="https://github.com/wongsxs/ESP32project" target="_blank" rel="noopener noreferrer" class="tile-action-link">
+                <span>Buka Repositori ESP32project</span>
+                <span class="arrow-glyph">↗</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         APPLE TECH SPECS SECTION (CLEAN HARDWARE/SOFTWARE SPEC SHEET)
+         ========================================================================= -->
+    <section id="specs" class="section-specs">
+      <div class="content-container">
+        <div class="section-header">
+          <span class="section-eyebrow">SYSTEM ARCHITECTURE</span>
+          <h2 class="section-title">Technical Specifications</h2>
+          <p class="section-desc">Kompilasi spesifikasi teknologi dan metodologi rekayasa perangkat lunak.</p>
+        </div>
+
+        <div class="specs-table-box">
+          <div class="spec-row">
+            <div class="spec-category">Backend &amp; Logic</div>
+            <div class="spec-details">
+              <strong>PHP 8.x, Laravel Framework, Node.js, JavaScript, TypeScript</strong>
+              <p>Perancangan API RESTful, otentikasi sesi aman, manajemen transaksi database, dan arsitektur modular yang dapat diskalakan.</p>
+            </div>
+          </div>
+
+          <div class="spec-row">
+            <div class="spec-category">Mobile Engineering</div>
+            <div class="spec-details">
+              <strong>Android SDK &bull; Kotlin Native</strong>
+              <p>Pola arsitektur MVVM (Model-View-ViewModel), LiveData, Navigation Component, dan integrasi Google Maps Location API.</p>
+            </div>
+          </div>
+
+          <div class="spec-row">
+            <div class="spec-category">Database &amp; Normalization</div>
+            <div class="spec-details">
+              <strong>MySQL &bull; Relational Data Modeling</strong>
+              <p>Normalisasi data (1NF hingga 3NF), pencegahan inkonsistensi record, optimasi indeks kueri, dan transaksi ACID.</p>
+            </div>
+          </div>
+
+          <div class="spec-row">
+            <div class="spec-category">Hardware &amp; IoT</div>
+            <div class="spec-details">
+              <strong>ESP32 Microcontrollers, C++, Embedded Systems</strong>
+              <p>Komunikasi serial UART, kontrol GPIO aktuator/sensor, dan pertukaran paket data telemetry.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         GITHUB REPOSITORY ARCHIVE (CLEAN COMPACT DIRECTORY)
+         ========================================================================= -->
+    <section id="repos" class="section-repos">
+      <div class="content-container">
+        <div class="section-header-split">
+          <div>
+            <span class="section-eyebrow">CODEBASE DIRECTORY</span>
+            <h2 class="section-title">Repositori Pilihan (@wongsxs)</h2>
+          </div>
+          <a href="https://github.com/wongsxs?tab=repositories" target="_blank" rel="noopener noreferrer" class="link-external">
+            <span>Buka Semua Repositori (30+)</span>
+            <span class="arrow-glyph">↗</span>
+          </a>
+        </div>
+
+        <div class="repos-table">
+          <!-- Row 1 -->
+          <div class="repo-row">
+            <div class="repo-main-info">
+              <span class="repo-name-text">asmputratrans</span>
+              <span class="repo-desc-text">Sistem reservasi armada bus, denah kursi 2D, tiket QR Code</span>
+            </div>
+            <span class="repo-tech-pill">PHP / Laravel</span>
+            <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer" class="repo-link-btn">Repo ↗</a>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="repo-row">
+            <div class="repo-main-info">
+              <span class="repo-name-text">companyDAU</span>
+              <span class="repo-desc-text">Portal profil perusahaan B2B &amp; katalog alat kebersihan industri</span>
+            </div>
+            <span class="repo-tech-pill">PHP / Web</span>
+            <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer" class="repo-link-btn">Repo ↗</a>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="repo-row">
+            <div class="repo-main-info">
+              <span class="repo-name-text">smart-tourism-kebumen-v1</span>
+              <span class="repo-desc-text">Aplikasi Android panduan rute dan info destinasi wisata Kebumen</span>
+            </div>
+            <span class="repo-tech-pill">Kotlin Native</span>
+            <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer" class="repo-link-btn">Repo ↗</a>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="repo-row">
+            <div class="repo-main-info">
+              <span class="repo-name-text">absensi-gamki</span>
+              <span class="repo-desc-text">Sistem presensi delegasi musyawarah organisasi &amp; live kuorum</span>
+            </div>
+            <span class="repo-tech-pill">JavaScript</span>
+            <a href="https://github.com/wongsxs/absensi-gamki" target="_blank" rel="noopener noreferrer" class="repo-link-btn">Repo ↗</a>
+          </div>
+
+          <!-- Row 5 -->
+          <div class="repo-row">
+            <div class="repo-main-info">
+              <span class="repo-name-text">ESP32project</span>
+              <span class="repo-desc-text">Firmware embedded C++ dan komunikasi sensor hardware mikrokontroler</span>
+            </div>
+            <span class="repo-tech-pill">C++ / IoT</span>
+            <a href="https://github.com/wongsxs/ESP32project" target="_blank" rel="noopener noreferrer" class="repo-link-btn">Repo ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         APPLE CONTACT & COLLABORATION
+         ========================================================================= -->
+    <section id="contact" class="section-contact">
+      <div class="content-container">
+        <div class="contact-card-apple">
+          <div class="contact-header">
+            <span class="section-eyebrow">CONNECT WITH ME</span>
+            <h2 class="contact-title">Let’s build something extraordinary.</h2>
+            <p class="contact-lead">
+              Terbuka untuk diskusi proyek rekayasa sistem web &amp; mobile, kolaborasi riset, maupun peluang magang (internship).
+            </p>
+          </div>
+
+          <div class="contact-channels-grid">
+            <a href="https://wa.me/?text=Halo%20Wahyu,%20saya%20tertarik%20dengan%20portfolio%20Anda" target="_blank" rel="noopener noreferrer" class="channel-card">
+              <span class="channel-icon">💬</span>
+              <div class="channel-meta">
+                <span class="channel-title">WhatsApp Direct</span>
+                <span class="channel-desc">Kirim pesan instan &amp; diskusi langsung</span>
+              </div>
+              <span class="channel-arrow">↗</span>
+            </a>
+
+            <a href="mailto:triw0224@gmail.com" class="channel-card">
+              <span class="channel-icon">✉️</span>
+              <div class="channel-meta">
+                <span class="channel-title">Email Resmi</span>
+                <span class="channel-desc">triw0224@gmail.com</span>
+              </div>
+              <span class="channel-arrow">↗</span>
+            </a>
+
+            <a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" class="channel-card">
+              <span class="channel-icon">🐙</span>
+              <div class="channel-meta">
+                <span class="channel-title">GitHub Profile</span>
+                <span class="channel-desc">github.com/wongsxs (30+ Repos)</span>
+              </div>
+              <span class="channel-arrow">↗</span>
+            </a>
+          </div>
+
+          <!-- Direct Form -->
+          <form id="contactForm" class="apple-form" onsubmit="return false;">
+            <div class="form-grid">
+              <input type="text" id="senderName" class="apple-input" placeholder="Nama Anda / Instansi" required>
+              <input type="email" id="senderEmail" class="apple-input" placeholder="Alamat Email" required>
+            </div>
+            <textarea id="senderMessage" class="apple-input apple-textarea" rows="3" placeholder="Ceritakan ringkasan kebutuhan sistem atau proyek Anda..." required></textarea>
+            
+            <div class="form-submit-row">
+              <button type="submit" class="apple-btn apple-btn-accent">
+                <span>Kirim Transmisi Pesan</span>
+                <span class="arrow-glyph">→</span>
+              </button>
+              <span id="formFeedback" class="feedback-text hidden">Pesan berhasil dikirim! Wahyu akan segera merespons ke email Anda.</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       APPLE FOOTER
+       ========================================================================= -->
+  <footer class="apple-footer">
+    <div class="content-container footer-flex">
+      <div class="footer-copy">
+        <span>Copyright &copy; 2026 Tri Wahyudi. All rights reserved.</span>
+        <span class="footer-sub">Mahasiswa S1 Teknik Informatika Semester 5 (21 Tahun) &bull; Built with Apple Aesthetic</span>
+      </div>
+      <div class="footer-links">
+        <a href="#hero">Kembali ke Atas ↑</a>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
