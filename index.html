@@ -3,346 +3,953 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="color-scheme" content="dark light">
-  <title>Tri Wahyudi — Software Engineer &amp; System Architect</title>
-  <meta name="description" content="Tri Wahyudi — Mahasiswa S1 Teknik Informatika Semester 5 (21 Tahun). Spesialisasi Full-Stack Web, Android Kotlin, IoT ESP32, dan Analisis Arsitektur Sistem.">
+  <meta name="color-scheme" content="dark">
+  <title>Tri Wahyudi — Senior-Grade Systems &amp; Software Engineer</title>
+  <meta name="description" content="Portfolio Tri Wahyudi (@wongsxs) — Mahasiswa S1 Teknik Informatika Semester 5 (21 Th). Fullstack Laravel, Android Kotlin Native, Firmware IoT ESP32 C++, dan Otomasi Sistem.">
 
-  <!-- Inter & JetBrains Mono Fonts (SF Pro & SF Mono vibe) -->
+  <!-- Inter Display & JetBrains Mono Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%23000'/><text x='50%25' y='65%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='16' fill='%232997ff'>W</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='10' fill='%23060608'/><path d='M8 10L13 22L16 15L19 22L24 10' stroke='%2338bdf8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
 </head>
-<body class="apple-dark">
+<body class="pro-dark">
+
+  <!-- CUSTOM MAGNETIC CURSOR -->
+  <div id="cursorDot" class="cursor-dot" aria-hidden="true"></div>
+  <div id="cursorRing" class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- INTERACTIVE NETWORK PARTICLE CANVAS -->
+  <canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- MATRIX RAIN OVERLAY (EASTER EGG) -->
+  <canvas id="matrixCanvas" class="matrix-canvas hidden" aria-hidden="true"></canvas>
+
+  <!-- AMBIENT BACKGROUND GLOW -->
+  <div class="ambient-radial-primary" aria-hidden="true"></div>
+  <div class="ambient-radial-secondary" aria-hidden="true"></div>
 
   <!-- =========================================================================
-       APPLE FROSTED NAVBAR
+       ULTRA-FROSTED NAVBAR WITH SOUND TOGGLE & QUICK COMMAND
        ========================================================================= -->
-  <header class="apple-nav">
+  <header class="pro-nav">
     <div class="nav-container">
-      <a href="#hero" class="nav-brand">
-        <span class="brand-avatar">W</span>
-        <span class="brand-name">Tri Wahyudi</span>
+      <a href="#hero" class="nav-brand" data-magnetic>
+        <span class="brand-glyph">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </span>
+        <div class="brand-meta">
+          <span class="brand-text">Tri Wahyudi</span>
+          <span class="brand-sub">Software Engineer</span>
+        </div>
       </a>
 
       <nav class="nav-menu">
-        <a href="#projects" class="menu-link">Project</a>
-        <a href="#repos" class="menu-link">Repositori</a>
-        <a href="#specs" class="menu-link">Tech Specs</a>
-        <a href="#contact" class="menu-link">Kontak</a>
+        <a href="#projects" class="menu-link" data-magnetic>Karya Pilihan</a>
+        <a href="#terminal" class="menu-link" data-magnetic>Interactive CLI</a>
+        <a href="#skills" class="menu-link" data-magnetic>Tech Stack</a>
+        <a href="#timeline" class="menu-link" data-magnetic>Roadmap</a>
+        <a href="#repos" class="menu-link" data-magnetic>Codebase</a>
+        <a href="#contact" class="menu-link" data-magnetic>Kontak</a>
       </nav>
 
-      <div class="nav-cta-wrap">
-        <button id="copyEmailBtn" class="pill-btn pill-btn-subtle" title="Salin Email">
-          <span class="copy-icon">📋</span>
-          <span class="copy-text">Salin Email</span>
+      <div class="nav-actions">
+        <!-- Audio Synthesizer Haptic Toggle -->
+        <button id="soundToggleBtn" class="sound-toggle-btn" title="Toggle Audio Sound FX" data-magnetic>
+          <svg id="soundOnIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg id="soundOffIcon" class="hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <span class="sound-label">Audio: <strong id="soundStateText">ON</strong></span>
         </button>
-        <a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" class="pill-btn pill-btn-primary">
-          <span>GitHub</span>
-          <span class="arrow-glyph">↗</span>
+
+        <!-- Command Palette Trigger -->
+        <button id="cmdPaletteBtn" class="cmd-trigger-btn" title="Quick Command Palette (Ctrl+K)" data-magnetic>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span class="cmd-text">Quick Search</span>
+          <kbd class="kbd-badge"><abbr title="Control">Ctrl</abbr> K</kbd>
+        </button>
+
+        <a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" class="btn-github-nav" data-magnetic>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>@wongsxs</span>
         </a>
       </div>
     </div>
   </header>
 
   <!-- TOAST NOTIFICATION -->
-  <div id="toastNotification" class="apple-toast hidden" role="status" aria-live="polite">
-    <span class="toast-dot"></span>
-    <span class="toast-message">Email berhasil disalin ke clipboard!</span>
+  <div id="toastNotification" class="pro-toast hidden" role="status" aria-live="polite">
+    <div class="toast-indicator"></div>
+    <span class="toast-message">Email disalin ke clipboard!</span>
   </div>
 
   <main>
     <!-- =========================================================================
-         HERO SECTION (APPLE KEYNOTE / PRO STYLE)
+         HERO SECTION WITH TYPING ENGINE & METRICS
          ========================================================================= -->
     <section id="hero" class="hero-section">
       <div class="content-container">
-        <div class="hero-eyebrow">
-          <span class="status-indicator"></span>
-          <span>S1 TEKNIK INFORMATIKA &bull; SEMESTER 5 &bull; 21 TAHUN</span>
+        
+        <div class="hero-badge-row">
+          <div class="status-badge" data-magnetic>
+            <span class="pulsing-radar"></span>
+            <span>OPEN FOR SOFTWARE INTERNSHIP &bull; SEMESTER 5</span>
+          </div>
+          <div class="location-badge" data-magnetic>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Kebumen / Remote ID</span>
+          </div>
         </div>
 
         <h1 class="hero-headline">
-          Tri Wahyudi<span class="dot-accent">.</span><br>
-          <span class="headline-gradient">Engineering Software with Intent.</span>
+          Hi, I'm <span class="text-glow">Tri Wahyudi</span>.<br>
+          <span class="typing-headline">
+            I engineer <span id="typingDynamicText" class="dynamic-word">Full-Stack Web Systems</span><span class="typing-cursor">|</span>
+          </span>
         </h1>
 
-        <p class="hero-lead">
-          Fokus pada rekayasa sistem yang andal dan terstruktur. Mengembangkan sistem reservasi armada web skala penuh, aplikasi mobile Android native berbasis Kotlin, katalog korporat B2B, hingga otomasi perangkat keras mikrokontroler ESP32.
+        <p class="hero-bio">
+          Mahasiswa S1 Teknik Informatika (21 Tahun) yang berfokus pada <strong>rekayasa perangkat lunak terstruktur</strong>: arsitektur web skala penuh berbasis Laravel/PHP, aplikasi mobile Android Kotlin native, perancangan database relasional terindeks, hingga komunikasi firmware mikrokontroler ESP32.
         </p>
 
+        <!-- Dynamic Live Metrics Strip -->
+        <div class="metrics-dashboard">
+          <div class="metric-card" data-tilt>
+            <div class="metric-icon-wrap blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="metric-val" data-counter="32">32+</span>
+              <span class="metric-desc">Repositori GitHub</span>
+            </div>
+          </div>
+
+          <div class="metric-card" data-tilt>
+            <div class="metric-icon-wrap green">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <span class="metric-val">S1 TI</span>
+              <span class="metric-desc">Semester 5 (21 Th)</span>
+            </div>
+          </div>
+
+          <div class="metric-card" data-tilt>
+            <div class="metric-icon-wrap amber">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <div>
+              <span class="metric-val" data-counter="6">6+</span>
+              <span class="metric-desc">Sistem Produksi Rilis</span>
+            </div>
+          </div>
+
+          <div class="metric-card" data-tilt>
+            <div class="metric-icon-wrap purple">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <line x1="9" y1="1" x2="9" y2="4"></line>
+                <line x1="15" y1="1" x2="15" y2="4"></line>
+              </svg>
+            </div>
+            <div>
+              <span class="metric-val">115.2k</span>
+              <span class="metric-desc">UART Telemetry Baud</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
         <div class="hero-actions">
-          <a href="#projects" class="apple-btn apple-btn-accent">
-            <span>Lihat Karya Utama</span>
-            <span class="arrow-glyph">↓</span>
+          <a href="#projects" class="pro-btn pro-btn-primary" data-magnetic>
+            <span>Eksplorasi Karya Utama</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
           </a>
-          <a href="#contact" class="apple-btn apple-btn-glass">
-            <span>Mulai Diskusi</span>
-            <span class="arrow-glyph">→</span>
+          <a href="#terminal" class="pro-btn pro-btn-terminal" data-magnetic>
+            <span class="btn-prompt-icon">&gt;_</span>
+            <span>Buka Interactive CLI</span>
           </a>
+          <button id="heroCopyEmailBtn" class="pro-btn pro-btn-glass" data-magnetic>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Salin Email</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         INTERACTIVE DEVELOPER TERMINAL (LIKE REAL PRO PORTFOLIOS)
+         ========================================================================= -->
+    <section id="terminal" class="section-terminal">
+      <div class="content-container">
+        <div class="terminal-container" data-tilt>
+          <div class="terminal-window-bar">
+            <div class="mac-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="terminal-center-title">
+              <span class="term-host">wongsxs@portfolio-node</span>:<span class="term-path">~/system</span>
+            </div>
+            <div class="term-status-badge">
+              <span class="pulse-mini"></span>
+              <span>TTY1 ACTIVE</span>
+            </div>
+          </div>
+
+          <div class="terminal-body" id="devTerminalBody">
+            <div class="term-welcome-msg">
+              <pre class="ascii-banner">
+  _____     _  __          __    _                     _ _ 
+ |_   _| __(_)\ \        / /_ _| |__  _   _ _   _  __| (_)
+   | || '__| | \ \  /\  / / _` | '_ \| | | | | | |/ _` | |
+   | || |  | |  \ V  V / (_| | | | | |_| | |_| | (_| | |
+   |_||_|  |_|   \_/\_/ \__,_|_| |_|\__, |\__,_|\__,_|_|
+                                    |___/                 
+              </pre>
+              <p>Selamat datang di interactive developer shell. Ketik <span class="cmd-highlight">help</span> untuk daftar perintah, atau klik shortcut di bawah:</p>
+              <div class="term-quick-chips">
+                <button class="term-chip" data-cmd="about">about</button>
+                <button class="term-chip" data-cmd="projects">projects</button>
+                <button class="term-chip" data-cmd="skills">skills</button>
+                <button class="term-chip" data-cmd="contact">contact</button>
+                <button class="term-chip" data-cmd="matrix">matrix</button>
+                <button class="term-chip" data-cmd="clear">clear</button>
+              </div>
+            </div>
+
+            <!-- Log Entries will append here -->
+            <div id="termOutputLog"></div>
+
+            <!-- Active Input Line -->
+            <div class="term-input-row">
+              <span class="term-prompt">wongsxs@dev:~$</span>
+              <input type="text" id="terminalInput" class="term-cli-input" placeholder="Ketik perintah di sini (contoh: help)..." autocomplete="off" spellcheck="false">
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- =========================================================================
-         APPLE FEATURED BENTO SHOWCASE (WITH INTERACTIVE COMPONENTS)
+         CATEGORY FILTER BAR
          ========================================================================= -->
-    <section id="projects" class="section-showcase">
+    <section class="section-filter-bar">
       <div class="content-container">
-        <div class="section-header">
-          <span class="section-eyebrow">FEATURED CREATIONS</span>
-          <h2 class="section-title">Karya Pilihan &amp; Arsitektur</h2>
-          <p class="section-desc">Setiap proyek dibangun untuk menyelesaikan permasalahan proses bisnis nyata.</p>
+        <div class="filter-wrapper">
+          <div class="filter-header-left">
+            <span class="filter-eyebrow">FILTER BY DISCIPLINE</span>
+            <span class="filter-title">Arsitektur &amp; Portofolio Pilihan</span>
+          </div>
+          <div class="filter-pills" id="projectFilterGroup">
+            <button class="filter-pill active" data-filter="all" data-magnetic>Semua Bidang</button>
+            <button class="filter-pill" data-filter="web" data-magnetic>Web Fullstack</button>
+            <button class="filter-pill" data-filter="mobile" data-magnetic>Android Kotlin</button>
+            <button class="filter-pill" data-filter="iot" data-magnetic>IoT &amp; Hardware</button>
+            <button class="filter-pill" data-filter="tools" data-magnetic>Cloud &amp; Automation</button>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="apple-bento-grid">
+    <!-- =========================================================================
+         BENTO WORKBENCH (INTERACTIVE SHOWCASE)
+         ========================================================================= -->
+    <section id="projects" class="section-workbench">
+      <div class="content-container">
 
-          <!-- 1. HERO SHOWCASE CARD: WEB PO BUS (LARGE 2-COLUMN WITH INTERACTIVE 2D SEAT PICKER) -->
-          <article class="bento-tile tile-large">
-            <div class="tile-header">
-              <span class="tile-badge">STAGE 01 &bull; WEB PRODUCTION</span>
-              <h3 class="tile-title">Web PO Bus (ASM Putra Trans)</h3>
-              <p class="tile-subtitle">
-                Sistem reservasi tiket dan manajemen armada bus antarkota dengan denah kursi 2D dinamis pencegah <em>double-booking</em> dan validasi tiket QR Code.
-              </p>
-            </div>
+        <div class="workbench-grid">
 
-            <!-- INTERACTIVE COMPONENT: 2D SEAT PICKER PREVIEW -->
-            <div class="interactive-preview-box">
-              <div class="preview-bar">
-                <span class="preview-label">INTERACTIVE DEMO: DENAH KURSI 2D (KLIK KURSI)</span>
-                <span id="seatStatusIndicator" class="preview-status">PILIH KURSI UNTUK TEST</span>
-              </div>
-
-              <div class="bus-cockpit">
-                <span class="bus-steering">🛞 Supir</span>
-                <span class="bus-door">Pintu Masuk</span>
-              </div>
-
-              <!-- Interactive Seat Matrix -->
-              <div class="seat-grid" id="busSeatGrid">
-                <!-- Row 1 -->
-                <button class="seat-btn available" data-seat="1A">1A</button>
-                <button class="seat-btn available" data-seat="1B">1B</button>
-                <div class="seat-aisle"></div>
-                <button class="seat-btn booked" data-seat="1C" disabled title="Sudah Dipesan">1C</button>
-                <button class="seat-btn booked" data-seat="1D" disabled title="Sudah Dipesan">1D</button>
-
-                <!-- Row 2 -->
-                <button class="seat-btn booked" data-seat="2A" disabled title="Sudah Dipesan">2A</button>
-                <button class="seat-btn available" data-seat="2B">2B</button>
-                <div class="seat-aisle"></div>
-                <button class="seat-btn available" data-seat="2C">2C</button>
-                <button class="seat-btn available" data-seat="2D">2D</button>
-
-                <!-- Row 3 -->
-                <button class="seat-btn available" data-seat="3A">3A</button>
-                <button class="seat-btn available" data-seat="3B">3B</button>
-                <div class="seat-aisle"></div>
-                <button class="seat-btn available" data-seat="3C">3C</button>
-                <button class="seat-btn available" data-seat="3D">3D</button>
-              </div>
-
-              <div class="seat-legend">
-                <span class="legend-item"><span class="legend-box available"></span> Tersedia</span>
-                <span class="legend-item"><span class="legend-box selected"></span> Dipilih</span>
-                <span class="legend-item"><span class="legend-box booked"></span> Dipesan</span>
-              </div>
-            </div>
-
-            <div class="tile-bottom">
-              <div class="tech-chips">
-                <span class="spec-chip">PHP 8.x</span>
-                <span class="spec-chip">Laravel</span>
-                <span class="spec-chip">JavaScript</span>
-                <span class="spec-chip">MySQL</span>
-                <span class="spec-chip">QR Generator</span>
-              </div>
-              <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer" class="tile-action-link">
-                <span>Buka Repositori asmputratrans</span>
-                <span class="arrow-glyph">↗</span>
-              </a>
-            </div>
-          </article>
-
-          <!-- 2. CARD: SMART TOURISM KEBUMEN (WITH ANDROID PHONE MOCKUP PREVIEW) -->
-          <article class="bento-tile">
-            <div class="tile-header">
-              <span class="tile-badge">STAGE 02 &bull; MOBILE ANDROID NATIVE</span>
-              <h3 class="tile-title">Smart Tourism Kebumen</h3>
-              <p class="tile-subtitle">
-                Aplikasi Android Kotlin native untuk memandu wisatawan menjelajahi destinasi Kabupaten Kebumen.
-              </p>
-            </div>
-
-            <!-- INTERACTIVE COMPONENT: PHONE MOCKUP UI -->
-            <div class="phone-mockup-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <div class="app-header-demo">
-                  <span class="app-title-demo">Wisata Kebumen</span>
-                  <span class="app-badge-demo">GPS ON</span>
+          <!-- 1. HERO CARD: PO BUS (ASM PUTRA TRANS) + TICKET GENERATOR -->
+          <article class="bento-card bento-span-2 spotlight-card" data-category="web" data-tilt>
+            <div class="card-inner">
+              <div class="card-header-row">
+                <div>
+                  <div class="tag-row">
+                    <span class="tag-badge accent-blue">LIVE WEB PRODUCTION</span>
+                    <span class="tag-badge">PHP &bull; LARAVEL &bull; MYSQL</span>
+                  </div>
+                  <h2 class="card-title">PO Bus ASM Putra Trans — Fleet Management &amp; Ticketing Engine</h2>
+                  <p class="card-desc">
+                    Engine reservasi armada bus antarkota dengan denah kursi dinamis 2D pencegah <em>double-booking</em>, transaksi ACID database, dan generator barcode/QR untuk validasi manifest penumpang realtime.
+                  </p>
                 </div>
-                <div class="app-card-demo">
-                  <span class="card-icon-demo">🌊</span>
-                  <div>
-                    <strong>Pantai Menganti</strong>
-                    <small>Rute &bull; 28 Km dari Pusat Kota</small>
+              </div>
+
+              <!-- INTERACTIVE MODULE: LIVE SEAT RESERVATION & TICKET PASS -->
+              <div class="interactive-sandbox">
+                <div class="sandbox-toolbar">
+                  <div class="toolbar-info">
+                    <span class="sandbox-indicator"></span>
+                    <span class="sandbox-title">LIVE SEAT RESERVATION ENGINE (KLIK KURSI UNTUK TEST)</span>
+                  </div>
+                  <div class="toolbar-route">
+                    <span class="route-point">Jakarta (Pulo Gebang)</span>
+                    <span class="route-arrow">➔</span>
+                    <span class="route-point">Kebumen (Prembun)</span>
                   </div>
                 </div>
-                <div class="app-card-demo">
-                  <span class="card-icon-demo">🏰</span>
-                  <div>
-                    <strong>Benteng Van Der Wijck</strong>
-                    <small>Wisata Sejarah &bull; Gombong</small>
+
+                <div class="bus-schematic">
+                  <div class="cockpit-bar">
+                    <div class="driver-pod">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="m4.93 4.93 4.24 4.24"></path>
+                        <path d="m14.83 9.17 4.24-4.24"></path>
+                        <path d="M12 12v9"></path>
+                      </svg>
+                      <span>Driver Console</span>
+                    </div>
+                    <span class="door-marker">Pintu Masuk Penumpang</span>
+                  </div>
+
+                  <!-- 4-Column Seat Layout -->
+                  <div class="seat-matrix" id="busSeatGrid">
+                    <!-- Row 1 -->
+                    <button class="seat-node available" data-seat="1A" data-price="185000">1A</button>
+                    <button class="seat-node available" data-seat="1B" data-price="185000">1B</button>
+                    <div class="aisle-lane"></div>
+                    <button class="seat-node booked" data-seat="1C" disabled title="Sudah Terisi">1C</button>
+                    <button class="seat-node booked" data-seat="1D" disabled title="Sudah Terisi">1D</button>
+
+                    <!-- Row 2 -->
+                    <button class="seat-node booked" data-seat="2A" disabled title="Sudah Terisi">2A</button>
+                    <button class="seat-node available" data-seat="2B" data-price="185000">2B</button>
+                    <div class="aisle-lane"></div>
+                    <button class="seat-node available" data-seat="2C" data-price="185000">2C</button>
+                    <button class="seat-node available" data-seat="2D" data-price="185000">2D</button>
+
+                    <!-- Row 3 -->
+                    <button class="seat-node available" data-seat="3A" data-price="185000">3A</button>
+                    <button class="seat-node available" data-seat="3B" data-price="185000">3B</button>
+                    <div class="aisle-lane"></div>
+                    <button class="seat-node available" data-seat="3C" data-price="185000">3C</button>
+                    <button class="seat-node available" data-seat="3D" data-price="185000">3D</button>
+                  </div>
+
+                  <!-- Seat Legend & Live Summary -->
+                  <div class="seat-meta-bar">
+                    <div class="legend-cluster">
+                      <span class="legend-dot dot-available"></span><span class="legend-txt">Tersedia</span>
+                      <span class="legend-dot dot-selected"></span><span class="legend-txt">Dipilih</span>
+                      <span class="legend-dot dot-booked"></span><span class="legend-txt">Terisi</span>
+                    </div>
+
+                    <div class="reservation-summary">
+                      <div class="summary-details">
+                        <span class="summary-seat" id="selectedSeatSummary">Pilih Kursi</span>
+                        <span class="summary-price" id="selectedPriceSummary">Rp 0</span>
+                      </div>
+                      <button id="btnIssueTicket" class="btn-ticket-issue" disabled data-magnetic>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                          <line x1="16" y1="2" x2="16" y2="6"></line>
+                          <line x1="8" y1="2" x2="8" y2="6"></line>
+                          <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>Cetak E-Tiket Preview</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="tile-bottom">
-              <div class="tech-chips">
-                <span class="spec-chip">Kotlin</span>
-                <span class="spec-chip">Android SDK</span>
-                <span class="spec-chip">MVVM</span>
-                <span class="spec-chip">Maps API</span>
+              <div class="card-footer-row">
+                <div class="tech-stack-chips">
+                  <span class="tech-chip">PHP 8.2</span>
+                  <span class="tech-chip">Laravel MVC</span>
+                  <span class="tech-chip">MySQL ACID</span>
+                  <span class="tech-chip">QR Code Engine</span>
+                  <span class="tech-chip">TailwindCSS</span>
+                </div>
+                <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer" class="link-github-repo" data-magnetic>
+                  <span>Lihat Source asmputratrans</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
               </div>
-              <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer" class="tile-action-link">
-                <span>Buka Repositori smart-tourism</span>
-                <span class="arrow-glyph">↗</span>
-              </a>
             </div>
           </article>
 
-          <!-- 3. CARD: COMPANY DAU B2B CATALOG -->
-          <article class="bento-tile">
-            <div class="tile-header">
-              <span class="tile-badge">STAGE 03 &bull; CORPORATE B2B COMMERCE</span>
-              <h3 class="tile-title">Company DAU</h3>
-              <p class="tile-subtitle">
-                Portal katalog B2B distributor peralatan kebersihan industri dengan kalkulator RFQ WhatsApp instan.
-              </p>
-            </div>
-
-            <!-- VISUAL COMPONENT: B2B RFQ PREVIEW -->
-            <div class="rfq-preview-box">
-              <div class="rfq-item">
-                <span class="rfq-ic">⚙️</span>
-                <div class="rfq-info">
-                  <strong>Industrial Floor Scrubber 20"</strong>
-                  <small>Kapasitas Tangki 50L &bull; Heavy Duty</small>
+          <!-- 2. CARD: SMART TOURISM KEBUMEN (INTERACTIVE ANDROID PHONE) -->
+          <article class="bento-card spotlight-card" data-category="mobile" data-tilt>
+            <div class="card-inner">
+              <div class="card-header-row">
+                <div>
+                  <div class="tag-row">
+                    <span class="tag-badge accent-green">ANDROID SDK</span>
+                    <span class="tag-badge">KOTLIN NATIVE &bull; MVVM</span>
+                  </div>
+                  <h2 class="card-title">Smart Tourism Kebumen</h2>
+                  <p class="card-desc">
+                    Aplikasi mobile native Android dengan integrasi Google Maps Location Provider dan katalog destinasi wisata Kebumen.
+                  </p>
                 </div>
               </div>
-              <div class="rfq-action-row">
-                <span class="rfq-tag">Direct WhatsApp RFQ</span>
-                <span class="rfq-btn-mock">Minta Penawaran ↗</span>
-              </div>
-            </div>
 
-            <div class="tile-bottom">
-              <div class="tech-chips">
-                <span class="spec-chip">PHP</span>
-                <span class="spec-chip">HTML5 / CSS3</span>
-                <span class="spec-chip">B2B RFQ</span>
-                <span class="spec-chip">WhatsApp API</span>
+              <!-- REALISTIC INTERACTIVE ANDROID DEVICE -->
+              <div class="device-chassis">
+                <div class="device-bezel">
+                  <div class="device-notch-row">
+                    <div class="device-speaker"></div>
+                    <div class="device-camera"></div>
+                  </div>
+
+                  <div class="device-viewport">
+                    <div class="phone-status-bar">
+                      <span id="phoneClock" class="status-clock">13:45</span>
+                      <div class="status-icons">
+                        <span class="gps-active">GPS ON</span>
+                        <span>5G</span>
+                        <div class="battery-icon"><div class="battery-level"></div></div>
+                      </div>
+                    </div>
+
+                    <div class="phone-view-container" id="phoneViewContainer">
+                      <div class="phone-screen-header">
+                        <span class="app-eyebrow">PANDUAN WISATA KEBUMEN</span>
+                        <h4 class="app-hero-title" id="phoneSpotTitle">Pantai Menganti</h4>
+                        <span class="spot-coord" id="phoneSpotCoord">7.7694° S, 109.4147° E &bull; Rute Pesisir</span>
+                      </div>
+
+                      <div class="spot-card-preview" id="phoneSpotCard">
+                        <div class="spot-stat-row">
+                          <div class="spot-stat">
+                            <small>Jarak</small>
+                            <strong id="phoneSpotDist">28 Km</strong>
+                          </div>
+                          <div class="spot-stat">
+                            <small>Estimasi</small>
+                            <strong id="phoneSpotTime">~45 Menit</strong>
+                          </div>
+                          <div class="spot-stat">
+                            <small>Kategori</small>
+                            <strong id="phoneSpotCat">Bahari</strong>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="phone-pill-selector">
+                        <button class="dest-btn active" data-spot="menganti">Menganti</button>
+                        <button class="dest-btn" data-spot="benteng">Van Der Wijck</button>
+                        <button class="dest-btn" data-spot="jatijajar">Goa Jatijajar</button>
+                      </div>
+                    </div>
+
+                    <div class="phone-bottom-nav">
+                      <span class="phone-nav-item active">Destinasi</span>
+                      <span class="phone-nav-item">Rute GPS</span>
+                      <span class="phone-nav-item">Info</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer" class="tile-action-link">
-                <span>Buka Repositori companyDAU</span>
-                <span class="arrow-glyph">↗</span>
-              </a>
+
+              <div class="card-footer-row">
+                <div class="tech-stack-chips">
+                  <span class="tech-chip">Kotlin</span>
+                  <span class="tech-chip">Android Studio</span>
+                  <span class="tech-chip">Maps API</span>
+                  <span class="tech-chip">Retrofit2</span>
+                </div>
+                <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer" class="link-github-repo" data-magnetic>
+                  <span>Lihat Repo</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
             </div>
           </article>
 
-          <!-- 4. CARD: ESP32 IOT & EMBEDDED (LIVE SERIAL TELEMETRY TERMINAL) -->
-          <article class="bento-tile tile-large">
-            <div class="tile-header">
-              <span class="tile-badge">STAGE 04 &bull; HARDWARE &amp; IOT</span>
-              <h3 class="tile-title">ESP32 Firmware &amp; Telemetry</h3>
-              <p class="tile-subtitle">
-                Mikrokontroler ESP32 berbasis C++ untuk komunikasi sensor dan otomasi hardware realtime.
+          <!-- 3. CARD: COMPANY DAU B2B & WHATSAPP RFQ -->
+          <article class="bento-card spotlight-card" data-category="web" data-tilt>
+            <div class="card-inner">
+              <div class="card-header-row">
+                <div>
+                  <div class="tag-row">
+                    <span class="tag-badge accent-amber">COMMERCE B2B</span>
+                    <span class="tag-badge">CATALOG &bull; RFQ ENGINE</span>
+                  </div>
+                  <h2 class="card-title">Company DAU — B2B Industrial Catalog &amp; RFQ</h2>
+                  <p class="card-desc">
+                    Portal profil distributor peralatan kebersihan industri komersial dengan kalkulator RFQ otomatis terhubung ke WhatsApp Business.
+                  </p>
+                </div>
+              </div>
+
+              <!-- INTERACTIVE RFQ GENERATOR -->
+              <div class="rfq-console">
+                <div class="rfq-header">
+                  <span class="rfq-label">SIMULASI FORMULIR PERMINTAAN HARGA (RFQ)</span>
+                  <span class="rfq-badge-live">READY TO DISPATCH</span>
+                </div>
+
+                <div class="rfq-body">
+                  <div class="rfq-product-select">
+                    <label class="field-label">Pilih Unit Mesin:</label>
+                    <select id="rfqProductSelect" class="rfq-select">
+                      <option value="Industrial Floor Scrubber 20 Inch" data-code="SC-20X">Industrial Floor Scrubber 20" (Heavy Duty)</option>
+                      <option value="High Pressure Cleaner 200 Bar" data-code="HP-200">High Pressure Cleaner 200 Bar</option>
+                      <option value="Ride-On Sweeper Dual Brush" data-code="SW-RIDE">Ride-On Sweeper Dual Brush (Battery Powered)</option>
+                    </select>
+                  </div>
+
+                  <div class="rfq-qty-row">
+                    <span class="qty-label">Kebutuhan Unit (Qty):</span>
+                    <div class="qty-counter">
+                      <button id="rfqQtyDec" class="qty-btn" aria-label="Kurangi">-</button>
+                      <span id="rfqQtyVal" class="qty-val">2</span>
+                      <button id="rfqQtyInc" class="qty-btn" aria-label="Tambah">+</button>
+                    </div>
+                  </div>
+
+                  <div class="rfq-action-box">
+                    <a id="rfqWaLink" href="https://wa.me/6281234567890?text=Halo%20Company%20DAU,%20saya%20ingin%20meminta%20penawaran%20harga%20resmi%20untuk%20Industrial%20Floor%20Scrubber%2020%20Inch%20sejumlah%202%20unit." target="_blank" rel="noopener noreferrer" class="btn-dispatch-rfq" data-magnetic>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.64c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29z"/>
+                      </svg>
+                      <span>Kirim RFQ WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer-row">
+                <div class="tech-stack-chips">
+                  <span class="tech-chip">PHP</span>
+                  <span class="tech-chip">B2B Workflow</span>
+                  <span class="tech-chip">WhatsApp API</span>
+                  <span class="tech-chip">Bootstrap</span>
+                </div>
+                <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer" class="link-github-repo" data-magnetic>
+                  <span>Lihat Repo</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. HERO CARD: ESP32 FIRMWARE & TELEMETRY STUDIO -->
+          <article class="bento-card bento-span-2 spotlight-card" data-category="iot" data-tilt>
+            <div class="card-inner">
+              <div class="card-header-row">
+                <div>
+                  <div class="tag-row">
+                    <span class="tag-badge accent-purple">EMBEDDED C++</span>
+                    <span class="tag-badge">ESP32 &bull; UART TELEMETRY</span>
+                  </div>
+                  <h2 class="card-title">ESP32 Firmware &amp; Hardware Telemetry Engine</h2>
+                  <p class="card-desc">
+                    Firmware mikrokontroler ESP32-WROOM-32 untuk pembacaan sensor berkala, aktuasi saklar relay, dan transmisi paket serial UART realtime.
+                  </p>
+                </div>
+              </div>
+
+              <!-- INTERACTIVE ESP32 STUDIO: DUAL MODE (SERIAL STREAM & GPIO SWITCHBOARD) -->
+              <div class="esp32-studio">
+                
+                <div class="esp32-top-bar">
+                  <div class="mac-window-dots">
+                    <span class="w-dot dot-red"></span>
+                    <span class="w-dot dot-yellow"></span>
+                    <span class="w-dot dot-green"></span>
+                  </div>
+                  <div class="stream-ident">
+                    <span class="device-name">ESP32-WROOM-32 SoC</span>
+                    <span class="baud-pill">115200 BAUD</span>
+                  </div>
+                  <div class="studio-controls">
+                    <button id="btnClearLog" class="terminal-ctrl-btn" data-magnetic>Clear Log</button>
+                    <button id="btnToggleStream" class="terminal-ctrl-btn active" data-magnetic>Pause Stream</button>
+                  </div>
+                </div>
+
+                <div class="esp32-grid-split">
+                  <div class="console-viewport" id="esp32LogConsole">
+                    <div class="log-entry sys">[00:00:01] Booting ESP-IDF v4.4-dev &bull; Chip ID: 0x4B21...</div>
+                    <div class="log-entry sys">[00:00:02] Initializing GPIOs: Pin 16 (Relay 1), Pin 17 (Relay 2), Pin 2 (LED)...</div>
+                    <div class="log-entry ok">[00:00:03] WiFi STA Connected &bull; IP: 192.168.1.104 &bull; RSSI: -54 dBm</div>
+                    <div class="log-entry ok">[00:00:04] Telemetry loop running @ 1000ms cadence</div>
+                  </div>
+
+                  <!-- Interactive GPIO Switchboard -->
+                  <div class="gpio-switchboard">
+                    <div class="switchboard-title">UJI AKTIVASI PIN HARDWARE (KLIK UNTUK TRIGGER):</div>
+
+                    <div class="pin-row">
+                      <div class="pin-meta">
+                        <span class="pin-num">GPIO 16</span>
+                        <span class="pin-name">Relay 1 (Pompa Air)</span>
+                      </div>
+                      <label class="toggle-switch">
+                        <input type="checkbox" id="pinToggle16" class="pin-check" data-pin="16" data-label="Relay 1 (Pompa Air)">
+                        <span class="switch-slider"></span>
+                      </label>
+                    </div>
+
+                    <div class="pin-row">
+                      <div class="pin-meta">
+                        <span class="pin-num">GPIO 17</span>
+                        <span class="pin-name">Relay 2 (Solenoid Valve)</span>
+                      </div>
+                      <label class="toggle-switch">
+                        <input type="checkbox" id="pinToggle17" class="pin-check" data-pin="17" data-label="Relay 2 (Solenoid Valve)">
+                        <span class="switch-slider"></span>
+                      </label>
+                    </div>
+
+                    <div class="pin-row">
+                      <div class="pin-meta">
+                        <span class="pin-num">GPIO 02</span>
+                        <span class="pin-name">Built-in Blue LED</span>
+                      </div>
+                      <label class="toggle-switch">
+                        <input type="checkbox" id="pinToggle2" class="pin-check" data-pin="2" data-label="Built-in LED">
+                        <span class="switch-slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="card-footer-row">
+                <div class="tech-stack-chips">
+                  <span class="tech-chip">C++ / Arduino Core</span>
+                  <span class="tech-chip">ESP32 SoC</span>
+                  <span class="tech-chip">UART Serial Protocol</span>
+                  <span class="tech-chip">GPIO Interrupts</span>
+                  <span class="tech-chip">FreeRTOS</span>
+                </div>
+                <a href="https://github.com/wongsxs/ESP32project" target="_blank" rel="noopener noreferrer" class="link-github-repo" data-magnetic>
+                  <span>Lihat Source ESP32project</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. CARD: KT-CLOUD (PERSONAL CLOUD STORAGE) -->
+          <article class="bento-card spotlight-card" data-category="tools" data-tilt>
+            <div class="card-inner">
+              <div class="card-header-row">
+                <div>
+                  <div class="tag-row">
+                    <span class="tag-badge accent-blue">CLOUD STORAGE</span>
+                    <span class="tag-badge">GOOGLE DRIVE API</span>
+                  </div>
+                  <h2 class="card-title">KT Cloud — Personal Storage System</h2>
+                  <p class="card-desc">
+                    Layanan penyimpanan cloud privat terintegrasi dengan Google Drive API untuk upload, pengorganisasian folder, dan sharing link.
+                  </p>
+                </div>
+              </div>
+
+              <div class="card-feature-box">
+                <div class="feature-item">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <span>OAuth 2.0 Token Authentication</span>
+                </div>
+                <div class="feature-item">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Chunked File Upload Stream</span>
+                </div>
+                <div class="feature-item">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  <span>Private Access Control &amp; Sharing Link</span>
+                </div>
+              </div>
+
+              <div class="card-footer-row">
+                <div class="tech-stack-chips">
+                  <span class="tech-chip">Google Drive API</span>
+                  <span class="tech-chip">Node.js / Web</span>
+                  <span class="tech-chip">REST API</span>
+                </div>
+                <a href="https://github.com/wongsxs/kt-cloud" target="_blank" rel="noopener noreferrer" class="link-github-repo" data-magnetic>
+                  <span>Lihat Repo</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. CARD: ABSENSI GAMKI (EVENT LIVE QUORUM SYSTEM) -->
+          <article class="bento-card spotlight-card" data-category="web" data-tilt>
+            <div class="card-inner">
+              <div class="card-header-row">
+                <div>
+                  <div class="tag-row">
+                    <span class="tag-badge accent-green">ORGANIZATION SYSTEM</span>
+                    <span class="tag-badge">LIVE QUORUM</span>
+                  </div>
+                  <h2 class="card-title">Sistem Absensi &amp; Kuorum Musyawarah GAMKI</h2>
+                  <p class="card-desc">
+                    Platform presensi digital delegasi rapat musyawarah organisasi dengan kalkulasi kuorum sah secara realtime dan rekap kehadiran.
+                  </p>
+                </div>
+              </div>
+
+              <div class="card-feature-box">
+                <div class="feature-item">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  <span>Realtime Live Quorum Counter</span>
+                </div>
+                <div class="feature-item">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                  </svg>
+                  <span>Verifikasi Delegasi &amp; Cetak Berita Acara</span>
+                </div>
+              </div>
+
+              <div class="card-footer-row">
+                <div class="tech-stack-chips">
+                  <span class="tech-chip">JavaScript</span>
+                  <span class="tech-chip">Web Architecture</span>
+                  <span class="tech-chip">Data Validation</span>
+                </div>
+                <a href="https://github.com/wongsxs/absensi-gamki" target="_blank" rel="noopener noreferrer" class="link-github-repo" data-magnetic>
+                  <span>Lihat Repo</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         INTERACTIVE TECH STACK MATRIX
+         ========================================================================= -->
+    <section id="skills" class="section-skills">
+      <div class="content-container">
+        <div class="section-heading">
+          <span class="heading-tag">TECHNICAL PROFICIENCY</span>
+          <h2 class="heading-title">Tech Stack &amp; Skill Arsenal</h2>
+          <p class="heading-sub">Teknologi dan tools yang saya kuasai dan terapkan dalam siklus rekayasa sistem nyata.</p>
+        </div>
+
+        <div class="skills-grid">
+          
+          <div class="skill-category-card" data-tilt>
+            <div class="skill-cat-head">
+              <span class="cat-pill blue">Backend &amp; Languages</span>
+            </div>
+            <div class="skill-tags-cloud">
+              <span class="skill-item"><strong>PHP 8.x</strong> (Laravel Framework)</span>
+              <span class="skill-item"><strong>Kotlin</strong> (Android SDK Native)</span>
+              <span class="skill-item"><strong>C / C++</strong> (Arduino &amp; ESP-IDF)</span>
+              <span class="skill-item"><strong>JavaScript</strong> (ES6+, Node.js)</span>
+              <span class="skill-item"><strong>Python</strong> (Scripting &amp; Automation)</span>
+            </div>
+          </div>
+
+          <div class="skill-category-card" data-tilt>
+            <div class="skill-cat-head">
+              <span class="cat-pill green">Database &amp; Storage</span>
+            </div>
+            <div class="skill-tags-cloud">
+              <span class="skill-item"><strong>MySQL</strong> (Relational Modeling)</span>
+              <span class="skill-item"><strong>1NF - 3NF</strong> (Normalization)</span>
+              <span class="skill-item"><strong>Query Indexing</strong> &amp; Performance</span>
+              <span class="skill-item"><strong>ACID Transactions</strong></span>
+              <span class="skill-item"><strong>Google Drive API</strong> (Cloud Blob)</span>
+            </div>
+          </div>
+
+          <div class="skill-category-card" data-tilt>
+            <div class="skill-cat-head">
+              <span class="cat-pill amber">Mobile &amp; Frontend</span>
+            </div>
+            <div class="skill-tags-cloud">
+              <span class="skill-item"><strong>Android SDK</strong> (MVVM Pattern)</span>
+              <span class="skill-item"><strong>Google Maps API</strong> &amp; GPS</span>
+              <span class="skill-item"><strong>Retrofit2 &amp; Coroutines</strong></span>
+              <span class="skill-item"><strong>TailwindCSS &amp; Bootstrap</strong></span>
+              <span class="skill-item"><strong>HTML5 Canvas 2D</strong></span>
+            </div>
+          </div>
+
+          <div class="skill-category-card" data-tilt>
+            <div class="skill-cat-head">
+              <span class="cat-pill purple">Hardware &amp; DevOps</span>
+            </div>
+            <div class="skill-tags-cloud">
+              <span class="skill-item"><strong>ESP32-WROOM-32</strong> SoC</span>
+              <span class="skill-item"><strong>UART Serial &amp; GPIO</strong></span>
+              <span class="skill-item"><strong>Git &amp; GitHub CLI</strong></span>
+              <span class="skill-item"><strong>Linux Shell</strong> (Bash/PowerShell)</span>
+              <span class="skill-item"><strong>Postman &amp; REST Testing</strong></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         ROADMAP & EDUCATION TIMELINE
+         ========================================================================= -->
+    <section id="timeline" class="section-timeline">
+      <div class="content-container">
+        <div class="section-heading">
+          <span class="heading-tag">ACADEMIC &amp; ENGINEERING ROADMAP</span>
+          <h2 class="heading-title">Perjalanan Rekayasa Perangkat Lunak</h2>
+          <p class="heading-sub">Rekam jejak konsisten dari fondasi algoritma hingga arsitektur produksi terdistribusi.</p>
+        </div>
+
+        <div class="timeline-container">
+          
+          <div class="timeline-item" data-tilt>
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-period">SEMESTER 5 (SEKARANG &bull; 21 TAHUN)</div>
+              <h3 class="timeline-title">Arsitektur Produksi &amp; Kolaborasi Sistem Nyata</h3>
+              <p class="timeline-text">
+                Membangun sistem reservasi PO Bus armada skala penuh (ASM Putra Trans) dengan denah kursi dinamis anti-bentrok, integrasi Google Drive Cloud, otomasi bot, dan kesiapan magang industri (*internship*).
               </p>
             </div>
+          </div>
 
-            <!-- INTERACTIVE COMPONENT: SERIAL MONITOR TERMINAL -->
-            <div class="serial-terminal-box">
-              <div class="terminal-bar">
-                <span class="terminal-dots">
-                  <span class="t-dot red"></span>
-                  <span class="t-dot yellow"></span>
-                  <span class="t-dot green"></span>
-                </span>
-                <span class="terminal-title">ESP32-WROOM-32 Serial Monitor @ 115200 baud</span>
-                <span class="terminal-status"><span class="pulse-green"></span> CONNECTED</span>
-              </div>
-              <div class="terminal-console" id="terminalLog">
-                <div class="log-line">[00:00:01] Booting ESP32 SDK v4.4-dev...</div>
-                <div class="log-line">[00:00:02] Initializing GPIO pins: 4, 16, 17, 21... OK</div>
-                <div class="log-line">[00:00:03] WiFi Station connected. IP: 192.168.1.104</div>
-                <div class="log-line success">[00:00:04] Telemetry Engine Online &bull; Ready for transmission</div>
-              </div>
+          <div class="timeline-item" data-tilt>
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-period">SEMESTER 4</div>
+              <h3 class="timeline-title">Mobile Engineering &amp; IoT Hardware Telemetry</h3>
+              <p class="timeline-text">
+                Fokus riset ke pengembangan aplikasi Android native Kotlin (Smart Tourism Kebumen) dengan Google Maps API, serta pemrograman mikrokontroler ESP32 berbasis C++ untuk aktuasi relay dan transmisi serial.
+              </p>
             </div>
+          </div>
 
-            <div class="tile-bottom">
-              <div class="tech-chips">
-                <span class="spec-chip">C++ / Arduino</span>
-                <span class="spec-chip">ESP32 Microcontroller</span>
-                <span class="spec-chip">GPIO Telemetry</span>
-                <span class="spec-chip">UART Serial</span>
-              </div>
-              <a href="https://github.com/wongsxs/ESP32project" target="_blank" rel="noopener noreferrer" class="tile-action-link">
-                <span>Buka Repositori ESP32project</span>
-                <span class="arrow-glyph">↗</span>
-              </a>
+          <div class="timeline-item" data-tilt>
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-period">SEMESTER 3</div>
+              <h3 class="timeline-title">Database Normalization &amp; Web Frameworks</h3>
+              <p class="timeline-text">
+                Pendalaman arsitektur MVC, relasi database relasional (1NF-3NF), perancangan sistem presensi organisasi kuorum (GAMKI), dan portal profil korporasi B2B (Company DAU).
+              </p>
             </div>
-          </article>
+          </div>
+
+          <div class="timeline-item" data-tilt>
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-period">SEMESTER 1 - 2</div>
+              <h3 class="timeline-title">Algoritma, Struktur Data, &amp; Logika Pemrograman</h3>
+              <p class="timeline-text">
+                Penguasaan fondasi logika komputasi, algoritma rekursif, struktur data array/linked-list/tree, manipulasi file I/O, serta dasar arsitektur komputer.
+              </p>
+            </div>
+          </div>
 
         </div>
       </div>
     </section>
 
     <!-- =========================================================================
-         APPLE TECH SPECS SECTION (CLEAN HARDWARE/SOFTWARE SPEC SHEET)
+         SIMULATED GITHUB CONTRIBUTION HEATMAP
          ========================================================================= -->
-    <section id="specs" class="section-specs">
+    <section class="section-heatmap">
       <div class="content-container">
-        <div class="section-header">
-          <span class="section-eyebrow">SYSTEM ARCHITECTURE</span>
-          <h2 class="section-title">Technical Specifications</h2>
-          <p class="section-desc">Kompilasi spesifikasi teknologi dan metodologi rekayasa perangkat lunak.</p>
-        </div>
-
-        <div class="specs-table-box">
-          <div class="spec-row">
-            <div class="spec-category">Backend &amp; Logic</div>
-            <div class="spec-details">
-              <strong>PHP 8.x, Laravel Framework, Node.js, JavaScript, TypeScript</strong>
-              <p>Perancangan API RESTful, otentikasi sesi aman, manajemen transaksi database, dan arsitektur modular yang dapat diskalakan.</p>
+        <div class="heatmap-card" data-tilt>
+          <div class="heatmap-header">
+            <div class="heatmap-title-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <strong>GitHub Engineering Activity (@wongsxs)</strong>
             </div>
+            <span class="heatmap-stat">30+ Repositories &bull; Active Commits</span>
           </div>
 
-          <div class="spec-row">
-            <div class="spec-category">Mobile Engineering</div>
-            <div class="spec-details">
-              <strong>Android SDK &bull; Kotlin Native</strong>
-              <p>Pola arsitektur MVVM (Model-View-ViewModel), LiveData, Navigation Component, dan integrasi Google Maps Location API.</p>
-            </div>
+          <div class="heatmap-grid" id="simulatedHeatmapGrid">
+            <!-- Dynamically populated with 52 columns of 7 days -->
           </div>
 
-          <div class="spec-row">
-            <div class="spec-category">Database &amp; Normalization</div>
-            <div class="spec-details">
-              <strong>MySQL &bull; Relational Data Modeling</strong>
-              <p>Normalisasi data (1NF hingga 3NF), pencegahan inkonsistensi record, optimasi indeks kueri, dan transaksi ACID.</p>
-            </div>
-          </div>
-
-          <div class="spec-row">
-            <div class="spec-category">Hardware &amp; IoT</div>
-            <div class="spec-details">
-              <strong>ESP32 Microcontrollers, C++, Embedded Systems</strong>
-              <p>Komunikasi serial UART, kontrol GPIO aktuator/sensor, dan pertukaran paket data telemetry.</p>
+          <div class="heatmap-footer">
+            <span class="heatmap-hint">Aktivitas commit konsisten sepanjang semester perkuliahan dan proyek mandiri.</span>
+            <div class="heatmap-legend">
+              <small>Less</small>
+              <span class="h-dot lvl-0"></span>
+              <span class="h-dot lvl-1"></span>
+              <span class="h-dot lvl-2"></span>
+              <span class="h-dot lvl-3"></span>
+              <span class="h-dot lvl-4"></span>
+              <small>More</small>
             </div>
           </div>
         </div>
@@ -350,150 +957,343 @@
     </section>
 
     <!-- =========================================================================
-         GITHUB REPOSITORY ARCHIVE (CLEAN COMPACT DIRECTORY)
+         GITHUB REPOSITORY ARCHIVE
          ========================================================================= -->
     <section id="repos" class="section-repos">
       <div class="content-container">
-        <div class="section-header-split">
+        <div class="repos-head-row">
           <div>
-            <span class="section-eyebrow">CODEBASE DIRECTORY</span>
-            <h2 class="section-title">Repositori Pilihan (@wongsxs)</h2>
+            <span class="heading-tag">CODEBASE DIRECTORY</span>
+            <h2 class="heading-title">Katalog Repositori Terpilih</h2>
           </div>
-          <a href="https://github.com/wongsxs?tab=repositories" target="_blank" rel="noopener noreferrer" class="link-external">
-            <span>Buka Semua Repositori (30+)</span>
-            <span class="arrow-glyph">↗</span>
+          <a href="https://github.com/wongsxs?tab=repositories" target="_blank" rel="noopener noreferrer" class="link-view-all" data-magnetic>
+            <span>Buka Profil GitHub (30+ Repos)</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
           </a>
         </div>
 
-        <div class="repos-table">
-          <!-- Row 1 -->
-          <div class="repo-row">
-            <div class="repo-main-info">
-              <span class="repo-name-text">asmputratrans</span>
-              <span class="repo-desc-text">Sistem reservasi armada bus, denah kursi 2D, tiket QR Code</span>
+        <div class="repos-list-box">
+          
+          <div class="repo-item-row" data-tilt>
+            <div class="repo-info-main">
+              <span class="repo-title">asmputratrans</span>
+              <span class="repo-subtitle">Sistem reservasi armada PO Bus dengan denah kursi 2D dan validasi tiket QR Code</span>
             </div>
-            <span class="repo-tech-pill">PHP / Laravel</span>
-            <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer" class="repo-link-btn">Repo ↗</a>
+            <div class="repo-tags-wrap">
+              <span class="badge-lang">PHP / Laravel</span>
+              <span class="badge-status">Public</span>
+            </div>
+            <a href="https://github.com/wongsxs/asmputratrans" target="_blank" rel="noopener noreferrer" class="btn-repo-link" data-magnetic>Buka Repo ↗</a>
           </div>
 
-          <!-- Row 2 -->
-          <div class="repo-row">
-            <div class="repo-main-info">
-              <span class="repo-name-text">companyDAU</span>
-              <span class="repo-desc-text">Portal profil perusahaan B2B &amp; katalog alat kebersihan industri</span>
+          <div class="repo-item-row" data-tilt>
+            <div class="repo-info-main">
+              <span class="repo-title">smart-tourism-kebumen-v1</span>
+              <span class="repo-subtitle">Aplikasi Android panduan rute navigasi dan eksplorasi destinasi wisata Kabupaten Kebumen</span>
             </div>
-            <span class="repo-tech-pill">PHP / Web</span>
-            <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer" class="repo-link-btn">Repo ↗</a>
+            <div class="repo-tags-wrap">
+              <span class="badge-lang">Kotlin Native</span>
+              <span class="badge-status">Public</span>
+            </div>
+            <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer" class="btn-repo-link" data-magnetic>Buka Repo ↗</a>
           </div>
 
-          <!-- Row 3 -->
-          <div class="repo-row">
-            <div class="repo-main-info">
-              <span class="repo-name-text">smart-tourism-kebumen-v1</span>
-              <span class="repo-desc-text">Aplikasi Android panduan rute dan info destinasi wisata Kebumen</span>
+          <div class="repo-item-row" data-tilt>
+            <div class="repo-info-main">
+              <span class="repo-title">companyDAU</span>
+              <span class="repo-subtitle">Portal profil distributor korporat peralatan kebersihan industri &amp; form RFQ instan</span>
             </div>
-            <span class="repo-tech-pill">Kotlin Native</span>
-            <a href="https://github.com/wongsxs/smart-tourism-kebumen-v1" target="_blank" rel="noopener noreferrer" class="repo-link-btn">Repo ↗</a>
+            <div class="repo-tags-wrap">
+              <span class="badge-lang">PHP / Web</span>
+              <span class="badge-status">Public</span>
+            </div>
+            <a href="https://github.com/wongsxs/companyDAU" target="_blank" rel="noopener noreferrer" class="btn-repo-link" data-magnetic>Buka Repo ↗</a>
           </div>
 
-          <!-- Row 4 -->
-          <div class="repo-row">
-            <div class="repo-main-info">
-              <span class="repo-name-text">absensi-gamki</span>
-              <span class="repo-desc-text">Sistem presensi delegasi musyawarah organisasi &amp; live kuorum</span>
+          <div class="repo-item-row" data-tilt>
+            <div class="repo-info-main">
+              <span class="repo-title">kt-cloud</span>
+              <span class="repo-subtitle">Personal Cloud storage system terintegrasi dengan Google Drive API untuk upload &amp; file sharing</span>
             </div>
-            <span class="repo-tech-pill">JavaScript</span>
-            <a href="https://github.com/wongsxs/absensi-gamki" target="_blank" rel="noopener noreferrer" class="repo-link-btn">Repo ↗</a>
+            <div class="repo-tags-wrap">
+              <span class="badge-lang">REST API</span>
+              <span class="badge-status">Private</span>
+            </div>
+            <a href="https://github.com/wongsxs/kt-cloud" target="_blank" rel="noopener noreferrer" class="btn-repo-link" data-magnetic>Buka Repo ↗</a>
           </div>
 
-          <!-- Row 5 -->
-          <div class="repo-row">
-            <div class="repo-main-info">
-              <span class="repo-name-text">ESP32project</span>
-              <span class="repo-desc-text">Firmware embedded C++ dan komunikasi sensor hardware mikrokontroler</span>
+          <div class="repo-item-row" data-tilt>
+            <div class="repo-info-main">
+              <span class="repo-title">absensi-gamki</span>
+              <span class="repo-subtitle">Sistem web absensi delegasi musyawarah organisasi dengan kalkulator kuorum realtime</span>
             </div>
-            <span class="repo-tech-pill">C++ / IoT</span>
-            <a href="https://github.com/wongsxs/ESP32project" target="_blank" rel="noopener noreferrer" class="repo-link-btn">Repo ↗</a>
+            <div class="repo-tags-wrap">
+              <span class="badge-lang">JavaScript</span>
+              <span class="badge-status">Private</span>
+            </div>
+            <a href="https://github.com/wongsxs/absensi-gamki" target="_blank" rel="noopener noreferrer" class="btn-repo-link" data-magnetic>Buka Repo ↗</a>
           </div>
+
+          <div class="repo-item-row" data-tilt>
+            <div class="repo-info-main">
+              <span class="repo-title">ESP32project</span>
+              <span class="repo-subtitle">Firmware mikrokontroler ESP32-WROOM-32 untuk kontrol GPIO dan stream telemetry UART</span>
+            </div>
+            <div class="repo-tags-wrap">
+              <span class="badge-lang">C++ / IoT</span>
+              <span class="badge-status">Public</span>
+            </div>
+            <a href="https://github.com/wongsxs/ESP32project" target="_blank" rel="noopener noreferrer" class="btn-repo-link" data-magnetic>Buka Repo ↗</a>
+          </div>
+
         </div>
       </div>
     </section>
 
     <!-- =========================================================================
-         APPLE CONTACT & COLLABORATION
+         CONTACT & INQUIRY
          ========================================================================= -->
     <section id="contact" class="section-contact">
       <div class="content-container">
-        <div class="contact-card-apple">
+        <div class="contact-card" data-tilt>
           <div class="contact-header">
-            <span class="section-eyebrow">CONNECT WITH ME</span>
-            <h2 class="contact-title">Let’s build something extraordinary.</h2>
-            <p class="contact-lead">
-              Terbuka untuk diskusi proyek rekayasa sistem web &amp; mobile, kolaborasi riset, maupun peluang magang (internship).
+            <span class="heading-tag">CONNECT &bull; DISCUSS &bull; COLLABORATE</span>
+            <h2 class="contact-title">Mulai Kolaborasi atau Diskusi Proyek.</h2>
+            <p class="contact-desc">
+              Terbuka untuk kesempatan kerja magang (internship), proyek rekayasa sistem web &amp; mobile, maupun diskusi arsitektur software.
             </p>
           </div>
 
-          <div class="contact-channels-grid">
-            <a href="https://wa.me/?text=Halo%20Wahyu,%20saya%20tertarik%20dengan%20portfolio%20Anda" target="_blank" rel="noopener noreferrer" class="channel-card">
-              <span class="channel-icon">💬</span>
-              <div class="channel-meta">
-                <span class="channel-title">WhatsApp Direct</span>
-                <span class="channel-desc">Kirim pesan instan &amp; diskusi langsung</span>
+          <!-- Channel Cards -->
+          <div class="channel-grid">
+            <a href="https://wa.me/6281234567890?text=Halo%20Wahyu,%20saya%20melihat%20portfolio%20Anda%20dan%20ingin%20berdiskusi" target="_blank" rel="noopener noreferrer" class="channel-tile" data-magnetic>
+              <div class="channel-ic">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.64c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29z"/>
+                </svg>
+              </div>
+              <div class="channel-text">
+                <strong>WhatsApp Direct</strong>
+                <small>Respon cepat diskusi teknis</small>
               </div>
               <span class="channel-arrow">↗</span>
             </a>
 
-            <a href="mailto:triw0224@gmail.com" class="channel-card">
-              <span class="channel-icon">✉️</span>
-              <div class="channel-meta">
-                <span class="channel-title">Email Resmi</span>
-                <span class="channel-desc">triw0224@gmail.com</span>
+            <a href="mailto:triw0224@gmail.com" class="channel-tile" data-magnetic>
+              <div class="channel-ic">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="channel-text">
+                <strong>triw0224@gmail.com</strong>
+                <small>Email korespondensi resmi</small>
               </div>
               <span class="channel-arrow">↗</span>
             </a>
 
-            <a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" class="channel-card">
-              <span class="channel-icon">🐙</span>
-              <div class="channel-meta">
-                <span class="channel-title">GitHub Profile</span>
-                <span class="channel-desc">github.com/wongsxs (30+ Repos)</span>
+            <a href="https://github.com/wongsxs" target="_blank" rel="noopener noreferrer" class="channel-tile" data-magnetic>
+              <div class="channel-ic">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </div>
+              <div class="channel-text">
+                <strong>github.com/wongsxs</strong>
+                <small>Koleksi repositori &amp; commits</small>
               </div>
               <span class="channel-arrow">↗</span>
             </a>
           </div>
 
           <!-- Direct Form -->
-          <form id="contactForm" class="apple-form" onsubmit="return false;">
-            <div class="form-grid">
-              <input type="text" id="senderName" class="apple-input" placeholder="Nama Anda / Instansi" required>
-              <input type="email" id="senderEmail" class="apple-input" placeholder="Alamat Email" required>
+          <form id="contactForm" class="contact-form-box" onsubmit="return false;">
+            <div class="form-row-duo">
+              <div class="form-field">
+                <label for="senderName" class="field-label">Nama Anda / Perusahaan</label>
+                <input type="text" id="senderName" class="pro-input" placeholder="Misal: PT Teknologi Nusantara" required>
+              </div>
+              <div class="form-field">
+                <label for="senderEmail" class="field-label">Email Aktif</label>
+                <input type="email" id="senderEmail" class="pro-input" placeholder="nama@perusahaan.com" required>
+              </div>
             </div>
-            <textarea id="senderMessage" class="apple-input apple-textarea" rows="3" placeholder="Ceritakan ringkasan kebutuhan sistem atau proyek Anda..." required></textarea>
-            
-            <div class="form-submit-row">
-              <button type="submit" class="apple-btn apple-btn-accent">
-                <span>Kirim Transmisi Pesan</span>
-                <span class="arrow-glyph">→</span>
+
+            <div class="form-field">
+              <label for="senderMessage" class="field-label">Pesan / Rencana Kolaborasi</label>
+              <textarea id="senderMessage" class="pro-input pro-textarea" rows="3" placeholder="Ceritakan ringkasan kebutuhan sistem atau tawaran internship..." required></textarea>
+            </div>
+
+            <div class="form-submit-bar">
+              <button type="submit" class="pro-btn pro-btn-primary" data-magnetic>
+                <span>Kirimkan Pesan</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
               </button>
-              <span id="formFeedback" class="feedback-text hidden">Pesan berhasil dikirim! Wahyu akan segera merespons ke email Anda.</span>
+              <span id="formFeedback" class="feedback-msg hidden">✓ Pesan berhasil dikirim. Terima kasih!</span>
             </div>
           </form>
+
         </div>
       </div>
     </section>
   </main>
 
   <!-- =========================================================================
-       APPLE FOOTER
+       E-TICKET BOARDING PASS MODAL PREVIEW
        ========================================================================= -->
-  <footer class="apple-footer">
-    <div class="content-container footer-flex">
+  <div id="ticketModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTicketTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalTicketTitle">E-Ticket Pass Preview (PO Bus ASM Putra Trans)</h3>
+        <button id="btnCloseModal" class="modal-close-btn" aria-label="Tutup">&times;</button>
+      </div>
+
+      <div class="boarding-pass">
+        <div class="pass-head">
+          <div class="pass-logo">
+            <span class="pass-badge">ASM PUTRA TRANS</span>
+            <small>Executive Class 2+2</small>
+          </div>
+          <div class="pass-code">
+            <span class="code-label">BOOKING REF</span>
+            <strong id="passBookingRef">ASM-7892X</strong>
+          </div>
+        </div>
+
+        <div class="pass-route-strip">
+          <div class="station-block">
+            <span class="station-city">JAKARTA</span>
+            <span class="station-name">Term. Pulo Gebang</span>
+          </div>
+          <div class="route-icon-divider">
+            <span>•••• 🚎 ••••</span>
+          </div>
+          <div class="station-block right">
+            <span class="station-city">KEBUMEN</span>
+            <span class="station-name">Agen Prembun</span>
+          </div>
+        </div>
+
+        <div class="pass-details-row">
+          <div>
+            <span class="pass-lbl">PENUMPANG</span>
+            <strong class="pass-val">Tri Wahyudi (Guest)</strong>
+          </div>
+          <div>
+            <span class="pass-lbl">NOMOR KURSI</span>
+            <strong class="pass-val highlight" id="passSeatNum">1A</strong>
+          </div>
+          <div>
+            <span class="pass-lbl">TARIF TIKET</span>
+            <strong class="pass-val" id="passPrice">Rp 185.000</strong>
+          </div>
+          <div>
+            <span class="pass-lbl">STATUS VALIDASI</span>
+            <strong class="pass-val status-ok">CONFIRMED</strong>
+          </div>
+        </div>
+
+        <div class="pass-barcode-strip">
+          <div class="barcode-lines">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="qr-mock-box">
+            <div class="qr-matrix">
+              <span class="qr-finder tl"></span>
+              <span class="qr-finder tr"></span>
+              <span class="qr-finder bl"></span>
+            </div>
+            <small>SCAN QR VALIDASI</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="btnDismissModal" class="pro-btn pro-btn-secondary" data-magnetic>Tutup Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       COMMAND PALETTE MODAL (CTRL+K / CMD+K)
+       ========================================================================= -->
+  <div id="cmdPaletteModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-label="Command Menu">
+    <div class="cmd-palette-card">
+      <div class="cmd-search-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="cmdSearchInput" class="cmd-search-input" placeholder="Cari karya, repositori, atau perintah cepat..." autocomplete="off">
+        <kbd class="cmd-esc-badge">ESC</kbd>
+      </div>
+
+      <div class="cmd-results-list" id="cmdResultsList">
+        <div class="cmd-group-label">NAVIGASI CEPAT</div>
+        <div class="cmd-item" data-action="goto" data-target="#projects">
+          <span class="cmd-item-icon">📁</span>
+          <span class="cmd-item-title">Eksplorasi Karya Pilihan</span>
+          <span class="cmd-item-meta">Jump to #projects</span>
+        </div>
+        <div class="cmd-item" data-action="goto" data-target="#terminal">
+          <span class="cmd-item-icon">&gt;_</span>
+          <span class="cmd-item-title">Interactive Developer CLI</span>
+          <span class="cmd-item-meta">Jump to #terminal</span>
+        </div>
+        <div class="cmd-item" data-action="goto" data-target="#skills">
+          <span class="cmd-item-icon">⚙️</span>
+          <span class="cmd-item-title">Tech Stack &amp; Skill Arsenal</span>
+          <span class="cmd-item-meta">Jump to #skills</span>
+        </div>
+        <div class="cmd-item" data-action="goto" data-target="#timeline">
+          <span class="cmd-item-icon">🗺️</span>
+          <span class="cmd-item-title">Engineering Roadmap</span>
+          <span class="cmd-item-meta">Jump to #timeline</span>
+        </div>
+        <div class="cmd-item" data-action="goto" data-target="#repos">
+          <span class="cmd-item-icon">📦</span>
+          <span class="cmd-item-title">Katalog Repositori GitHub</span>
+          <span class="cmd-item-meta">Jump to #repos</span>
+        </div>
+        <div class="cmd-item" data-action="goto" data-target="#contact">
+          <span class="cmd-item-icon">✉️</span>
+          <span class="cmd-item-title">Kontak &amp; Diskusi Proyek</span>
+          <span class="cmd-item-meta">Jump to #contact</span>
+        </div>
+
+        <div class="cmd-group-label">AKSI CEPAT</div>
+        <div class="cmd-item" data-action="copy-email">
+          <span class="cmd-item-icon">📋</span>
+          <span class="cmd-item-title">Salin Email (triw0224@gmail.com)</span>
+          <span class="cmd-item-meta">Clipboard</span>
+        </div>
+        <div class="cmd-item" data-action="external" data-url="https://github.com/wongsxs">
+          <span class="cmd-item-icon">🐙</span>
+          <span class="cmd-item-title">Buka GitHub Profil @wongsxs</span>
+          <span class="cmd-item-meta">github.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="pro-footer">
+    <div class="content-container footer-row">
       <div class="footer-copy">
-        <span>Copyright &copy; 2026 Tri Wahyudi. All rights reserved.</span>
-        <span class="footer-sub">Mahasiswa S1 Teknik Informatika Semester 5 (21 Tahun) &bull; Built with Apple Aesthetic</span>
+        <p class="copy-main">&copy; 2026 Tri Wahyudi (@wongsxs). All Rights Reserved.</p>
+        <p class="copy-sub">S1 Teknik Informatika Semester 5 &bull; Built with Raw High-Craft Interactivity</p>
       </div>
       <div class="footer-links">
-        <a href="#hero">Kembali ke Atas ↑</a>
+        <a href="#hero" data-magnetic>Kembali ke Atas ↑</a>
       </div>
     </div>
   </footer>
