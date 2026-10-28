@@ -124,10 +124,8 @@
 
             <!-- The Authentic Anime Face Portrait Frame (from user) -->
             <div class="pain-portrait-frame" id="painHeadband" title="Tendo Pain (Yahiko) • Klik untuk SHINRA TENSEI!">
-              <!-- Base Anime Portrait Image uploaded by user -->
-              <img src="assets/pain-face.jpg" alt="Tendo Pain Yahiko" class="pain-base-img" />
-
-              <!-- Left Eye (Viewer's Left, Pain's Right Eye) -->
+              
+              <!-- Layer 1: Left Eye & Right Eye Ocular Engine (BEHIND THE FACE) -->
               <div class="portrait-eye-pod eye-left" id="leftEyePod" title="Mata Kiri: Tsukuyomi / Rinnegan • Klik untuk memicu Jutsu">
                 <div class="portrait-eye-socket">
                   <div class="portrait-sclera">
@@ -137,13 +135,10 @@
                         <!-- Injected by JS -->
                       </svg>
                     </div>
-                    <div class="eyelid eyelid-top"></div>
-                    <div class="eyelid eyelid-bottom"></div>
                   </div>
                 </div>
               </div>
 
-              <!-- Right Eye (Viewer's Right, Pain's Left Eye) -->
               <div class="portrait-eye-pod eye-right" id="rightEyePod" title="Mata Kanan: Amaterasu • Klik untuk Api Hitam">
                 <div class="portrait-eye-socket">
                   <div class="portrait-sclera">
@@ -153,13 +148,17 @@
                         <!-- Injected by JS -->
                       </svg>
                     </div>
-                    <div class="eyelid eyelid-top"></div>
-                    <div class="eyelid eyelid-bottom"></div>
                   </div>
-                  <!-- Blood Tear Drip -->
-                  <div class="blood-tear-drop" id="bloodTearDrop"></div>
                 </div>
               </div>
+
+              <!-- Layer 2: Transparent Hollow-Eyed Pain Portrait PNG (FOREGROUND) -->
+              <img src="assets/pain-face.png" alt="Tendo Pain Yahiko" class="pain-base-img" />
+
+              <!-- Layer 3: Jutsu Effects Overlays (Blinking Eyelids & Amaterasu Blood Tear) -->
+              <div class="eyelid-overlay eyelid-left"></div>
+              <div class="eyelid-overlay eyelid-right"></div>
+              <div class="blood-tear-drop" id="bloodTearDrop"></div>
 
             </div>
 

@@ -466,8 +466,8 @@
       const dxL = targetX - cXL;
       const dyL = targetY - cYL;
       const angleL = Math.atan2(dyL, dxL);
-      const distL = Math.min(Math.hypot(dxL, dyL) / 20, 8);
-      irisLeft.style.transform = `translate(calc(-50% + ${(Math.cos(angleL) * distL).toFixed(1)}px), calc(-50% + ${(Math.sin(angleL) * distL * 0.55).toFixed(1)}px))`;
+      const distL = Math.min(Math.hypot(dxL, dyL) / 24, 7);
+      irisLeft.style.transform = `translate(calc(-50% + ${(Math.cos(angleL) * distL).toFixed(1)}px), calc(-50% + ${(Math.sin(angleL) * distL * 0.45).toFixed(1)}px))`;
     }
 
     // Track Right Eye (Parallax Stereo Offset)
@@ -478,8 +478,8 @@
       const dxR = targetX - cXR;
       const dyR = targetY - cYR;
       const angleR = Math.atan2(dyR, dxR);
-      const distR = Math.min(Math.hypot(dxR, dyR) / 20, 8);
-      irisRight.style.transform = `translate(calc(-50% + ${(Math.cos(angleR) * distR).toFixed(1)}px), calc(-50% + ${(Math.sin(angleR) * distR * 0.55).toFixed(1)}px))`;
+      const distR = Math.min(Math.hypot(dxR, dyR) / 24, 7);
+      irisRight.style.transform = `translate(calc(-50% + ${(Math.cos(angleR) * distR).toFixed(1)}px), calc(-50% + ${(Math.sin(angleR) * distR * 0.45).toFixed(1)}px))`;
     }
   }
 
@@ -487,9 +487,12 @@
   function scheduleBlink() {
     const delay = Math.random() * 2500 + 3500;
     setTimeout(() => {
+      const frame = document.getElementById('painHeadband');
+      frame?.classList.add('blinking');
       leftEyePod?.classList.add('blinking');
       rightEyePod?.classList.add('blinking');
       setTimeout(() => {
+        frame?.classList.remove('blinking');
         leftEyePod?.classList.remove('blinking');
         rightEyePod?.classList.remove('blinking');
         scheduleBlink();
