@@ -408,20 +408,28 @@
     3: 'STAGE III • 3-TOMOE',
     4: 'STAGE IV • MANGEKYO',
     5: 'STAGE V • SUSANOO FLAME',
-    6: 'STAGE VI • RINNEGAN SIX PATHS'
+    6: 'STAGE VI • RINNEGAN SIX PATHS',
+    7: 'STAGE VII • HYBRID RINNE-SHARINGAN'
   };
 
   function setSharinganStage(stageNum) {
     currentStage = stageNum;
-    if (svgLeftEye) svgLeftEye.innerHTML = stageTemplates[stageNum] || stageTemplates[4];
-    if (svgRightEye) svgRightEye.innerHTML = stageTemplates[stageNum] || stageTemplates[4];
+
+    if (stageNum === 7) {
+      // Hybrid: Left Eye = Rinnegan, Right Eye = Itachi Mangekyo
+      if (svgLeftEye) svgLeftEye.innerHTML = stageTemplates[6];
+      if (svgRightEye) svgRightEye.innerHTML = stageTemplates[4];
+    } else {
+      if (svgLeftEye) svgLeftEye.innerHTML = stageTemplates[stageNum] || stageTemplates[4];
+      if (svgRightEye) svgRightEye.innerHTML = stageTemplates[stageNum] || stageTemplates[4];
+    }
 
     if (currentStageLabel) {
-      currentStageLabel.textContent = stageLabels[stageNum] || stageLabels[4];
+      currentStageLabel.textContent = stageLabels[stageNum] || stageLabels[7];
     }
 
     evoButtons.forEach((btn) => {
-      const s = parseInt(btn.getAttribute('data-stage') || '4', 10);
+      const s = parseInt(btn.getAttribute('data-stage') || '7', 10);
       if (s === stageNum) btn.classList.add('active');
       else btn.classList.remove('active');
     });
@@ -436,30 +444,18 @@
     playSharinganChime();
   }
 
-  // Initialize Stage 4 (Mangekyo)
-  setSharinganStage(4);
+  // Initialize Default: Stage 7 (Hybrid Rinne-Sharingan)
+  setSharinganStage(7);
 
   evoButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const s = parseInt(btn.getAttribute('data-stage') || '4', 10);
+      const s = parseInt(btn.getAttribute('data-stage') || '7', 10);
       setSharinganStage(s);
     });
   });
 
-  // Tri-Ocular Eye Tracking Physics (Dual Sharingan + Forehead Rinnegan)
+  // Binocular Dual Eye Tracking Physics (Pain Left Eye & Right Eye)
   function trackDualEyes(targetX, targetY) {
-    // Track Forehead Third Eye (Rinnegan)
-    if (irisRinnegan && rinneganPod) {
-      const rectM = rinneganPod.getBoundingClientRect();
-      const cXM = rectM.left + rectM.width / 2;
-      const cYM = rectM.top + rectM.height / 2;
-      const dxM = targetX - cXM;
-      const dyM = targetY - cYM;
-      const angleM = Math.atan2(dyM, dxM);
-      const distM = Math.min(Math.hypot(dxM, dyM) / 20, 8);
-      irisRinnegan.style.transform = `translate(calc(-50% + ${(Math.cos(angleM) * distM).toFixed(1)}px), calc(-50% + ${(Math.sin(angleM) * distM * 0.5).toFixed(1)}px))`;
-    }
-
     if (!irisLeft || !irisRight) return;
 
     // Track Left Eye
@@ -470,7 +466,7 @@
       const dxL = targetX - cXL;
       const dyL = targetY - cYL;
       const angleL = Math.atan2(dyL, dxL);
-      const distL = Math.min(Math.hypot(dxL, dyL) / 18, 12);
+      const distL = Math.min(Math.hypot(dxL, dyL) / 20, 8);
       irisLeft.style.transform = `translate(calc(-50% + ${(Math.cos(angleL) * distL).toFixed(1)}px), calc(-50% + ${(Math.sin(angleL) * distL * 0.55).toFixed(1)}px))`;
     }
 
@@ -482,22 +478,20 @@
       const dxR = targetX - cXR;
       const dyR = targetY - cYR;
       const angleR = Math.atan2(dyR, dxR);
-      const distR = Math.min(Math.hypot(dxR, dyR) / 18, 12);
+      const distR = Math.min(Math.hypot(dxR, dyR) / 20, 8);
       irisRight.style.transform = `translate(calc(-50% + ${(Math.cos(angleR) * distR).toFixed(1)}px), calc(-50% + ${(Math.sin(angleR) * distR * 0.55).toFixed(1)}px))`;
     }
   }
 
-  // Natural Synchronized Blinking (All 3 Eyes in Harmony)
+  // Natural Synchronized Blinking
   function scheduleBlink() {
     const delay = Math.random() * 2500 + 3500;
     setTimeout(() => {
       leftEyePod?.classList.add('blinking');
       rightEyePod?.classList.add('blinking');
-      rinneganPod?.classList.add('blinking');
       setTimeout(() => {
         leftEyePod?.classList.remove('blinking');
         rightEyePod?.classList.remove('blinking');
-        rinneganPod?.classList.remove('blinking');
         scheduleBlink();
       }, 160);
     }, delay);
@@ -1037,8 +1031,11 @@ GitHub     : https://github.com/wongsxs (30+ Repositories)
     } else if (cmd === 'crows' || cmd === 'karasu') {
       spawnFlyingCrows();
       res = '<span style="color:#94a3b8;">[KARASU BUNSHIN]</span> Itachi\'s silhouette dissolves into a flurry of flying black crows.';
+    } else if (cmd === 'hybrid') {
+      setSharinganStage(7);
+      res = '<span style="color:#f97316;font-weight:bold;">[HYBRID RINNE-SHARINGAN ACTIVATED]</span><br>Left Eye: Six Paths Rinnegan • Right Eye: Itachi Mangekyo Sharingan.<br>The ultimate dual ocular synchronization.';
     } else if (cmd.startsWith('stage') || cmd === 'evolve') {
-      const nextStage = (currentStage % 6) + 1;
+      const nextStage = (currentStage % 7) + 1;
       setSharinganStage(nextStage);
       res = `<span style="color:#ff0033;font-weight:bold;">[OCULAR ENGINE EVOLVED]</span> State shifted to ${stageLabels[nextStage]}.`;
     }

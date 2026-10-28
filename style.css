@@ -361,8 +361,9 @@ body.pro-dark {
 }
 
 /* ==========================================================================
-   TENDO PAIN FACE CHASSIS & ITACHI DUAL SHARINGAN OCULAR ENGINE
+   TENDO PAIN AUTHENTIC ANIME PORTRAIT & DUAL OCULAR ENGINE
    ========================================================================== */
+.pain-portrait-container,
 .pain-face-container,
 .itachi-shrine-container {
   display: flex;
@@ -373,338 +374,160 @@ body.pro-dark {
   z-index: 10;
 }
 
+.pain-portrait-card,
 .pain-head-silhouette,
 .pain-face-chassis,
 .itachi-visor-hud {
+  max-width: 380px;
+  width: 100%;
+  background: rgba(9, 10, 15, 0.92);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  border-radius: 20px;
+  padding: 12px 14px 14px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9), 0 0 30px rgba(249, 115, 22, 0.16);
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 410px;
-  width: 100%;
+  gap: 10px;
   position: relative;
-  filter: drop-shadow(0 14px 35px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 22px rgba(234, 88, 12, 0.22));
-  transition: transform var(--transition-smooth), filter var(--transition-smooth);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
 }
 
-.pain-head-silhouette:hover {
-  filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 30px rgba(249, 115, 22, 0.35));
+.pain-portrait-card:hover {
+  border-color: rgba(249, 115, 22, 0.65);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), 0 0 40px rgba(249, 115, 22, 0.3);
 }
 
-/* 1. Voluminous Spiky Orange Hair Crown (Top Crest) */
-.pain-hair-crown {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 5px;
-  width: 90%;
-  height: 48px;
-  margin-bottom: -5px;
-  position: relative;
-  z-index: 1;
-}
-
-.hair-spike.h-top {
-  background: linear-gradient(180deg, #ff7a00 0%, #ea580c 55%, #9a3412 100%);
-  filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.7));
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  border-radius: 4px 4px 0 0;
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.h-top.h-t1 { width: 34px; height: 32px; transform: rotate(-22deg) translateY(6px); }
-.h-top.h-t2 { width: 38px; height: 42px; transform: rotate(-13deg) translateY(3px); }
-.h-top.h-t3 { width: 44px; height: 48px; transform: rotate(-4deg) translateY(0); }
-.h-top.h-t4 { width: 48px; height: 54px; transform: rotate(0deg) translateY(-4px); }
-.h-top.h-t5 { width: 44px; height: 48px; transform: rotate(4deg) translateY(0); }
-.h-top.h-t6 { width: 38px; height: 42px; transform: rotate(13deg) translateY(3px); }
-.h-top.h-t7 { width: 34px; height: 32px; transform: rotate(22deg) translateY(6px); }
-
-.pain-head-silhouette:hover .hair-spike.h-top {
-  filter: drop-shadow(0 0 14px rgba(255, 122, 0, 0.95));
-}
-
-/* 2. Side Spiky Hair Flaring Left & Right */
-.pain-hair-side {
-  position: absolute;
-  top: 36px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.pain-hair-side.left { left: 4px; align-items: flex-start; }
-.pain-hair-side.right { right: 4px; align-items: flex-end; }
-
-.hair-spike.h-side {
-  background: linear-gradient(180deg, #ff7a00 0%, #ea580c 60%, #9a3412 100%);
-  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.65));
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  border-radius: 3px;
-}
-
-.pain-hair-side.left .h-s1 { width: 28px; height: 36px; transform: rotate(-45deg); }
-.pain-hair-side.left .h-s2 { width: 32px; height: 44px; transform: rotate(-65deg); margin-left: -5px; }
-.pain-hair-side.left .h-s3 { width: 26px; height: 38px; transform: rotate(-80deg); margin-left: -8px; }
-
-.pain-hair-side.right .h-s4 { width: 28px; height: 36px; transform: rotate(45deg); }
-.pain-hair-side.right .h-s5 { width: 32px; height: 44px; transform: rotate(65deg); margin-right: -5px; }
-.pain-hair-side.right .h-s6 { width: 26px; height: 38px; transform: rotate(80deg); margin-right: -8px; }
-
-/* 3. Stylized Anime Ears with 7 Black Chakra Receivers Each */
-.pain-ear {
-  position: absolute;
-  top: 105px;
-  width: 22px;
-  height: 82px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.pain-ear.left { left: 14px; }
-.pain-ear.right { right: 14px; }
-
-.ear-contour {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #1e2230 0%, #0d0f16 100%);
-  border: 1.5px solid rgba(249, 115, 22, 0.35);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.pain-ear.left .ear-contour {
-  border-radius: 20px 6px 6px 24px;
-  align-items: flex-start;
-  padding-left: 2px;
-  box-shadow: -3px 4px 10px rgba(0, 0, 0, 0.7);
-}
-
-.pain-ear.right .ear-contour {
-  border-radius: 6px 20px 24px 6px;
-  align-items: flex-end;
-  padding-right: 2px;
-  box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.7);
-}
-
-.ear-ring {
-  width: 6px;
-  height: 4px;
-  border-radius: 2px;
-  background: #0f172a;
-  border: 1px solid #94a3b8;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
-}
-
-/* Amegakure Rogue Slashed Forehead Protector (Hitai-ate) */
-.pain-headband {
-  width: 100%;
-  max-width: 370px;
-  background: linear-gradient(90deg, #090a0f 0%, #151821 20%, #1f2430 50%, #151821 80%, #090a0f 100%);
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  border-radius: 12px 12px 4px 4px;
-  padding: 8px 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 4;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.pain-headband:hover {
-  border-color: rgba(239, 68, 68, 0.5);
-  box-shadow: 0 6px 22px rgba(239, 68, 68, 0.35);
-  transform: translateY(-1px);
-}
-
-.headband-plate {
+.portrait-hud-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 210px;
-  height: 40px;
-  background: linear-gradient(180deg, #94a3b8 0%, #64748b 35%, #475569 65%, #334155 100%);
-  border-radius: 6px;
-  border: 1px solid #cbd5e1;
-  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.65), inset 0 -2px 4px rgba(0, 0, 0, 0.6), 0 3px 8px rgba(0, 0, 0, 0.6);
-  padding: 0 10px;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 4px;
+}
+
+/* Portrait Frame with Exact Square 1:1 Aspect Ratio from User Image */
+.pain-portrait-frame {
   position: relative;
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
   overflow: hidden;
-}
-
-.headband-plate::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
-  transform: skewX(-25deg);
-  animation: headbandSheen 6s infinite;
-}
-
-@keyframes headbandSheen {
-  0%, 75% { left: -120%; }
-  85%, 100% { left: 220%; }
-}
-
-.metal-rivets {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.metal-rivets span {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #1e293b;
-  border: 1px solid #cbd5e1;
-  box-shadow: inset 0 1px 1px #000;
-}
-
-.ame-symbol-wrap {
-  width: 48px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ame-symbol-svg {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.85));
-}
-
-.ame-symbol-svg line:last-child {
-  filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.9));
-}
-
-/* 4. Forehead Hair Bangs Overlapping Top of Headband */
-.pain-hair-bangs {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  width: 220px;
-  height: 16px;
-  margin-top: -6px;
-  margin-bottom: -10px;
-  position: relative;
-  z-index: 6;
-  pointer-events: none;
-}
-
-.bang-spike {
-  background: linear-gradient(180deg, #ea580c 0%, #ff7a00 65%, #c2410c 100%);
-  clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.85));
-}
-
-.bang-spike.b-1 { width: 18px; height: 18px; transform: rotate(-8deg); }
-.bang-spike.b-2 { width: 22px; height: 24px; transform: rotate(-3deg); }
-.bang-spike.b-3 { width: 20px; height: 22px; transform: rotate(4deg); }
-.bang-spike.b-4 { width: 16px; height: 16px; transform: rotate(8deg); }
-
-/* 5. TAPERED ANIME JAWLINE FACE CANVAS (NOT A BOX!) */
-.pain-face-canvas {
-  background: radial-gradient(ellipse at 50% 15%, rgba(26, 29, 42, 0.98) 0%, rgba(10, 11, 18, 0.99) 100%);
-  border: 1.5px solid rgba(249, 115, 22, 0.35);
-  border-top: none;
-  /* Sculpted Anime V-Jawline with Sharp Chin Point */
-  clip-path: polygon(0% 0%, 100% 0%, 97% 20%, 91% 52%, 80% 78%, 64% 94%, 50% 100%, 36% 94%, 20% 78%, 9% 52%, 3% 20%);
-  padding: 14px 22px 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 9px;
-  width: 100%;
-  max-width: 360px;
-  position: relative;
-  z-index: 5;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.pain-face-canvas::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.6), transparent);
-}
-
-/* 6. FOREHEAD THIRD EYE: SACRED RINNEGAN */
-.pain-third-eye-pod {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 0, 0, 0.7);
+  border: 1.5px solid rgba(249, 115, 22, 0.45);
   cursor: pointer;
   user-select: none;
-  transition: transform var(--transition-fast);
-  margin-top: -2px;
-  margin-bottom: 2px;
 }
 
-.pain-third-eye-pod:hover {
-  transform: scale(1.08);
+.pain-base-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  filter: contrast(1.05) saturate(1.08);
 }
 
-.rinne-tag {
-  font-family: var(--font-mono);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #c084fc;
-  text-shadow: 0 0 8px rgba(192, 132, 252, 0.8);
-  transition: color var(--transition-fast);
+/* 2 Interactive Eye Sockets Pixel-Locked to Pain's Eyes (Left & Right) */
+.portrait-eye-pod {
+  position: absolute;
+  top: 38.5%;
+  width: 15.6%;
+  height: 7.8%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  cursor: pointer;
 }
 
-.rinne-socket {
-  width: 66px;
-  height: 36px;
-  border-radius: 40px / 20px;
-  background: #06020c;
-  border: 2px solid rgba(192, 132, 252, 0.7);
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.55), inset 0 0 10px rgba(0, 0, 0, 0.95);
+.portrait-eye-pod.eye-left {
+  left: 33.8%;
+}
+
+.portrait-eye-pod.eye-right {
+  left: 66.2%;
+}
+
+.portrait-eye-socket {
+  width: 100%;
+  height: 100%;
+  border-radius: 50px / 24px;
+  background: #020306;
+  border: 1.5px solid #000000;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 0, 0, 0.8);
   position: relative;
   overflow: hidden;
-  transition: all var(--transition-smooth);
+  transition: all var(--transition-fast);
 }
 
-.pain-third-eye-pod:hover .rinne-socket,
-.pain-third-eye-pod.active-jutsu .rinne-socket {
-  border-color: #d8b4fe;
-  box-shadow: 0 0 30px rgba(192, 132, 252, 0.9), inset 0 0 12px rgba(0, 0, 0, 0.9);
+.portrait-eye-pod:hover .portrait-eye-socket,
+.portrait-eye-pod.active-jutsu .portrait-eye-socket {
+  border-color: #ef4444;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.9), inset 0 0 8px #000;
 }
 
-.iris-rinnegan {
-  width: 34px;
-  height: 34px;
+.portrait-sclera {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 50%, #202235 0%, #05060b 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.portrait-eye-pod .itachi-iris {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 14px rgba(168, 85, 247, 0.8);
+  box-shadow: 0 0 10px rgba(225, 29, 72, 0.75);
   transition: transform 0.05s ease-out;
   pointer-events: none;
 }
 
-.rinnegan-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+/* Blood Tear Drip from Right Eye */
+.portrait-eye-pod .blood-tear-drop {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 0px;
+  background: linear-gradient(180deg, #ff0033 0%, #1e052a 100%);
+  border-radius: 2px;
+  opacity: 0;
+  transition: height 0.6s ease-in, opacity 0.6s ease-in;
+  box-shadow: 0 0 8px rgba(255, 0, 51, 0.85);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.portrait-eye-pod .blood-tear-drop.dripping {
+  height: 52px;
+  opacity: 1;
+}
+
+/* Hybrid Stage Button */
+.evo-btn.hybrid-btn {
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+.evo-btn.hybrid-btn:hover {
+  background: rgba(249, 115, 22, 0.15);
+  color: #ff7a00;
+}
+
+.evo-btn.hybrid-btn.active {
+  background: linear-gradient(135deg, #a855f7 0%, #ef4444 100%);
+  color: #ffffff;
+  border-color: #f97316;
+  box-shadow: 0 0 14px rgba(249, 115, 22, 0.85);
 }
 
 .visor-top-bar {
@@ -1006,8 +829,10 @@ body.pro-dark {
 .eyelid-top { top: 0; transform: translateY(-100%); }
 .eyelid-bottom { bottom: 0; transform: translateY(100%); }
 
-.eye-pod.blinking .eyelid-top { transform: translateY(0); }
-.eye-pod.blinking .eyelid-bottom { transform: translateY(0); }
+.eye-pod.blinking .eyelid-top,
+.portrait-eye-pod.blinking .eyelid-top { transform: translateY(0); }
+.eye-pod.blinking .eyelid-bottom,
+.portrait-eye-pod.blinking .eyelid-bottom { transform: translateY(0); }
 
 /* Evolution Selector Bar */
 .evolution-selector-bar {
