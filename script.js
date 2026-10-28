@@ -524,24 +524,26 @@
     // Track Left Eye
     const rectL = leftEyePod?.getBoundingClientRect();
     if (rectL) {
+      const scaleL = Math.max(0.45, Math.min(1.0, rectL.width / 54));
       const cXL = rectL.left + rectL.width / 2;
       const cYL = rectL.top + rectL.height / 2;
       const dxL = targetX - cXL;
       const dyL = targetY - cYL;
       const angleL = Math.atan2(dyL, dxL);
-      const distL = Math.min(Math.hypot(dxL, dyL) / 24, 7);
+      const distL = Math.min(Math.hypot(dxL, dyL) / 24, 6.5) * scaleL;
       irisLeft.style.transform = `translate(calc(-50% + ${(Math.cos(angleL) * distL).toFixed(1)}px), calc(-50% + ${(Math.sin(angleL) * distL * 0.45).toFixed(1)}px))`;
     }
 
     // Track Right Eye (Parallax Stereo Offset)
     const rectR = rightEyePod?.getBoundingClientRect();
     if (rectR) {
+      const scaleR = Math.max(0.45, Math.min(1.0, rectR.width / 54));
       const cXR = rectR.left + rectR.width / 2;
       const cYR = rectR.top + rectR.height / 2;
       const dxR = targetX - cXR;
       const dyR = targetY - cYR;
       const angleR = Math.atan2(dyR, dxR);
-      const distR = Math.min(Math.hypot(dxR, dyR) / 24, 7);
+      const distR = Math.min(Math.hypot(dxR, dyR) / 24, 6.5) * scaleR;
       irisRight.style.transform = `translate(calc(-50% + ${(Math.cos(angleR) * distR).toFixed(1)}px), calc(-50% + ${(Math.sin(angleR) * distR * 0.45).toFixed(1)}px))`;
     }
   }
@@ -934,11 +936,36 @@
     trackDualEyes(mouseX, mouseY);
   });
 
-  window.addEventListener('touchmove', (e) => {
+  // Touch event tracking for Android & Mobile touches
+  function handleTouch(e) {
     if (e.touches && e.touches[0]) {
-      trackDualEyes(e.touches[0].clientX, e.touches[0].clientY);
+      const touch = e.touches[0];
+      trackDualEyes(touch.clientX, touch.clientY);
     }
-  }, { passive: true });
+  }
+  window.addEventListener('touchmove', handleTouch, { passive: true });
+  window.addEventListener('touchstart', handleTouch, { passive: true });
+
+  // Mobile Android & iOS Gyroscope tilt tracking (Natural eye tracking upon tilting the device)
+  if (window.DeviceOrientationEvent) {
+    let lastTiltTime = 0;
+    window.addEventListener('deviceorientation', (e) => {
+      const now = performance.now();
+      if (now - lastTiltTime < 35) return; // ~30fps throttle for smooth rendering & battery efficiency
+      lastTiltTime = now;
+
+      if (e.gamma !== null && e.beta !== null) {
+        // gamma: left-to-right tilt in degrees [-45, 45]
+        // beta: front-to-back tilt in degrees (typical reading angle 30deg to 60deg)
+        const tiltX = Math.max(-35, Math.min(35, e.gamma));
+        const tiltY = Math.max(-25, Math.min(25, e.beta - 42));
+
+        const syntheticX = (window.innerWidth / 2) + (tiltX / 35) * (window.innerWidth * 0.42);
+        const syntheticY = (window.innerHeight * 0.35) + (tiltY / 25) * (window.innerHeight * 0.28);
+        trackDualEyes(syntheticX, syntheticY);
+      }
+    }, { passive: true });
+  }
 
   function renderCursor() {
     ringX += (mouseX - ringX) * 0.2;

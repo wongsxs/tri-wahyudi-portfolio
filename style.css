@@ -524,6 +524,26 @@ body.pro-dark {
   cursor: pointer;
 }
 
+.portrait-eye-pod {
+  position: absolute;
+  top: 16.2%;
+  width: 15.4%;
+  height: 5.5%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* Touch target expansion for Android finger taps */
+.portrait-eye-pod::after {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  cursor: pointer;
+  z-index: 10;
+}
+
 .portrait-eye-pod.eye-left {
   left: 36.0%;
 }
@@ -549,8 +569,8 @@ body.pro-dark {
 }
 
 .portrait-eye-pod .itachi-iris {
-  width: 25px;
-  height: 25px;
+  width: clamp(17px, 6vw, 25px);
+  height: clamp(17px, 6vw, 25px);
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -4151,127 +4171,399 @@ body.susanoo-mode .ambient-radial-primary {
     padding: 8px;
   }
 
-  /* Pain Anime Head Mobile Optimization */
-  .pain-head-silhouette,
-  .pain-face-chassis {
-    max-width: 100%;
-    padding-inline: 2px;
+  /* Universal Touch Optimization for Android & Mobile */
+  button, a, input, select, textarea {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
-  .pain-hair-crown {
-    height: 38px;
+  .term-cli-input,
+  .form-input,
+  .form-textarea,
+  .cmd-search-input {
+    font-size: 16px !important; /* Prevents auto-zoom on Android Chrome / Safari */
   }
 
-  .hair-spike.h-top {
-    transform: scale(0.85);
+  /* Toast Notification positioned above mobile dock */
+  .pro-toast {
+    bottom: max(78px, calc(72px + env(safe-area-inset-bottom, 12px)));
+    max-width: 90vw;
+    font-size: 11.5px;
+    padding: 8px 14px;
+    text-align: center;
   }
 
-  .pain-hair-side.left { left: -2px; transform: scale(0.85); }
-  .pain-hair-side.right { right: -2px; transform: scale(0.85); }
-
-  .pain-ear.left { left: 4px; }
-  .pain-ear.right { right: 4px; }
-
-  .pain-headband {
-    max-width: 310px;
-    padding: 6px 10px;
+  /* Tendo Pain Authentic Portrait Mobile Responsive Optimization (<= 640px) */
+  .pain-portrait-card {
+    max-width: min(320px, 92vw);
+    width: 100%;
+    padding: 10px 10px 12px;
+    border-radius: 16px;
+    gap: 8px;
+    margin-inline: auto;
   }
 
-  .headband-plate {
-    width: 175px;
-    height: 36px;
+  .pain-portrait-frame {
+    max-width: min(285px, 86vw);
+    border-radius: 12px;
   }
 
-  .ame-symbol-wrap {
-    width: 40px;
-    height: 22px;
+  .portrait-hud-header {
+    font-size: 8.5px;
+    padding: 0 2px;
   }
 
-  .pain-face-canvas {
-    max-width: 310px;
-    padding: 10px 14px 22px;
+  .hud-clan-badge {
+    font-size: 8px;
+    letter-spacing: 0.05em;
   }
 
-  .pain-third-eye-pod .rinne-socket {
-    width: 58px;
-    height: 32px;
+  .hud-stage-badge {
+    font-size: 8px;
+    padding: 1.5px 6px;
   }
 
-  .eye-chassis {
-    width: 74px;
-    height: 42px;
+  .portrait-eye-pod .itachi-iris {
+    width: clamp(18px, 6.2vw, 22px);
+    height: clamp(18px, 6.2vw, 22px);
   }
 
-  .itachi-iris {
-    width: 36px;
-    height: 36px;
+  .evolution-selector-bar {
+    padding-top: 8px;
+    gap: 6px;
+    justify-content: center;
   }
 
-  .chakra-stud-cluster {
-    gap: 3px 4px;
-    padding: 3px;
-  }
-
-  .chakra-stud {
-    width: 7px;
-    height: 7px;
+  .evo-label {
+    font-size: 8.5px;
+    width: 100%;
+    text-align: center;
   }
 
   .evo-buttons {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .evo-btn {
+    font-size: 8.5px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    flex: 1 1 auto;
+    text-align: center;
+    min-width: 48px;
   }
 
   .pain-hud-footer {
     flex-direction: column;
+    align-items: center;
     gap: 6px;
+    padding: 6px 8px;
+    width: 100%;
+  }
+
+  .hud-tendo-label {
+    font-size: 8px;
   }
 
   .pain-action-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 4px;
+  }
+
+  .btn-bansho-trigger,
+  .btn-shinra-trigger,
+  .btn-chibaku-trigger {
+    font-size: 8px;
+    padding: 5px 3px;
     justify-content: center;
+    gap: 3px;
+    min-height: 30px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-bansho-trigger svg,
+  .btn-shinra-trigger svg,
+  .btn-chibaku-trigger svg {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
   }
 }
 
-/* Very Small Mobile Phones (<= 380px) */
-@media (max-width: 380px) {
+/* Standard Android Smartphones (<= 480px) */
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: clamp(1.5rem, 4vw, 2.5rem);
+    padding-bottom: 1.75rem;
+  }
+
   .hero-headline {
-    font-size: 1.65rem;
+    font-size: clamp(1.75rem, 6.8vw, 2.2rem);
+    line-height: 1.16;
+    margin-bottom: 14px;
   }
 
-  .pain-headband, .pain-face-canvas {
-    max-width: 290px;
+  .hero-bio {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 20px;
+    padding-inline: 4px;
   }
 
-  .headband-plate {
-    width: 155px;
-    height: 34px;
-  }
-
-  .eye-chassis {
-    width: 66px;
-    height: 38px;
-  }
-
-  .itachi-iris {
-    width: 32px;
-    height: 32px;
-  }
-
-  .status-badge, .location-badge {
+  .status-badge,
+  .location-badge {
     font-size: 9.5px;
-    padding: 4px 10px;
+    padding: 4px 9px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .hero-actions .pro-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 16px;
+    font-size: 13px;
+  }
+
+  .metrics-dashboard {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  .metric-card {
+    padding: 10px 8px;
+    gap: 8px;
+  }
+
+  .metric-val {
+    font-size: 14px;
+  }
+
+  .metric-desc {
+    font-size: 10px;
+  }
+
+  .pain-portrait-card {
+    max-width: 290px;
+    padding: 8px 8px 10px;
+  }
+
+  .pain-portrait-frame {
+    max-width: 260px;
+  }
+
+  .portrait-eye-pod .itachi-iris {
+    width: clamp(17px, 6vw, 20px);
+    height: clamp(17px, 6vw, 20px);
+  }
+
+  .evo-btn {
+    font-size: 8px;
+    padding: 2.5px 5px;
+    min-width: 44px;
+  }
+
+  .btn-bansho-trigger,
+  .btn-shinra-trigger,
+  .btn-chibaku-trigger {
+    font-size: 7.5px;
+    padding: 4px 2px;
+  }
+}
+
+/* Very Small / Narrow Android Devices (<= 360px - Galaxy Fold Cover, older 320-360px phones) */
+@media (max-width: 360px) {
+  .hero-headline {
+    font-size: 1.55rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-bio {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .status-badge,
+  .location-badge {
+    font-size: 8.5px;
+    padding: 3px 7px;
   }
 
   .metrics-dashboard {
     grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .metric-card {
+    padding: 8px 10px;
+  }
+
+  .pain-portrait-card {
+    max-width: 260px;
+    padding: 6px 6px 8px;
+    border-radius: 12px;
+  }
+
+  .pain-portrait-frame {
+    max-width: 236px;
+    border-radius: 8px;
+  }
+
+  .portrait-hud-header {
+    font-size: 7.5px;
+  }
+
+  .hud-clan-badge {
+    font-size: 7px;
+  }
+
+  .hud-stage-badge {
+    font-size: 7px;
+    padding: 1px 4px;
+  }
+
+  .portrait-eye-pod .itachi-iris {
+    width: 16px;
+    height: 16px;
+  }
+
+  .evo-buttons {
+    gap: 2.5px;
+  }
+
+  .evo-btn {
+    font-size: 7.5px;
+    padding: 2px 3.5px;
+    min-width: 38px;
+  }
+
+  .hud-tendo-label {
+    font-size: 7.5px;
+  }
+
+  .btn-bansho-trigger,
+  .btn-shinra-trigger,
+  .btn-chibaku-trigger {
+    font-size: 7px;
+    padding: 3.5px 1px;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-bansho-trigger svg,
+  .btn-shinra-trigger svg,
+  .btn-chibaku-trigger svg {
+    width: 8px;
+    height: 8px;
   }
 
   .card-inner {
-    padding: 14px 12px;
+    padding: 14px 10px;
   }
 
   .seat-node {
-    height: 32px;
-    font-size: 10px;
+    height: 30px;
+    font-size: 9.5px;
+  }
+
+  .nav-actions {
+    gap: 4px;
+  }
+
+  .sound-toggle-btn,
+  .cmd-trigger-btn,
+  .btn-github-nav {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    justify-content: center;
+  }
+}
+
+/* Mobile Landscape Optimization (Phone turned sideways) */
+@media (orientation: landscape) and (max-height: 550px) {
+  .hero-split-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    text-align: left;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .hero-profile-col {
+    order: 1;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-persona-col {
+    order: 2;
+  }
+
+  .hero-profile-col .hero-badge-row,
+  .hero-profile-col .hero-actions,
+  .hero-profile-col .metrics-dashboard {
+    justify-content: flex-start;
+  }
+
+  .hero-profile-col .hero-headline,
+  .hero-profile-col .hero-bio {
+    text-align: left;
+  }
+
+  .hero-headline {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+  }
+
+  .hero-bio {
+    font-size: 12.5px;
+    margin-bottom: 14px;
+    max-width: 480px;
+  }
+
+  .pain-portrait-card {
+    max-width: 250px;
+    padding: 6px 8px 8px;
+  }
+
+  .pain-portrait-frame {
+    max-width: 220px;
+  }
+
+  .portrait-eye-pod .itachi-iris {
+    width: 17px;
+    height: 17px;
+  }
+
+  .metrics-dashboard {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .metric-card {
+    padding: 6px 8px;
+  }
+
+  .mobile-dock {
+    height: 42px;
+    padding: 4px 10px;
+    bottom: 6px;
+  }
+
+  .dock-label {
+    display: none;
   }
 }
 
