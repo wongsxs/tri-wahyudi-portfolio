@@ -106,6 +106,47 @@
     <section id="hero" class="hero-section">
       <div class="content-container">
         
+        <!-- ITACHI MANGEKYOU SHARINGAN INTERACTIVE EYE -->
+        <div class="itachi-eye-container">
+          <div id="itachiEyeWidget" class="itachi-eye-widget" title="Itachi Mangekyou Sharingan • Klik untuk aktifkan Tsukuyomi Mode">
+            <div class="eye-chassis">
+              <div class="eye-socket">
+                <div class="eye-sclera">
+                  <div id="itachiIris" class="itachi-iris">
+                    <div class="iris-glow-ring"></div>
+                    <svg class="mangekyou-svg" viewBox="0 0 100 100">
+                      <!-- Red Iris Base -->
+                      <circle cx="50" cy="50" r="48" fill="#e11d48"/>
+                      <circle cx="50" cy="50" r="34" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="2.5"/>
+                      
+                      <!-- Itachi Mangekyou 3-Pinwheel Curved Blades -->
+                      <g id="mangekyouBlades" class="mangekyou-blades">
+                        <!-- Blade 1 (Top) -->
+                        <path d="M50 50 Q66 18 50 2 Q36 22 50 50" fill="#040406"/>
+                        <!-- Blade 2 (Bottom-Right) -->
+                        <path d="M50 50 Q78 68 91 75 Q68 84 50 50" fill="#040406"/>
+                        <!-- Blade 3 (Bottom-Left) -->
+                        <path d="M50 50 Q22 68 9 75 Q32 84 50 50" fill="#040406"/>
+                        
+                        <!-- Center Pupil & Red Core -->
+                        <circle cx="50" cy="50" r="11" fill="#040406"/>
+                        <circle cx="50" cy="50" r="3.5" fill="#e11d48"/>
+                      </g>
+                    </svg>
+                  </div>
+                  <!-- Eyelids for periodic blinking -->
+                  <div class="eyelid eyelid-top"></div>
+                  <div class="eyelid eyelid-bottom"></div>
+                </div>
+              </div>
+            </div>
+            <div class="eye-hud-label">
+              <span class="hud-tag">MANGEKYO</span>
+              <span id="genjutsuState" class="hud-status">GAZE ACTIVE</span>
+            </div>
+          </div>
+        </div>
+
         <div class="hero-badge-row">
           <div class="status-badge" data-magnetic>
             <span class="pulsing-radar"></span>
@@ -255,6 +296,7 @@
                 <button class="term-chip" data-cmd="projects">projects</button>
                 <button class="term-chip" data-cmd="skills">skills</button>
                 <button class="term-chip" data-cmd="contact">contact</button>
+                <button class="term-chip" data-cmd="sharingan" style="color:#ff453a;border-color:rgba(255,69,58,0.35);">sharingan</button>
                 <button class="term-chip" data-cmd="matrix">matrix</button>
                 <button class="term-chip" data-cmd="clear">clear</button>
               </div>

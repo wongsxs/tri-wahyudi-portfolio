@@ -89,10 +89,69 @@
   });
 
   // =========================================================================
-  // 2. MAGNETIC CUSTOM CURSOR
+  // 2. MAGNETIC CUSTOM CURSOR & ITACHI EYE TRACKING
   // =========================================================================
   const cursorDot = document.getElementById('cursorDot');
   const cursorRing = document.getElementById('cursorRing');
+  const itachiEyeWidget = document.getElementById('itachiEyeWidget');
+  const itachiIris = document.getElementById('itachiIris');
+  const genjutsuState = document.getElementById('genjutsuState');
+  let tsukuyomiActive = false;
+
+  function trackItachiEye(targetX, targetY) {
+    if (!itachiEyeWidget || !itachiIris) return;
+    const rect = itachiEyeWidget.getBoundingClientRect();
+    const eyeCenterX = rect.left + rect.width / 2;
+    const eyeCenterY = rect.top + rect.height / 2;
+
+    const dx = targetX - eyeCenterX;
+    const dy = targetY - eyeCenterY;
+    const angle = Math.atan2(dy, dx);
+
+    const maxDist = 13;
+    const rawDist = Math.hypot(dx, dy);
+    const dist = Math.min(rawDist / 18, maxDist);
+
+    const moveX = Math.cos(angle) * dist;
+    const moveY = Math.sin(angle) * (dist * 0.55); // Flattened for eye socket contour
+
+    itachiIris.style.transform = `translate(calc(-50% + ${moveX.toFixed(1)}px), calc(-50% + ${moveY.toFixed(1)}px))`;
+  }
+
+  // Natural Blinking Cycle
+  function scheduleBlink() {
+    if (!itachiEyeWidget) return;
+    const delay = Math.random() * 2500 + 3500;
+    setTimeout(() => {
+      itachiEyeWidget.classList.add('blinking');
+      setTimeout(() => {
+        itachiEyeWidget.classList.remove('blinking');
+        scheduleBlink();
+      }, 160);
+    }, delay);
+  }
+  scheduleBlink();
+
+  function toggleTsukuyomi() {
+    tsukuyomiActive = !tsukuyomiActive;
+    if (tsukuyomiActive) {
+      document.body.classList.add('tsukuyomi-mode');
+      itachiEyeWidget?.classList.add('tsukuyomi');
+      if (genjutsuState) genjutsuState.textContent = 'TSUKUYOMI ACTIVE';
+      playHapticSound(180, 'sawtooth', 0.28);
+      showToast('👁️ Tsukuyomi Activated: "You are already under my Genjutsu."');
+    } else {
+      document.body.classList.remove('tsukuyomi-mode');
+      itachiEyeWidget?.classList.remove('tsukuyomi');
+      if (genjutsuState) genjutsuState.textContent = 'GAZE ACTIVE';
+      playHapticSound(550, 'sine', 0.08);
+      showToast('Genjutsu released.');
+    }
+  }
+
+  if (itachiEyeWidget) {
+    itachiEyeWidget.addEventListener('click', toggleTsukuyomi);
+  }
 
   let mouseX = -100;
   let mouseY = -100;
@@ -107,7 +166,15 @@
       cursorDot.style.left = `${mouseX}px`;
       cursorDot.style.top = `${mouseY}px`;
     }
+
+    trackItachiEye(mouseX, mouseY);
   });
+
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) {
+      trackItachiEye(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
 
   function renderCursor() {
     ringX += (mouseX - ringX) * 0.2;
@@ -287,14 +354,15 @@
   const cliResponses = {
     help: `
 Daftar perintah yang tersedia:
-  • <span class="cmd-highlight">about</span>    : Informasi profil Tri Wahyudi & semester
-  • <span class="cmd-highlight">projects</span> : Repositori karya utama (Web, Android, IoT)
-  • <span class="cmd-highlight">skills</span>   : Ringkasan tech stack & framework
-  • <span class="cmd-highlight">contact</span>  : Detail WhatsApp, Email, & GitHub
-  • <span class="cmd-highlight">matrix</span>   : Trigger animasi digital rain Cyber Matrix
-  • <span class="cmd-highlight">clear</span>    : Bersihkan layar terminal
-  • <span class="cmd-highlight">date</span>     : Tampilkan waktu dan status server
-  • <span class="cmd-highlight">whoami</span>   : Menampilkan identitas sesi tamu
+  • <span class="cmd-highlight">about</span>      : Informasi profil Tri Wahyudi & semester
+  • <span class="cmd-highlight">projects</span>   : Repositori karya utama (Web, Android, IoT)
+  • <span class="cmd-highlight">skills</span>     : Ringkasan tech stack & framework
+  • <span class="cmd-highlight">contact</span>    : Detail WhatsApp, Email, & GitHub
+  • <span class="cmd-highlight">sharingan</span>  : Aktifkan Itachi Mangekyou Tsukuyomi Mode
+  • <span class="cmd-highlight">matrix</span>     : Trigger animasi digital rain Cyber Matrix
+  • <span class="cmd-highlight">clear</span>      : Bersihkan layar terminal
+  • <span class="cmd-highlight">date</span>       : Tampilkan waktu dan status server
+  • <span class="cmd-highlight">whoami</span>     : Menampilkan identitas sesi tamu
     `,
     about: `
 Nama       : Tri Wahyudi (21 Tahun)
@@ -341,11 +409,21 @@ GitHub     : https://github.com/wongsxs (30+ Repositories)
       return;
     }
 
+    let res = null;
+    if (cmd === 'sharingan' || cmd === 'tsukuyomi') {
+      toggleTsukuyomi();
+      res = tsukuyomiActive 
+        ? '<span style="color:#ff0033;font-weight:bold;">[MANGEKYO SHARINGAN AWAKENED]</span> Tsukuyomi Genjutsu is now cast over the entire domain.'
+        : '<span style="color:#4ade80;">[SHARINGAN SEALED]</span> Returning to standard reality.';
+    }
+
     const entry = document.createElement('div');
     entry.className = 'term-output-entry';
 
-    let res = cliResponses[cmd];
-    if (typeof res === 'function') res = res();
+    if (!res) {
+      res = cliResponses[cmd];
+      if (typeof res === 'function') res = res();
+    }
 
     if (!res) {
       res = `Perintah tidak dikenal: "${cmd}". Ketik <span class="cmd-highlight">help</span> untuk panduan.`;
