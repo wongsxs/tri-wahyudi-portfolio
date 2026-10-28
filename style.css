@@ -67,6 +67,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body.pro-dark {
@@ -77,6 +79,7 @@ body.pro-dark {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  max-width: 100%;
   position: relative;
   min-height: 100dvh;
 }
@@ -2686,27 +2689,121 @@ body.pro-dark {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN
+   MOBILE UTILITY & DOCK STYLING
    ========================================================================== */
-@media (max-width: 900px) {
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.mobile-terminal-badge {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+}
+
+.term-badge-tag {
+  color: var(--accent-cyan);
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.term-badge-hint {
+  color: var(--accent-green);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.mobile-dock {
+  display: none;
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  max-width: 390px;
+  background: rgba(10, 10, 16, 0.92);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-pill);
+  padding: 6px 8px;
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(56, 189, 248, 0.12);
+  justify-content: space-around;
+  align-items: center;
+}
+
+.dock-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  transition: all var(--transition-fast);
+}
+
+.dock-btn:hover, .dock-btn.active {
+  color: var(--accent-cyan);
+}
+
+.dock-btn svg {
+  stroke: currentColor;
+}
+
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE DESIGN (ALL VIEWPORTS & PHONES)
+   ========================================================================== */
+
+/* Touch Device Cursor Reset */
+@media (hover: none) or (pointer: coarse) {
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+  body.pro-dark {
+    cursor: auto !important;
+  }
+}
+
+/* Tablet & Smaller Laptops (<= 992px) */
+@media (max-width: 992px) {
   .metrics-dashboard {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .workbench-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .bento-span-2 {
     grid-column: span 1;
   }
 
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .channel-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .esp32-grid-split {
@@ -2716,15 +2813,99 @@ body.pro-dark {
   .console-viewport {
     border-right: none;
     border-bottom: 1px solid var(--border-subtle);
+    max-height: 180px;
   }
 }
 
-@media (max-width: 650px) {
+/* Tablet & Large Mobile (<= 768px) */
+@media (max-width: 768px) {
   .nav-menu {
     display: none;
   }
 
+  .mobile-dock {
+    display: flex;
+  }
+
+  body.pro-dark {
+    padding-bottom: 80px; /* Room for mobile dock */
+  }
+
+  .hero-section {
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+    padding-bottom: 2rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(1.85rem, 6.2vw, 2.8rem);
+  }
+
+  .hero-bio {
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .filter-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .filter-pills {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+  }
+
+  .filter-pill {
+    flex-shrink: 0;
+  }
+
+  .card-inner {
+    padding: 18px 16px;
+  }
+
+  .timeline-container {
+    padding-left: 20px;
+  }
+
+  .timeline-marker {
+    left: -20px;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Standard Mobile Phones (<= 640px) */
+@media (max-width: 640px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex !important;
+  }
+
+  .nav-container {
+    padding-inline: 14px;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .brand-text {
+    font-size: 13.5px;
+  }
+
   .cmd-text {
+    display: none;
+  }
+
+  .kbd-badge {
     display: none;
   }
 
@@ -2732,11 +2913,205 @@ body.pro-dark {
     display: none;
   }
 
+  .btn-github-nav span {
+    display: none;
+  }
+
+  .btn-github-nav {
+    padding: 6px 9px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-actions .pro-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 13.5px;
+  }
+
+  .metrics-dashboard {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .metric-card {
+    padding: 12px 10px;
+    gap: 8px;
+  }
+
+  .metric-icon-wrap {
+    width: 32px;
+    height: 32px;
+  }
+
+  .metric-val {
+    font-size: 15px;
+  }
+
+  .metric-desc {
+    font-size: 10.5px;
+  }
+
+  /* Bus Seat Picker Mobile */
+  .sandbox-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .toolbar-route {
+    font-size: 10px;
+    flex-wrap: wrap;
+  }
+
+  .seat-matrix {
+    grid-template-columns: 1fr 1fr 16px 1fr 1fr;
+    gap: 5px;
+  }
+
+  .seat-node {
+    height: 36px;
+    font-size: 11px;
+  }
+
+  .seat-meta-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .legend-cluster {
+    justify-content: center;
+    gap: 10px;
+    font-size: 10px;
+  }
+
+  .reservation-summary {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .summary-details {
+    text-align: left;
+  }
+
+  .btn-ticket-issue {
+    font-size: 11px;
+    padding: 7px 11px;
+  }
+
+  /* Terminal Mobile */
+  .terminal-window-bar {
+    padding: 8px 12px;
+  }
+
+  .terminal-center-title {
+    font-size: 10px;
+  }
+
+  .term-status-badge span:last-child {
+    display: none;
+  }
+
+  .terminal-body {
+    padding: 12px 14px;
+    min-height: 200px;
+    max-height: 320px;
+  }
+
+  .term-quick-chips {
+    gap: 5px;
+    margin-bottom: 12px;
+  }
+
+  .term-chip {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  /* Repo list item mobile stacking */
+  .repo-item-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+
+  .repo-tags-wrap {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .btn-repo-link {
+    align-self: flex-end;
+  }
+
+  /* Form Duo stack */
   .form-row-duo {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .contact-card {
+    padding: 20px 16px;
+  }
+
+  /* Modal Mobile */
+  .modal-card {
+    width: 95vw;
+    max-height: 90vh;
+    padding: 16px;
+    overflow-y: auto;
+  }
+
+  .boarding-pass {
+    padding: 14px;
+  }
+
+  .station-city {
+    font-size: 13.5px;
+  }
+
+  .station-name {
+    font-size: 9.5px;
+  }
+
+  .pass-details-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 8px;
+  }
+}
+
+/* Very Small Mobile Phones (<= 380px) */
+@media (max-width: 380px) {
+  .hero-headline {
+    font-size: 1.65rem;
+  }
+
+  .status-badge, .location-badge {
+    font-size: 9.5px;
+    padding: 4px 10px;
   }
 
   .metrics-dashboard {
     grid-template-columns: 1fr;
   }
+
+  .card-inner {
+    padding: 14px 12px;
+  }
+
+  .seat-node {
+    height: 32px;
+    font-size: 10px;
+  }
 }
+

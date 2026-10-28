@@ -250,6 +250,8 @@
 
   tiltCards.forEach((card) => {
     card.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 768) return; // Disable tilt on mobile for buttery smooth scrolling
+
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -902,6 +904,31 @@ GitHub     : https://github.com/wongsxs (30+ Repositories)
         }, 6000);
       }
     });
+  }
+
+  // =========================================================================
+  // 15. MOBILE DOCK ACTIVE SECTION HIGHLIGHT
+  // =========================================================================
+  const dockButtons = document.querySelectorAll('.mobile-dock .dock-btn');
+  const observedSections = document.querySelectorAll('section[id], header[id]');
+
+  if (dockButtons.length > 0 && observedSections.length > 0 && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          dockButtons.forEach((btn) => {
+            if (btn.getAttribute('href') === `#${id}`) {
+              btn.classList.add('active');
+            } else {
+              btn.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observedSections.forEach((sec) => observer.observe(sec));
   }
 
 })();
