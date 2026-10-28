@@ -109,73 +109,121 @@
     <section id="hero" class="hero-section">
       <div class="content-container">
         
-        <!-- ITACHI UCHIHA DUAL SHARINGAN HUD (INTERACTIVE BINOCULAR EYE-TRACKER) -->
-        <div class="itachi-shrine-container">
-          <div class="itachi-visor-hud" id="itachiVisorHud">
-            <div class="visor-top-bar">
-              <div class="clan-badge-group">
-                <span class="hud-clan-dot"></span>
-                <span class="hud-clan-badge">UCHIHA ITACHI &bull; OCULAR ENGINE</span>
-              </div>
-              <span id="currentStageLabel" class="hud-stage-badge">STAGE IV &bull; MANGEKYO</span>
+        <!-- TENDO PAIN x ITACHI SHARINGAN FACE HUD -->
+        <div class="pain-face-container">
+          <div class="pain-face-chassis" id="painFaceChassis">
+            
+            <!-- Pain's Orange Spiky Hair Highlights -->
+            <div class="pain-hair-fringe">
+              <span class="hair-spike hs-1"></span>
+              <span class="hair-spike hs-2"></span>
+              <span class="hair-spike hs-3"></span>
+              <span class="hair-spike hs-4"></span>
+              <span class="hair-spike hs-5"></span>
             </div>
 
-            <!-- Binocular Dual Eyes -->
-            <div class="dual-eyes-wrapper">
-              <!-- Left Eye (Tsukuyomi) -->
-              <div class="eye-pod left-eye" id="leftEyePod" title="Mata Kiri: Tsukuyomi • Klik untuk memicu Genjutsu Gagak Hitam">
-                <div class="eye-jutsu-tag">TSUKUYOMI</div>
-                <div class="eye-chassis">
-                  <div class="eye-socket">
-                    <div class="eye-sclera">
-                      <div class="itachi-iris iris-left" id="irisLeft">
-                        <div class="iris-glow-ring"></div>
-                        <svg class="sharingan-svg" viewBox="0 0 100 100" id="svgLeftEye">
-                          <!-- Injected & Updated by JS -->
-                        </svg>
+            <!-- Amegakure Rogue Slashed Headband (Hitai-ate) -->
+            <div class="pain-headband" id="painHeadband" title="Pelindung Kepala Amegakure Coret • Klik untuk SHINRA TENSEI!">
+              <div class="headband-plate">
+                <div class="metal-rivets left"><span></span><span></span></div>
+                <div class="ame-symbol-wrap">
+                  <svg class="ame-symbol-svg" viewBox="0 0 50 26">
+                    <!-- 4 Rain Drops / Vertical Village Stripes -->
+                    <line x1="14" y1="5" x2="14" y2="21" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="21" y1="5" x2="21" y2="21" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="28" y1="5" x2="28" y2="21" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="35" y1="5" x2="35" y2="21" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"/>
+                    <!-- Rogue Insignia Red Scratch Line -->
+                    <line x1="7" y1="13" x2="43" y2="13" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="metal-rivets right"><span></span><span></span></div>
+              </div>
+            </div>
+
+            <!-- Face Mask & Eyes Container -->
+            <div class="pain-face-canvas">
+              
+              <div class="visor-top-bar">
+                <div class="clan-badge-group">
+                  <span class="hud-clan-dot"></span>
+                  <span class="hud-clan-badge">TENDO PAIN &bull; SIX PATHS</span>
+                </div>
+                <span id="currentStageLabel" class="hud-stage-badge">STAGE IV &bull; MANGEKYO</span>
+              </div>
+
+              <!-- Binocular Dual Eyes with Pain Nose Bridge Piercings -->
+              <div class="dual-eyes-wrapper">
+                <!-- Left Eye (Tsukuyomi) -->
+                <div class="eye-pod left-eye" id="leftEyePod" title="Mata Kiri: Tsukuyomi • Klik untuk memicu Gagak Hitam">
+                  <div class="eye-jutsu-tag">TSUKUYOMI</div>
+                  <div class="eye-chassis">
+                    <div class="eye-socket">
+                      <div class="eye-sclera">
+                        <div class="itachi-iris iris-left" id="irisLeft">
+                          <div class="iris-glow-ring"></div>
+                          <svg class="sharingan-svg" viewBox="0 0 100 100" id="svgLeftEye">
+                            <!-- Injected & Updated by JS -->
+                          </svg>
+                        </div>
+                        <div class="eyelid eyelid-top"></div>
+                        <div class="eyelid eyelid-bottom"></div>
                       </div>
-                      <div class="eyelid eyelid-top"></div>
-                      <div class="eyelid eyelid-bottom"></div>
                     </div>
+                  </div>
+                </div>
+
+                <!-- Pain's Signature Nose Piercings (6 Black Chakra Receivers) -->
+                <div class="pain-nose-bridge" title="Chakra Receiver Rods">
+                  <div class="chakra-stud-cluster">
+                    <span class="chakra-stud"></span>
+                    <span class="chakra-stud"></span>
+                    <span class="chakra-stud"></span>
+                    <span class="chakra-stud"></span>
+                    <span class="chakra-stud"></span>
+                    <span class="chakra-stud"></span>
+                  </div>
+                </div>
+
+                <!-- Right Eye (Amaterasu) -->
+                <div class="eye-pod right-eye" id="rightEyePod" title="Mata Kanan: Amaterasu • Klik untuk Api Hitam">
+                  <div class="eye-jutsu-tag">AMATERASU</div>
+                  <div class="eye-chassis">
+                    <div class="eye-socket">
+                      <div class="eye-sclera">
+                        <div class="itachi-iris iris-right" id="irisRight">
+                          <div class="iris-glow-ring"></div>
+                          <svg class="sharingan-svg" viewBox="0 0 100 100" id="svgRightEye">
+                            <!-- Injected & Updated by JS -->
+                          </svg>
+                        </div>
+                        <div class="eyelid eyelid-top"></div>
+                        <div class="eyelid eyelid-bottom"></div>
+                      </div>
+                    </div>
+                    <!-- Blood Tear Drip -->
+                    <div class="blood-tear-drop" id="bloodTearDrop"></div>
                   </div>
                 </div>
               </div>
 
-              <!-- Center Cyber Crest / Uchiha Emblem -->
-              <div class="eye-bridge">
-                <div class="clan-fan-symbol" title="Uchiha Clan Fan Crest">
-                  <div class="fan-top-white"></div>
-                  <div class="fan-bottom-red"></div>
-                  <div class="fan-handle"></div>
+              <!-- Pain's Lower Lip & Chin Piercings -->
+              <div class="pain-lower-face">
+                <div class="pain-lip-piercings">
+                  <span class="lip-stud left" title="Chakra Stud"></span>
+                  <div class="pain-mouth-line"></div>
+                  <span class="lip-stud right" title="Chakra Stud"></span>
                 </div>
-                <div class="chakra-pulse-core" id="chakraPulseCore"></div>
+                <div class="pain-chin-piercing">
+                  <span class="chin-rod" title="Chakra Receiver Bar"></span>
+                </div>
               </div>
 
-              <!-- Right Eye (Amaterasu) -->
-              <div class="eye-pod right-eye" id="rightEyePod" title="Mata Kanan: Amaterasu • Klik untuk memicu Api Hitam Abadi">
-                <div class="eye-jutsu-tag">AMATERASU</div>
-                <div class="eye-chassis">
-                  <div class="eye-socket">
-                    <div class="eye-sclera">
-                      <div class="itachi-iris iris-right" id="irisRight">
-                        <div class="iris-glow-ring"></div>
-                        <svg class="sharingan-svg" viewBox="0 0 100 100" id="svgRightEye">
-                          <!-- Injected & Updated by JS -->
-                        </svg>
-                      </div>
-                      <div class="eyelid eyelid-top"></div>
-                      <div class="eyelid eyelid-bottom"></div>
-                    </div>
-                  </div>
-                  <!-- Blood Tear Drip -->
-                  <div class="blood-tear-drop" id="bloodTearDrop"></div>
-                </div>
-              </div>
             </div>
 
             <!-- Sharingan Evolution Stage Selector -->
             <div class="evolution-selector-bar">
-              <span class="evo-label">EVOLUTION:</span>
+              <span class="evo-label">OCULAR STAGE:</span>
               <div class="evo-buttons" id="evoButtonContainer">
                 <button class="evo-btn" data-stage="1" title="1-Tomoe Sharingan">1-Tomoe</button>
                 <button class="evo-btn" data-stage="2" title="2-Tomoe Sharingan">2-Tomoe</button>
@@ -184,6 +232,16 @@
                 <button class="evo-btn susanoo-btn" data-stage="5" title="Susanoo Flame Mode">Susanoo</button>
               </div>
             </div>
+
+            <!-- Pain Quick Action Trigger -->
+            <div class="pain-hud-footer">
+              <span class="hud-tendo-label">DEVA PATH &bull; YAHIKO</span>
+              <button id="btnShinraTensei" class="btn-shinra-trigger" title="Almighty Push! (Shinra Tensei)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <span>SHINRA TENSEI</span>
+              </button>
+            </div>
+
           </div>
         </div>
 
@@ -336,6 +394,7 @@
                 <button class="term-chip" data-cmd="projects">projects</button>
                 <button class="term-chip" data-cmd="skills">skills</button>
                 <button class="term-chip" data-cmd="contact">contact</button>
+                <button class="term-chip" data-cmd="shinra" style="color:#ea580c;border-color:rgba(234,88,12,0.45);">shinra</button>
                 <button class="term-chip" data-cmd="sharingan" style="color:#ff453a;border-color:rgba(255,69,58,0.35);">sharingan</button>
                 <button class="term-chip" data-cmd="matrix">matrix</button>
                 <button class="term-chip" data-cmd="clear">clear</button>

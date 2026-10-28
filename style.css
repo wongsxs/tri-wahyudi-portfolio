@@ -361,41 +361,177 @@ body.pro-dark {
 }
 
 /* ==========================================================================
-   ITACHI UCHIHA DUAL SHARINGAN HUD & OCULAR VISOR
+   TENDO PAIN FACE CHASSIS & ITACHI DUAL SHARINGAN OCULAR ENGINE
    ========================================================================== */
+.pain-face-container,
 .itachi-shrine-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 10;
 }
 
+.pain-face-chassis,
 .itachi-visor-hud {
-  background: rgba(8, 8, 12, 0.9);
-  border: 1px solid rgba(225, 29, 72, 0.35);
-  border-radius: 20px;
-  padding: 14px 20px 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(225, 29, 72, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  max-width: 380px;
+  max-width: 390px;
   width: 100%;
   position: relative;
+  transition: transform var(--transition-smooth);
+}
+
+/* Pain's Orange Spiky Hair Highlights */
+.pain-hair-fringe {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  width: 100%;
+  height: 26px;
+  margin-bottom: -3px;
+  position: relative;
+  z-index: 1;
+}
+
+.hair-spike {
+  background: linear-gradient(180deg, #ff6b00 0%, #ea580c 55%, #c2410c 100%);
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.65));
+  border-radius: 4px 4px 0 0;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.hair-spike.hs-1 { width: 32px; height: 22px; transform: rotate(-18deg) translateY(4px); }
+.hair-spike.hs-2 { width: 40px; height: 28px; transform: rotate(-8deg) translateY(1px); }
+.hair-spike.hs-3 { width: 46px; height: 32px; transform: rotate(0deg) translateY(-2px); }
+.hair-spike.hs-4 { width: 40px; height: 28px; transform: rotate(8deg) translateY(1px); }
+.hair-spike.hs-5 { width: 32px; height: 22px; transform: rotate(18deg) translateY(4px); }
+
+.pain-face-chassis:hover .hair-spike {
+  filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.95));
+  transform: translateY(-2px);
+}
+
+/* Amegakure Rogue Slashed Forehead Protector (Hitai-ate) */
+.pain-headband {
+  width: 100%;
+  max-width: 370px;
+  background: linear-gradient(90deg, #090a0f 0%, #151821 20%, #1f2430 50%, #151821 80%, #090a0f 100%);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 12px 12px 4px 4px;
+  padding: 8px 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 4;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pain-headband:hover {
+  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 6px 22px rgba(239, 68, 68, 0.35);
+  transform: translateY(-1px);
+}
+
+.headband-plate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 210px;
+  height: 40px;
+  background: linear-gradient(180deg, #94a3b8 0%, #64748b 35%, #475569 65%, #334155 100%);
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.65), inset 0 -2px 4px rgba(0, 0, 0, 0.6), 0 3px 8px rgba(0, 0, 0, 0.6);
+  padding: 0 10px;
+  position: relative;
   overflow: hidden;
+}
+
+.headband-plate::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-25deg);
+  animation: headbandSheen 6s infinite;
+}
+
+@keyframes headbandSheen {
+  0%, 75% { left: -120%; }
+  85%, 100% { left: 220%; }
+}
+
+.metal-rivets {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.metal-rivets span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #1e293b;
+  border: 1px solid #cbd5e1;
+  box-shadow: inset 0 1px 1px #000;
+}
+
+.ame-symbol-wrap {
+  width: 48px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ame-symbol-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.85));
+}
+
+.ame-symbol-svg line:last-child {
+  filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.9));
+}
+
+/* Pain Visor & Face Plate Canvas */
+.pain-face-canvas {
+  background: radial-gradient(ellipse at 50% 15%, rgba(22, 24, 34, 0.96) 0%, rgba(9, 10, 15, 0.98) 100%);
+  border: 1px solid rgba(249, 115, 22, 0.28);
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  padding: 12px 18px 14px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.85), 0 0 24px rgba(249, 115, 22, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 370px;
+  position: relative;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
-.itachi-visor-hud::before {
+.pain-face-canvas::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #ff0033, transparent);
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.6), transparent);
 }
 
 .visor-top-bar {
@@ -550,54 +686,118 @@ body.pro-dark {
   filter: drop-shadow(0 0 10px #ff0033);
 }
 
-/* Center Uchiha Crest Bridge */
-.eye-bridge {
+/* Pain's Signature 6 Black Chakra Receivers Nose Bridge */
+.pain-nose-bridge {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 4px;
+  padding: 0 4px;
 }
 
-.clan-fan-symbol {
-  width: 20px;
-  height: 24px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.chakra-stud-cluster {
+  display: grid;
+  grid-template-columns: repeat(2, 8px);
+  gap: 4px 6px;
+  padding: 4px 5px;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.fan-top-white {
-  width: 20px;
-  height: 10px;
-  background: #ffffff;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.fan-bottom-red {
-  width: 20px;
-  height: 10px;
-  background: #ff0033;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
-.fan-handle {
-  width: 3px;
-  height: 5px;
-  background: #ffffff;
-  margin-top: -1px;
-}
-
-.chakra-pulse-core {
-  width: 4px;
-  height: 4px;
+.chakra-stud {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #475569 0%, #0f172a 60%, #020617 100%);
+  border: 1px solid #64748b;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8), inset 0 0 2px #000;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chakra-stud::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.5px;
+  height: 2.5px;
+  border-radius: 50%;
+  background: #ea580c;
+  opacity: 0.7;
+  box-shadow: 0 0 4px #ea580c;
+}
+
+.pain-face-chassis:hover .chakra-stud::after {
+  opacity: 1;
   background: #ff0033;
   box-shadow: 0 0 6px #ff0033;
-  animation: pulseAnim 2s infinite;
 }
+
+/* Pain's Lower Face: Lip Piercings, Mouth Line & Chin Rod */
+.pain-lower-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.pain-lip-piercings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+}
+
+.lip-stud {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #64748b 0%, #0f172a 70%);
+  border: 1px solid #94a3b8;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+}
+
+.pain-mouth-line {
+  width: 40px;
+  height: 2px;
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 1px;
+}
+
+.pain-chin-piercing {
+  display: flex;
+  justify-content: center;
+}
+
+.chin-rod {
+  width: 26px;
+  height: 5px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #475569 0%, #0f172a 60%, #020617 100%);
+  border: 1px solid #64748b;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.chin-rod::before,
+.chin-rod::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 7px;
+  background: #334155;
+  border: 1px solid #94a3b8;
+  border-radius: 2px;
+}
+.chin-rod::before { left: -2px; }
+.chin-rod::after { right: -2px; }
 
 /* Amaterasu Blood Tear Drip */
 .blood-tear-drop {
@@ -696,6 +896,107 @@ body.pro-dark {
   color: #000;
   border-color: #c084fc;
   box-shadow: 0 0 12px rgba(192, 132, 252, 0.7);
+}
+
+/* Pain HUD Footer & Shinra Tensei Trigger */
+.pain-hud-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 8px;
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.hud-tendo-label {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  color: #ea580c;
+  letter-spacing: 0.08em;
+}
+
+.btn-shinra-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 0 12px rgba(234, 88, 12, 0.4);
+}
+
+.btn-shinra-trigger:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(234, 88, 12, 0.85);
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.btn-shinra-trigger:active {
+  transform: scale(0.96);
+}
+
+/* Gravitational Shinra Tensei Repulsion Shockwave */
+.shinra-shockwave-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99998;
+  overflow: hidden;
+}
+
+.shinra-wave-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.05);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.9), inset 0 0 40px rgba(234, 88, 12, 0.7);
+  opacity: 1;
+  animation: shinraGravitationalBlast 0.9s cubic-bezier(0.12, 0.85, 0.25, 1) forwards;
+}
+
+@keyframes shinraGravitationalBlast {
+  0% {
+    transform: translate(-50%, -50%) scale(0.05);
+    opacity: 1;
+    border-width: 6px;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(32);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+/* Screen Shake effect on Almighty Push */
+body.shinra-shaking {
+  animation: screenViolentShake 0.65s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes screenViolentShake {
+  10%, 90% { transform: translate3d(-3px, 1px, 0); }
+  20%, 80% { transform: translate3d(4px, -2px, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, 3px, 0); }
+  40%, 60% { transform: translate3d(6px, -3px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 /* Crow Canvas (Karasu Bunshin) */
@@ -3461,12 +3762,81 @@ body.susanoo-mode .ambient-radial-primary {
     gap: 8px;
     padding: 8px;
   }
+
+  /* Pain Face Chassis Mobile Optimization */
+  .pain-face-chassis {
+    max-width: 100%;
+    padding-inline: 4px;
+  }
+
+  .pain-headband {
+    max-width: 320px;
+    padding: 6px 10px;
+  }
+
+  .headband-plate {
+    width: 180px;
+    height: 36px;
+  }
+
+  .ame-symbol-wrap {
+    width: 42px;
+    height: 22px;
+  }
+
+  .pain-face-canvas {
+    max-width: 320px;
+    padding: 10px 12px 12px;
+  }
+
+  .eye-chassis {
+    width: 76px;
+    height: 44px;
+  }
+
+  .itachi-iris {
+    width: 38px;
+    height: 38px;
+  }
+
+  .chakra-stud-cluster {
+    gap: 3px 4px;
+    padding: 3px;
+  }
+
+  .chakra-stud {
+    width: 7px;
+    height: 7px;
+  }
+
+  .evo-buttons {
+    justify-content: center;
+  }
 }
 
 /* Very Small Mobile Phones (<= 380px) */
 @media (max-width: 380px) {
   .hero-headline {
     font-size: 1.65rem;
+  }
+
+  .pain-headband, .pain-face-canvas {
+    max-width: 290px;
+  }
+
+  .headband-plate {
+    width: 155px;
+    height: 34px;
+  }
+
+  .eye-chassis {
+    width: 66px;
+    height: 38px;
+  }
+
+  .itachi-iris {
+    width: 32px;
+    height: 32px;
   }
 
   .status-badge, .location-badge {

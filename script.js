@@ -180,6 +180,78 @@
     } catch (e) {}
   }
 
+  // Tendo Pain: Shinra Tensei Gravitational Blast Audio
+  function playShinraAudio() {
+    if (!soundEnabled) return;
+    try {
+      initAudio();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+
+      // 1. Terrifying Sub-Bass Gravitational Drop
+      const sub = audioCtx.createOscillator();
+      const subGain = audioCtx.createGain();
+      sub.type = 'sawtooth';
+      sub.frequency.setValueAtTime(240, now);
+      sub.frequency.exponentialRampToValueAtTime(30, now + 0.7);
+      subGain.gain.setValueAtTime(0.2, now);
+      subGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.75);
+      sub.connect(subGain);
+      subGain.connect(audioCtx.destination);
+      sub.start(now);
+      sub.stop(now + 0.75);
+
+      // 2. High-Frequency Almighty Blast Whistle & Shock
+      const sweep = audioCtx.createOscillator();
+      const sweepGain = audioCtx.createGain();
+      sweep.type = 'sine';
+      sweep.frequency.setValueAtTime(1400, now);
+      sweep.frequency.exponentialRampToValueAtTime(120, now + 0.5);
+      sweepGain.gain.setValueAtTime(0.14, now);
+      sweepGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.55);
+      sweep.connect(sweepGain);
+      sweepGain.connect(audioCtx.destination);
+      sweep.start(now);
+      sweep.stop(now + 0.55);
+
+      // 3. Resonant Body Rumble
+      const rumble = audioCtx.createOscillator();
+      const rumbleGain = audioCtx.createGain();
+      rumble.type = 'triangle';
+      rumble.frequency.setValueAtTime(90, now);
+      rumble.frequency.linearRampToValueAtTime(38, now + 0.9);
+      rumbleGain.gain.setValueAtTime(0.16, now);
+      rumbleGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.9);
+      rumble.connect(rumbleGain);
+      rumbleGain.connect(audioCtx.destination);
+      rumble.start(now);
+      rumble.stop(now + 0.9);
+    } catch (e) {}
+  }
+
+  // Amegakure Metallic Headband Clink Sound
+  function playHeadbandClink() {
+    if (!soundEnabled) return;
+    try {
+      initAudio();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(2600, now);
+      osc.frequency.exponentialRampToValueAtTime(1100, now + 0.25);
+      gain.gain.setValueAtTime(0.09, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    } catch (e) {}
+  }
+
   // Sharingan Evolution SVGs
   const stageTemplates = {
     1: `
@@ -391,6 +463,65 @@
 
   if (rightEyePod) {
     rightEyePod.addEventListener('click', triggerAmaterasu);
+  }
+
+  // =========================================================================
+  // TENDO PAIN: SHINRA TENSEI (ALMIGHTY PUSH) GRAVITATIONAL REPULSION
+  // =========================================================================
+  const btnShinraTensei = document.getElementById('btnShinraTensei');
+  const painHeadband = document.getElementById('painHeadband');
+
+  function triggerShinraTensei() {
+    playShinraAudio();
+
+    // Violent Screen Shake
+    document.body.classList.remove('shinra-shaking');
+    void document.body.offsetWidth; // Reflow
+    document.body.classList.add('shinra-shaking');
+    setTimeout(() => {
+      document.body.classList.remove('shinra-shaking');
+    }, 700);
+
+    // Dynamic Gravitational Shockwave Ripple Ring
+    const shockLayer = document.createElement('div');
+    shockLayer.className = 'shinra-shockwave-container';
+    
+    // Center ripple on Pain HUD if available, else viewport center
+    const chassis = document.getElementById('painFaceChassis');
+    let originX = window.innerWidth / 2;
+    let originY = window.innerHeight * 0.35;
+    if (chassis) {
+      const rect = chassis.getBoundingClientRect();
+      originX = rect.left + rect.width / 2;
+      originY = rect.top + rect.height / 2;
+    }
+
+    const ring = document.createElement('div');
+    ring.className = 'shinra-wave-ring';
+    ring.style.left = `${originX}px`;
+    ring.style.top = `${originY}px`;
+    shockLayer.appendChild(ring);
+    document.body.appendChild(shockLayer);
+
+    setTimeout(() => {
+      shockLayer.remove();
+    }, 1000);
+
+    showToast('💥 神羅天征 • SHINRA TENSEI! "Feel pain, contemplate pain, accept pain, know pain."');
+  }
+
+  if (btnShinraTensei) {
+    btnShinraTensei.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerShinraTensei();
+    });
+  }
+
+  if (painHeadband) {
+    painHeadband.addEventListener('click', () => {
+      playHeadbandClink();
+      triggerShinraTensei();
+    });
   }
 
   // FLOCK OF FLYING CROWS ENGINE (KARASU BUNSHIN CANVAS)
@@ -698,6 +829,8 @@ Daftar perintah yang tersedia:
   • <span class="cmd-highlight">projects</span>   : Repositori karya utama (Web, Android, IoT)
   • <span class="cmd-highlight">skills</span>     : Ringkasan tech stack & framework
   • <span class="cmd-highlight">contact</span>    : Detail WhatsApp, Email, & GitHub
+  • <span class="cmd-highlight">shinra</span>     : Trigger Almighty Push (Shinra Tensei Shockwave)
+  • <span class="cmd-highlight">pain</span>       : Informasi Tendo Pain Yahiko Six Paths chassis
   • <span class="cmd-highlight">sharingan</span>  : Aktifkan Itachi Mangekyou Tsukuyomi Mode
   • <span class="cmd-highlight">matrix</span>     : Trigger animasi digital rain Cyber Matrix
   • <span class="cmd-highlight">clear</span>      : Bersihkan layar terminal
@@ -750,7 +883,12 @@ GitHub     : https://github.com/wongsxs (30+ Repositories)
     }
 
     let res = null;
-    if (cmd === 'sharingan' || cmd === 'tsukuyomi') {
+    if (cmd === 'shinra' || cmd === 'shinratensei') {
+      triggerShinraTensei();
+      res = '<span style="color:#ea580c;font-weight:bold;">[神羅天征 • SHINRA TENSEI ACTIVATED]</span><br>"Kono sekai ni itami o... Feel pain, contemplate pain, accept pain, know pain.<br>Those who do not know pain will never understand true peace.<br><strong style="color:#ff6b00;">ALMIGHTY PUSH!</strong>"<br>Gravitational shockwave dispatched across the sector.';
+    } else if (cmd === 'pain' || cmd === 'yahiko' || cmd === 'tendo') {
+      res = '<span style="color:#ea580c;font-weight:bold;">[TENDO PAIN &bull; THE SIX PATHS OF DEVA]</span><br>&bull; Vessel   : Yahiko (Amegakure Rogue Shinobi)<br>&bull; Receiver : 6 Nose Bridge Chakra Rods, Dual Lip Studs, Chin Bar<br>&bull; Jutsu    : Shinra Tensei (Almighty Push), Bansho Ten\'in (Universal Pull), Chibaku Tensei<br>&bull; Ocular   : Synthesized with Itachi Uchiha\'s Dual Mangekyo Sharingan';
+    } else if (cmd === 'sharingan' || cmd === 'tsukuyomi') {
       triggerKarasuGenjutsu();
       res = tsukuyomiActive 
         ? '<span style="color:#ff0033;font-weight:bold;">[MANGEKYO SHARINGAN AWAKENED]</span> Tsukuyomi Genjutsu is cast. A flock of black crows disperses across the night sky.'
