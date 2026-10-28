@@ -233,6 +233,56 @@
     } catch (e) {}
   }
 
+  // Tendo Pain: Bansho Ten'in Gravitational Suction Audio (Universal Pull)
+  function playBanshoAudio() {
+    if (!soundEnabled) return;
+    try {
+      initAudio();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+
+      // 1. Inward Gravitational Suction Sweep (Low rising to resonant mid)
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      const filter = audioCtx.createBiquadFilter();
+
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(90, now);
+      filter.frequency.exponentialRampToValueAtTime(680, now + 0.65);
+      filter.Q.setValueAtTime(3.8, now);
+
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(50, now);
+      osc.frequency.exponentialRampToValueAtTime(320, now + 0.65);
+
+      gain.gain.setValueAtTime(0.01, now);
+      gain.gain.linearRampToValueAtTime(0.22, now + 0.3);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.75);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.75);
+
+      // 2. High Ethereal Rinnegan Singularity Pulse
+      const highOsc = audioCtx.createOscillator();
+      const highGain = audioCtx.createGain();
+      highOsc.type = 'sine';
+      highOsc.frequency.setValueAtTime(480, now);
+      highOsc.frequency.exponentialRampToValueAtTime(840, now + 0.4);
+      highGain.gain.setValueAtTime(0.08, now);
+      highGain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+
+      highOsc.connect(highGain);
+      highGain.connect(audioCtx.destination);
+      highOsc.start(now);
+      highOsc.stop(now + 0.6);
+    } catch (e) {}
+  }
+
   // Amegakure Metallic Headband Clink Sound
   function playHeadbandClink() {
     if (!soundEnabled) return;
@@ -389,16 +439,19 @@
       </g>
     `,
     6: `
-      <!-- Full Rinnegan Concentric Ripple Circles -->
-      <circle cx="50" cy="50" r="48" fill="#3b0764"/>
-      <circle cx="50" cy="50" r="40" fill="none" stroke="#c084fc" stroke-width="2.2"/>
-      <circle cx="50" cy="50" r="32" fill="none" stroke="#d8b4fe" stroke-width="2.2"/>
-      <circle cx="50" cy="50" r="24" fill="none" stroke="#c084fc" stroke-width="2.2"/>
-      <circle cx="50" cy="50" r="16" fill="none" stroke="#e9d5ff" stroke-width="2.2"/>
-      <circle cx="50" cy="50" r="8" fill="none" stroke="#c084fc" stroke-width="2"/>
-      <g class="sharingan-wheel">
-        <circle cx="50" cy="50" r="4.5" fill="#040406"/>
-      </g>
+      <!-- Full Rinnegan Concentric Ripple Circles with Living Chakra Pulsing Waves -->
+      <radialGradient id="rinneganCoreGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#4c1d95" />
+        <stop offset="50%" stop-color="#2e1065" />
+        <stop offset="100%" stop-color="#0f0728" />
+      </radialGradient>
+      <circle cx="50" cy="50" r="48" fill="url(#rinneganCoreGlow)" class="rinne-base"/>
+      <circle cx="50" cy="50" r="40" fill="none" stroke="#a855f7" stroke-width="2.2" class="rinne-ring ring-5"/>
+      <circle cx="50" cy="50" r="32" fill="none" stroke="#c084fc" stroke-width="2.2" class="rinne-ring ring-4"/>
+      <circle cx="50" cy="50" r="24" fill="none" stroke="#d8b4fe" stroke-width="2.2" class="rinne-ring ring-3"/>
+      <circle cx="50" cy="50" r="16" fill="none" stroke="#e9d5ff" stroke-width="2.2" class="rinne-ring ring-2"/>
+      <circle cx="50" cy="50" r="8" fill="none" stroke="#f3e8ff" stroke-width="2" class="rinne-ring ring-1"/>
+      <circle cx="50" cy="50" r="4" fill="#020108" class="rinne-pupil"/>
     `
   };
 
@@ -419,9 +472,19 @@
       // Hybrid: Left Eye = Rinnegan, Right Eye = Itachi Mangekyo
       if (svgLeftEye) svgLeftEye.innerHTML = stageTemplates[6];
       if (svgRightEye) svgRightEye.innerHTML = stageTemplates[4];
+      leftEyePod?.classList.add('has-rinnegan');
+      rightEyePod?.classList.remove('has-rinnegan');
+    } else if (stageNum === 6) {
+      // Full Six Paths Rinnegan across both eyes
+      if (svgLeftEye) svgLeftEye.innerHTML = stageTemplates[6];
+      if (svgRightEye) svgRightEye.innerHTML = stageTemplates[6];
+      leftEyePod?.classList.add('has-rinnegan');
+      rightEyePod?.classList.add('has-rinnegan');
     } else {
       if (svgLeftEye) svgLeftEye.innerHTML = stageTemplates[stageNum] || stageTemplates[4];
       if (svgRightEye) svgRightEye.innerHTML = stageTemplates[stageNum] || stageTemplates[4];
+      leftEyePod?.classList.remove('has-rinnegan');
+      rightEyePod?.classList.remove('has-rinnegan');
     }
 
     if (currentStageLabel) {
@@ -518,7 +581,13 @@
   }
 
   if (leftEyePod) {
-    leftEyePod.addEventListener('click', triggerKarasuGenjutsu);
+    leftEyePod.addEventListener('click', () => {
+      if (currentStage === 6 || currentStage === 7) {
+        triggerBanshoTenin();
+      } else {
+        triggerKarasuGenjutsu();
+      }
+    });
   }
 
   // RIGHT EYE: AMATERASU BLACK FLAME & BLOOD TEAR
@@ -544,6 +613,67 @@
   }
 
   // =========================================================================
+  // TENDO PAIN: BANSHO TEN'IN (UNIVERSAL PULL) GRAVITATIONAL ATTRACTION
+  // =========================================================================
+  const btnBanshoTenin = document.getElementById('btnBanshoTenin');
+
+  function triggerBanshoTenin() {
+    playBanshoAudio();
+
+    // Elastic attraction recoil on Left Hero Profile Column
+    const heroProfileCol = document.getElementById('heroProfileCol');
+    if (heroProfileCol) {
+      heroProfileCol.classList.remove('bansho-attracted');
+      heroProfileCol.classList.remove('shinra-repulsed');
+      void heroProfileCol.offsetWidth;
+      heroProfileCol.classList.add('bansho-attracted');
+      setTimeout(() => heroProfileCol.classList.remove('bansho-attracted'), 800);
+    }
+
+    // Dynamic Gravitational Suction Inward Ring
+    const vortexLayer = document.createElement('div');
+    vortexLayer.className = 'bansho-vortex-container';
+    
+    const card = document.getElementById('painPortraitCard');
+    let originX = window.innerWidth * 0.7;
+    let originY = window.innerHeight * 0.35;
+    if (card) {
+      const rect = card.getBoundingClientRect();
+      originX = rect.left + rect.width * 0.36;
+      originY = rect.top + rect.height * 0.28;
+    }
+
+    vortexLayer.style.left = `${originX}px`;
+    vortexLayer.style.top = `${originY}px`;
+    vortexLayer.innerHTML = `
+      <div class="bansho-implosion-ring ring-1"></div>
+      <div class="bansho-implosion-ring ring-2"></div>
+      <div class="bansho-implosion-ring ring-3"></div>
+      <div class="bansho-singularity-core"></div>
+    `;
+    document.body.appendChild(vortexLayer);
+
+    leftEyePod?.classList.add('rinnegan-active-jutsu');
+    const cardElem = document.getElementById('painPortraitCard');
+    cardElem?.classList.add('rinnegan-surge');
+
+    setTimeout(() => {
+      vortexLayer.remove();
+      leftEyePod?.classList.remove('rinnegan-active-jutsu');
+      cardElem?.classList.remove('rinnegan-surge');
+    }, 1200);
+
+    showToast('🌀 万象天引 • BANSHO TEN\'IN! "Universal Pull... Gravitational Singularity engaged!"');
+  }
+
+  if (btnBanshoTenin) {
+    btnBanshoTenin.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerBanshoTenin();
+    });
+  }
+
+  // =========================================================================
   // TENDO PAIN: SHINRA TENSEI (ALMIGHTY PUSH) GRAVITATIONAL REPULSION
   // =========================================================================
   const btnShinraTensei = document.getElementById('btnShinraTensei');
@@ -560,16 +690,26 @@
       document.body.classList.remove('shinra-shaking');
     }, 700);
 
+    // Elastic repulsion recoil on Left Hero Profile Column
+    const heroProfileCol = document.getElementById('heroProfileCol');
+    if (heroProfileCol) {
+      heroProfileCol.classList.remove('shinra-repulsed');
+      heroProfileCol.classList.remove('bansho-attracted');
+      void heroProfileCol.offsetWidth;
+      heroProfileCol.classList.add('shinra-repulsed');
+      setTimeout(() => heroProfileCol.classList.remove('shinra-repulsed'), 800);
+    }
+
     // Dynamic Gravitational Shockwave Ripple Ring
     const shockLayer = document.createElement('div');
     shockLayer.className = 'shinra-shockwave-container';
     
-    // Center ripple on Pain HUD if available, else viewport center
-    const chassis = document.getElementById('painFaceChassis');
+    // Center ripple on Pain Portrait Card if available, else viewport center
+    const card = document.getElementById('painPortraitCard');
     let originX = window.innerWidth / 2;
     let originY = window.innerHeight * 0.35;
-    if (chassis) {
-      const rect = chassis.getBoundingClientRect();
+    if (card) {
+      const rect = card.getBoundingClientRect();
       originX = rect.left + rect.width / 2;
       originY = rect.top + rect.height / 2;
     }
@@ -618,6 +758,15 @@
       document.body.classList.remove('shinra-shaking');
     }, 900);
 
+    // Elastic attraction recoil on Left Hero Profile Column
+    const heroProfileCol = document.getElementById('heroProfileCol');
+    if (heroProfileCol) {
+      heroProfileCol.classList.remove('bansho-attracted');
+      void heroProfileCol.offsetWidth;
+      heroProfileCol.classList.add('bansho-attracted');
+      setTimeout(() => heroProfileCol.classList.remove('bansho-attracted'), 1400);
+    }
+
     // Chibaku Singularity Overlay
     const overlay = document.createElement('div');
     overlay.className = 'chibaku-overlay-container';
@@ -629,14 +778,31 @@
     document.body.appendChild(overlay);
 
     rinneganPod?.classList.add('active-jutsu');
+    leftEyePod?.classList.add('rinnegan-active-jutsu');
 
     setTimeout(() => {
       overlay.remove();
       rinneganPod?.classList.remove('active-jutsu');
+      leftEyePod?.classList.remove('rinnegan-active-jutsu');
     }, 2400);
 
     showToast('🪐 地爆天星 • CHIBAKU TENSEI! "My pain is far greater than yours... Planetary Devastation!"');
   }
+
+  // CTA Buttons Eye Glance Tracking Physics
+  const heroActionBtns = document.querySelectorAll('.hero-actions .pro-btn');
+  heroActionBtns.forEach((btn) => {
+    btn.addEventListener('mouseenter', () => {
+      const rect = btn.getBoundingClientRect();
+      const targetX = rect.left + rect.width / 2;
+      const targetY = rect.top + rect.height / 2;
+      trackDualEyes(targetX, targetY);
+      svgLeftEye?.classList.add('rinne-glance-pulse');
+    });
+    btn.addEventListener('mouseleave', () => {
+      svgLeftEye?.classList.remove('rinne-glance-pulse');
+    });
+  });
 
   if (btnChibakuTensei) {
     btnChibakuTensei.addEventListener('click', (e) => {
@@ -956,6 +1122,7 @@ Daftar perintah yang tersedia:
   • <span class="cmd-highlight">projects</span>   : Repositori karya utama (Web, Android, IoT)
   • <span class="cmd-highlight">skills</span>     : Ringkasan tech stack & framework
   • <span class="cmd-highlight">contact</span>    : Detail WhatsApp, Email, & GitHub
+  • <span class="cmd-highlight">bansho</span>     : Trigger Universal Pull (Bansho Ten'in Inward Singularity)
   • <span class="cmd-highlight">shinra</span>     : Trigger Almighty Push (Shinra Tensei Shockwave)
   • <span class="cmd-highlight">chibaku</span>    : Trigger Planetary Devastation (Chibaku Tensei Singularity)
   • <span class="cmd-highlight">rinnegan</span>   : Awaken Sacred Rinnegan (Six Paths Stage VI)
@@ -1012,7 +1179,10 @@ GitHub     : https://github.com/wongsxs (30+ Repositories)
     }
 
     let res = null;
-    if (cmd === 'shinra' || cmd === 'shinratensei') {
+    if (cmd === 'bansho' || cmd === 'banshotenin') {
+      triggerBanshoTenin();
+      res = '<span style="color:#c084fc;font-weight:bold;">[万象天引 • BANSHO TEN\'IN ACTIVATED]</span><br>"Universal Pull engaged... All target coordinates drawn into the gravimetric center of the Rinnegan."';
+    } else if (cmd === 'shinra' || cmd === 'shinratensei') {
       triggerShinraTensei();
       res = '<span style="color:#ea580c;font-weight:bold;">[神羅天征 • SHINRA TENSEI ACTIVATED]</span><br>"Kono sekai ni itami o... Feel pain, contemplate pain, accept pain, know pain.<br>Those who do not know pain will never understand true peace.<br><strong style="color:#ff6b00;">ALMIGHTY PUSH!</strong>"<br>Gravitational shockwave dispatched across the sector.';
     } else if (cmd === 'chibaku' || cmd === 'chibakutensei') {

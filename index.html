@@ -109,194 +109,210 @@
     <section id="hero" class="hero-section">
       <div class="content-container">
         
-        <!-- TENDO PAIN AUTHENTIC ANIME PORTRAIT OCULAR ENGINE -->
-        <div class="pain-portrait-container">
-          <div class="pain-portrait-card" id="painPortraitCard">
+        <!-- HERO 2-COLUMN SPLIT GRID: DEVELOPER PROFILE & TENDO PAIN OCULAR PERSONA -->
+        <div class="hero-split-grid">
+
+          <!-- LEFT COLUMN: Professional Developer Profile & CTA -->
+          <div class="hero-profile-col" id="heroProfileCol">
             
-            <!-- Top HUD Badge Bar -->
-            <div class="portrait-hud-header">
-              <div class="clan-badge-group">
-                <span class="hud-clan-dot"></span>
-                <span class="hud-clan-badge">TENDO PAIN &bull; SIX PATHS</span>
+            <div class="hero-badge-row">
+              <div class="status-badge" data-magnetic>
+                <span class="pulsing-radar"></span>
+                <span>OPEN FOR SOFTWARE INTERNSHIP &bull; SEMESTER 5</span>
               </div>
-              <span id="currentStageLabel" class="hud-stage-badge">HYBRID &bull; RINNE-SHARINGAN</span>
+              <div class="location-badge" data-magnetic>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Kebumen / Remote ID</span>
+              </div>
             </div>
 
-            <!-- The Authentic Anime Face Portrait Frame (from user) -->
-            <div class="pain-portrait-frame" id="painHeadband" title="Tendo Pain (Yahiko) • Klik untuk SHINRA TENSEI!">
-              
-              <!-- Layer 1: Left Eye & Right Eye Ocular Engine (BEHIND THE FACE) -->
-              <div class="portrait-eye-pod eye-left" id="leftEyePod" title="Mata Kiri: Tsukuyomi / Rinnegan • Klik untuk memicu Jutsu">
-                <div class="portrait-eye-socket">
-                  <div class="portrait-sclera">
-                    <div class="itachi-iris iris-left" id="irisLeft">
-                      <div class="iris-glow-ring"></div>
-                      <svg class="sharingan-svg" viewBox="0 0 100 100" id="svgLeftEye">
-                        <!-- Injected by JS -->
-                      </svg>
-                    </div>
-                  </div>
+            <h1 class="hero-headline">
+              Hi, I'm <span class="text-glow">Tri Wahyudi</span>.<br>
+              <span class="typing-headline">
+                I engineer <span id="typingDynamicText" class="dynamic-word">Full-Stack Web Systems</span><span class="typing-cursor">|</span>
+              </span>
+            </h1>
+
+            <p class="hero-bio">
+              Mahasiswa S1 Teknik Informatika (21 Tahun) yang berfokus pada <strong>rekayasa perangkat lunak terstruktur</strong>: arsitektur web skala penuh berbasis Laravel/PHP, aplikasi mobile Android Kotlin native, perancangan database relasional terindeks, hingga komunikasi firmware mikrokontroler ESP32.
+            </p>
+
+            <!-- Dynamic Live Metrics Strip -->
+            <div class="metrics-dashboard">
+              <div class="metric-card" data-tilt>
+                <div class="metric-icon-wrap blue">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                </div>
+                <div>
+                  <span class="metric-val" data-counter="32">32+</span>
+                  <span class="metric-desc">Repositori GitHub</span>
                 </div>
               </div>
 
-              <div class="portrait-eye-pod eye-right" id="rightEyePod" title="Mata Kanan: Amaterasu • Klik untuk Api Hitam">
-                <div class="portrait-eye-socket">
-                  <div class="portrait-sclera">
-                    <div class="itachi-iris iris-right" id="irisRight">
-                      <div class="iris-glow-ring"></div>
-                      <svg class="sharingan-svg" viewBox="0 0 100 100" id="svgRightEye">
-                        <!-- Injected by JS -->
-                      </svg>
-                    </div>
-                  </div>
+              <div class="metric-card" data-tilt>
+                <div class="metric-icon-wrap green">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <span class="metric-val">S1 TI</span>
+                  <span class="metric-desc">Semester 5 (21 Th)</span>
                 </div>
               </div>
 
-              <!-- Layer 2: Transparent Hollow-Eyed Pain Portrait PNG (FOREGROUND) -->
-              <img src="assets/pain-face.png" alt="Tendo Pain Yahiko" class="pain-base-img" />
+              <div class="metric-card" data-tilt>
+                <div class="metric-icon-wrap amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                </div>
+                <div>
+                  <span class="metric-val" data-counter="6">6+</span>
+                  <span class="metric-desc">Sistem Produksi Rilis</span>
+                </div>
+              </div>
 
-              <!-- Layer 3: Jutsu Effects Overlays (Blinking Eyelids & Amaterasu Blood Tear) -->
-              <div class="eyelid-overlay eyelid-left"></div>
-              <div class="eyelid-overlay eyelid-right"></div>
-              <div class="blood-tear-drop" id="bloodTearDrop"></div>
-
-            </div>
-
-            <!-- Sharingan & Rinnegan Evolution Stage Selector -->
-            <div class="evolution-selector-bar">
-              <span class="evo-label">OCULAR STAGE:</span>
-              <div class="evo-buttons" id="evoButtonContainer">
-                <button class="evo-btn" data-stage="1" title="1-Tomoe Sharingan">1-Tomoe</button>
-                <button class="evo-btn" data-stage="2" title="2-Tomoe Sharingan">2-Tomoe</button>
-                <button class="evo-btn" data-stage="3" title="3-Tomoe Sharingan">3-Tomoe</button>
-                <button class="evo-btn" data-stage="4" title="Itachi Mangekyou Sharingan">Mangekyo</button>
-                <button class="evo-btn susanoo-btn" data-stage="5" title="Susanoo Flame Mode">Susanoo</button>
-                <button class="evo-btn rinnegan-btn" data-stage="6" title="Six Paths Rinnegan (Asli Pain)">Rinnegan</button>
-                <button class="evo-btn hybrid-btn active" data-stage="7" title="Hybrid: Rinnegan Kiri + Sharingan Kanan">Hybrid</button>
+              <div class="metric-card" data-tilt>
+                <div class="metric-icon-wrap purple">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                    <rect x="9" y="9" width="6" height="6"></rect>
+                    <line x1="9" y1="1" x2="9" y2="4"></line>
+                    <line x1="15" y1="1" x2="15" y2="4"></line>
+                  </svg>
+                </div>
+                <div>
+                  <span class="metric-val">115.2k</span>
+                  <span class="metric-desc">UART Telemetry Baud</span>
+                </div>
               </div>
             </div>
 
-            <!-- Pain Quick Action Triggers: Shinra Tensei & Chibaku Tensei -->
-            <div class="pain-hud-footer">
-              <span class="hud-tendo-label">DEVA PATH &bull; YAHIKO</span>
-              <div class="pain-action-buttons">
-                <button id="btnShinraTensei" class="btn-shinra-trigger" title="Almighty Push! (Shinra Tensei)">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                  <span>SHINRA TENSEI</span>
-                </button>
-                <button id="btnChibakuTensei" class="btn-chibaku-trigger" title="Planetary Devastation! (Chibaku Tensei)">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v6m0 6v6M3 12h6m6 0h6"/></svg>
-                  <span>CHIBAKU TENSEI</span>
-                </button>
+            <!-- Action CTAs -->
+            <div class="hero-actions">
+              <a href="#projects" class="pro-btn pro-btn-primary" data-magnetic>
+                <span>Eksplorasi Karya Utama</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+              </a>
+              <a href="#terminal" class="pro-btn pro-btn-terminal" data-magnetic>
+                <span class="btn-prompt-icon">&gt;_</span>
+                <span>Buka Interactive CLI</span>
+              </a>
+              <button id="heroCopyEmailBtn" class="pro-btn pro-btn-glass" data-magnetic>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Salin Email</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Authentic Tendo Pain Anime Ocular Persona -->
+          <div class="hero-persona-col">
+            <div class="pain-portrait-container">
+              <div class="pain-portrait-card" id="painPortraitCard">
+                
+                <!-- Top HUD Badge Bar -->
+                <div class="portrait-hud-header">
+                  <div class="clan-badge-group">
+                    <span class="hud-clan-dot"></span>
+                    <span class="hud-clan-badge">TENDO PAIN &bull; SIX PATHS</span>
+                  </div>
+                  <span id="currentStageLabel" class="hud-stage-badge">HYBRID &bull; RINNE-SHARINGAN</span>
+                </div>
+
+                <!-- The Authentic Anime Face Portrait Frame (from user) -->
+                <div class="pain-portrait-frame" id="painHeadband" title="Tendo Pain (Yahiko) • Klik untuk SHINRA TENSEI!">
+                  
+                  <!-- Layer 1: Left Eye & Right Eye Ocular Engine (BEHIND THE FACE) -->
+                  <div class="portrait-eye-pod eye-left" id="leftEyePod" title="Mata Kiri: Rinnegan • Klik untuk BANSHO TEN'IN!">
+                    <div class="portrait-eye-socket">
+                      <div class="portrait-sclera">
+                        <div class="itachi-iris iris-left" id="irisLeft">
+                          <div class="iris-glow-ring"></div>
+                          <svg class="sharingan-svg" viewBox="0 0 100 100" id="svgLeftEye">
+                            <!-- Injected by JS -->
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="portrait-eye-pod eye-right" id="rightEyePod" title="Mata Kanan: Amaterasu • Klik untuk Api Hitam">
+                    <div class="portrait-eye-socket">
+                      <div class="portrait-sclera">
+                        <div class="itachi-iris iris-right" id="irisRight">
+                          <div class="iris-glow-ring"></div>
+                          <svg class="sharingan-svg" viewBox="0 0 100 100" id="svgRightEye">
+                            <!-- Injected by JS -->
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Layer 2: Transparent Hollow-Eyed Pain Portrait PNG (FOREGROUND) -->
+                  <img src="assets/pain-face.png" alt="Tendo Pain Yahiko" class="pain-base-img" />
+
+                  <!-- Layer 3: Jutsu Effects Overlays (Blinking Eyelids & Amaterasu Blood Tear) -->
+                  <div class="eyelid-overlay eyelid-left"></div>
+                  <div class="eyelid-overlay eyelid-right"></div>
+                  <div class="blood-tear-drop" id="bloodTearDrop"></div>
+
+                </div>
+
+                <!-- Sharingan & Rinnegan Evolution Stage Selector -->
+                <div class="evolution-selector-bar">
+                  <span class="evo-label">OCULAR STAGE:</span>
+                  <div class="evo-buttons" id="evoButtonContainer">
+                    <button class="evo-btn" data-stage="1" title="1-Tomoe Sharingan">1-Tomoe</button>
+                    <button class="evo-btn" data-stage="2" title="2-Tomoe Sharingan">2-Tomoe</button>
+                    <button class="evo-btn" data-stage="3" title="3-Tomoe Sharingan">3-Tomoe</button>
+                    <button class="evo-btn" data-stage="4" title="Itachi Mangekyou Sharingan">Mangekyo</button>
+                    <button class="evo-btn susanoo-btn" data-stage="5" title="Susanoo Flame Mode">Susanoo</button>
+                    <button class="evo-btn rinnegan-btn" data-stage="6" title="Six Paths Rinnegan (Asli Pain)">Rinnegan</button>
+                    <button class="evo-btn hybrid-btn active" data-stage="7" title="Hybrid: Rinnegan Kiri + Sharingan Kanan">Hybrid</button>
+                  </div>
+                </div>
+
+                <!-- Pain Quick Action Triggers: Bansho Ten'in, Shinra Tensei & Chibaku Tensei -->
+                <div class="pain-hud-footer">
+                  <span class="hud-tendo-label">DEVA PATH &bull; YAHIKO</span>
+                  <div class="pain-action-buttons">
+                    <button id="btnBanshoTenin" class="btn-bansho-trigger" title="Universal Pull! (Bansho Ten'in)">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+                      <span>BANSHO TEN'IN</span>
+                    </button>
+                    <button id="btnShinraTensei" class="btn-shinra-trigger" title="Almighty Push! (Shinra Tensei)">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+                      <span>SHINRA TENSEI</span>
+                    </button>
+                    <button id="btnChibakuTensei" class="btn-chibaku-trigger" title="Planetary Devastation! (Chibaku Tensei)">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v6m0 6v6M3 12h6m6 0h6"/></svg>
+                      <span>CHIBAKU</span>
+                    </button>
+                  </div>
+                </div>
+
               </div>
             </div>
-
-          </div>
-        </div>
-
-        <div class="hero-badge-row">
-          <div class="status-badge" data-magnetic>
-            <span class="pulsing-radar"></span>
-            <span>OPEN FOR SOFTWARE INTERNSHIP &bull; SEMESTER 5</span>
-          </div>
-          <div class="location-badge" data-magnetic>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            <span>Kebumen / Remote ID</span>
-          </div>
-        </div>
-
-        <h1 class="hero-headline">
-          Hi, I'm <span class="text-glow">Tri Wahyudi</span>.<br>
-          <span class="typing-headline">
-            I engineer <span id="typingDynamicText" class="dynamic-word">Full-Stack Web Systems</span><span class="typing-cursor">|</span>
-          </span>
-        </h1>
-
-        <p class="hero-bio">
-          Mahasiswa S1 Teknik Informatika (21 Tahun) yang berfokus pada <strong>rekayasa perangkat lunak terstruktur</strong>: arsitektur web skala penuh berbasis Laravel/PHP, aplikasi mobile Android Kotlin native, perancangan database relasional terindeks, hingga komunikasi firmware mikrokontroler ESP32.
-        </p>
-
-        <!-- Dynamic Live Metrics Strip -->
-        <div class="metrics-dashboard">
-          <div class="metric-card" data-tilt>
-            <div class="metric-icon-wrap blue">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-              </svg>
-            </div>
-            <div>
-              <span class="metric-val" data-counter="32">32+</span>
-              <span class="metric-desc">Repositori GitHub</span>
-            </div>
           </div>
 
-          <div class="metric-card" data-tilt>
-            <div class="metric-icon-wrap green">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                <polyline points="2 17 12 22 22 17"></polyline>
-                <polyline points="2 12 12 17 22 12"></polyline>
-              </svg>
-            </div>
-            <div>
-              <span class="metric-val">S1 TI</span>
-              <span class="metric-desc">Semester 5 (21 Th)</span>
-            </div>
-          </div>
-
-          <div class="metric-card" data-tilt>
-            <div class="metric-icon-wrap amber">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
-            </div>
-            <div>
-              <span class="metric-val" data-counter="6">6+</span>
-              <span class="metric-desc">Sistem Produksi Rilis</span>
-            </div>
-          </div>
-
-          <div class="metric-card" data-tilt>
-            <div class="metric-icon-wrap purple">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                <rect x="9" y="9" width="6" height="6"></rect>
-                <line x1="9" y1="1" x2="9" y2="4"></line>
-                <line x1="15" y1="1" x2="15" y2="4"></line>
-              </svg>
-            </div>
-            <div>
-              <span class="metric-val">115.2k</span>
-              <span class="metric-desc">UART Telemetry Baud</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Action CTAs -->
-        <div class="hero-actions">
-          <a href="#projects" class="pro-btn pro-btn-primary" data-magnetic>
-            <span>Eksplorasi Karya Utama</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <polyline points="19 12 12 19 5 12"></polyline>
-            </svg>
-          </a>
-          <a href="#terminal" class="pro-btn pro-btn-terminal" data-magnetic>
-            <span class="btn-prompt-icon">&gt;_</span>
-            <span>Buka Interactive CLI</span>
-          </a>
-          <button id="heroCopyEmailBtn" class="pro-btn pro-btn-glass" data-magnetic>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            <span>Salin Email</span>
-          </button>
         </div>
 
       </div>
