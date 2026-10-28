@@ -373,47 +373,130 @@ body.pro-dark {
   z-index: 10;
 }
 
+.pain-head-silhouette,
 .pain-face-chassis,
 .itachi-visor-hud {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 390px;
+  max-width: 410px;
   width: 100%;
   position: relative;
-  transition: transform var(--transition-smooth);
+  filter: drop-shadow(0 14px 35px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 22px rgba(234, 88, 12, 0.22));
+  transition: transform var(--transition-smooth), filter var(--transition-smooth);
 }
 
-/* Pain's Orange Spiky Hair Highlights */
-.pain-hair-fringe {
+.pain-head-silhouette:hover {
+  filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 30px rgba(249, 115, 22, 0.35));
+}
+
+/* 1. Voluminous Spiky Orange Hair Crown (Top Crest) */
+.pain-hair-crown {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 6px;
-  width: 100%;
-  height: 26px;
-  margin-bottom: -3px;
+  gap: 5px;
+  width: 90%;
+  height: 48px;
+  margin-bottom: -5px;
   position: relative;
   z-index: 1;
 }
 
-.hair-spike {
-  background: linear-gradient(180deg, #ff6b00 0%, #ea580c 55%, #c2410c 100%);
-  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.65));
-  border-radius: 4px 4px 0 0;
+.hair-spike.h-top {
+  background: linear-gradient(180deg, #ff7a00 0%, #ea580c 55%, #9a3412 100%);
+  filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.7));
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  border-radius: 4px 4px 0 0;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.hair-spike.hs-1 { width: 32px; height: 22px; transform: rotate(-18deg) translateY(4px); }
-.hair-spike.hs-2 { width: 40px; height: 28px; transform: rotate(-8deg) translateY(1px); }
-.hair-spike.hs-3 { width: 46px; height: 32px; transform: rotate(0deg) translateY(-2px); }
-.hair-spike.hs-4 { width: 40px; height: 28px; transform: rotate(8deg) translateY(1px); }
-.hair-spike.hs-5 { width: 32px; height: 22px; transform: rotate(18deg) translateY(4px); }
+.h-top.h-t1 { width: 34px; height: 32px; transform: rotate(-22deg) translateY(6px); }
+.h-top.h-t2 { width: 38px; height: 42px; transform: rotate(-13deg) translateY(3px); }
+.h-top.h-t3 { width: 44px; height: 48px; transform: rotate(-4deg) translateY(0); }
+.h-top.h-t4 { width: 48px; height: 54px; transform: rotate(0deg) translateY(-4px); }
+.h-top.h-t5 { width: 44px; height: 48px; transform: rotate(4deg) translateY(0); }
+.h-top.h-t6 { width: 38px; height: 42px; transform: rotate(13deg) translateY(3px); }
+.h-top.h-t7 { width: 34px; height: 32px; transform: rotate(22deg) translateY(6px); }
 
-.pain-face-chassis:hover .hair-spike {
-  filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.95));
-  transform: translateY(-2px);
+.pain-head-silhouette:hover .hair-spike.h-top {
+  filter: drop-shadow(0 0 14px rgba(255, 122, 0, 0.95));
+}
+
+/* 2. Side Spiky Hair Flaring Left & Right */
+.pain-hair-side {
+  position: absolute;
+  top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.pain-hair-side.left { left: 4px; align-items: flex-start; }
+.pain-hair-side.right { right: 4px; align-items: flex-end; }
+
+.hair-spike.h-side {
+  background: linear-gradient(180deg, #ff7a00 0%, #ea580c 60%, #9a3412 100%);
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.65));
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  border-radius: 3px;
+}
+
+.pain-hair-side.left .h-s1 { width: 28px; height: 36px; transform: rotate(-45deg); }
+.pain-hair-side.left .h-s2 { width: 32px; height: 44px; transform: rotate(-65deg); margin-left: -5px; }
+.pain-hair-side.left .h-s3 { width: 26px; height: 38px; transform: rotate(-80deg); margin-left: -8px; }
+
+.pain-hair-side.right .h-s4 { width: 28px; height: 36px; transform: rotate(45deg); }
+.pain-hair-side.right .h-s5 { width: 32px; height: 44px; transform: rotate(65deg); margin-right: -5px; }
+.pain-hair-side.right .h-s6 { width: 26px; height: 38px; transform: rotate(80deg); margin-right: -8px; }
+
+/* 3. Stylized Anime Ears with 7 Black Chakra Receivers Each */
+.pain-ear {
+  position: absolute;
+  top: 105px;
+  width: 22px;
+  height: 82px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.pain-ear.left { left: 14px; }
+.pain-ear.right { right: 14px; }
+
+.ear-contour {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1e2230 0%, #0d0f16 100%);
+  border: 1.5px solid rgba(249, 115, 22, 0.35);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.pain-ear.left .ear-contour {
+  border-radius: 20px 6px 6px 24px;
+  align-items: flex-start;
+  padding-left: 2px;
+  box-shadow: -3px 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.pain-ear.right .ear-contour {
+  border-radius: 6px 20px 24px 6px;
+  align-items: flex-end;
+  padding-right: 2px;
+  box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.ear-ring {
+  width: 6px;
+  height: 4px;
+  border-radius: 2px;
+  background: #0f172a;
+  border: 1px solid #94a3b8;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
 }
 
 /* Amegakure Rogue Slashed Forehead Protector (Hitai-ate) */
@@ -505,21 +588,47 @@ body.pro-dark {
   filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.9));
 }
 
-/* Pain Visor & Face Plate Canvas */
+/* 4. Forehead Hair Bangs Overlapping Top of Headband */
+.pain-hair-bangs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  width: 220px;
+  height: 16px;
+  margin-top: -6px;
+  margin-bottom: -10px;
+  position: relative;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.bang-spike {
+  background: linear-gradient(180deg, #ea580c 0%, #ff7a00 65%, #c2410c 100%);
+  clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.85));
+}
+
+.bang-spike.b-1 { width: 18px; height: 18px; transform: rotate(-8deg); }
+.bang-spike.b-2 { width: 22px; height: 24px; transform: rotate(-3deg); }
+.bang-spike.b-3 { width: 20px; height: 22px; transform: rotate(4deg); }
+.bang-spike.b-4 { width: 16px; height: 16px; transform: rotate(8deg); }
+
+/* 5. TAPERED ANIME JAWLINE FACE CANVAS (NOT A BOX!) */
 .pain-face-canvas {
-  background: radial-gradient(ellipse at 50% 15%, rgba(22, 24, 34, 0.96) 0%, rgba(9, 10, 15, 0.98) 100%);
-  border: 1px solid rgba(249, 115, 22, 0.28);
+  background: radial-gradient(ellipse at 50% 15%, rgba(26, 29, 42, 0.98) 0%, rgba(10, 11, 18, 0.99) 100%);
+  border: 1.5px solid rgba(249, 115, 22, 0.35);
   border-top: none;
-  border-radius: 0 0 20px 20px;
-  padding: 12px 18px 14px;
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.85), 0 0 24px rgba(249, 115, 22, 0.1);
+  /* Sculpted Anime V-Jawline with Sharp Chin Point */
+  clip-path: polygon(0% 0%, 100% 0%, 97% 20%, 91% 52%, 80% 78%, 64% 94%, 50% 100%, 36% 94%, 20% 78%, 9% 52%, 3% 20%);
+  padding: 14px 22px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   width: 100%;
-  max-width: 370px;
+  max-width: 360px;
   position: relative;
+  z-index: 5;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -532,6 +641,70 @@ body.pro-dark {
   right: 10%;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.6), transparent);
+}
+
+/* 6. FOREHEAD THIRD EYE: SACRED RINNEGAN */
+.pain-third-eye-pod {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform var(--transition-fast);
+  margin-top: -2px;
+  margin-bottom: 2px;
+}
+
+.pain-third-eye-pod:hover {
+  transform: scale(1.08);
+}
+
+.rinne-tag {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #c084fc;
+  text-shadow: 0 0 8px rgba(192, 132, 252, 0.8);
+  transition: color var(--transition-fast);
+}
+
+.rinne-socket {
+  width: 66px;
+  height: 36px;
+  border-radius: 40px / 20px;
+  background: #06020c;
+  border: 2px solid rgba(192, 132, 252, 0.7);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.55), inset 0 0 10px rgba(0, 0, 0, 0.95);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+
+.pain-third-eye-pod:hover .rinne-socket,
+.pain-third-eye-pod.active-jutsu .rinne-socket {
+  border-color: #d8b4fe;
+  box-shadow: 0 0 30px rgba(192, 132, 252, 0.9), inset 0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+.iris-rinnegan {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.8);
+  transition: transform 0.05s ease-out;
+  pointer-events: none;
+}
+
+.rinnegan-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .visor-top-bar {
@@ -898,7 +1071,23 @@ body.pro-dark {
   box-shadow: 0 0 12px rgba(192, 132, 252, 0.7);
 }
 
-/* Pain HUD Footer & Shinra Tensei Trigger */
+.evo-btn.rinnegan-btn {
+  border-color: rgba(192, 132, 252, 0.45);
+}
+
+.evo-btn.rinnegan-btn:hover {
+  background: rgba(192, 132, 252, 0.15);
+  color: #d8b4fe;
+}
+
+.evo-btn.rinnegan-btn.active {
+  background: #a855f7;
+  color: #ffffff;
+  border-color: #a855f7;
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.85);
+}
+
+/* Pain HUD Footer & Jutsu Action Triggers */
 .pain-hud-footer {
   display: flex;
   align-items: center;
@@ -909,6 +1098,7 @@ body.pro-dark {
   background: rgba(0, 0, 0, 0.45);
   border-radius: 8px;
   border: 1px solid rgba(249, 115, 22, 0.2);
+  gap: 8px;
 }
 
 .hud-tendo-label {
@@ -917,24 +1107,33 @@ body.pro-dark {
   font-weight: 700;
   color: #ea580c;
   letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.pain-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .btn-shinra-trigger {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 3px 10px;
+  padding: 3px 9px;
   border-radius: var(--radius-pill);
   font-family: var(--font-mono);
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   cursor: pointer;
   transition: all var(--transition-fast);
-  box-shadow: 0 0 12px rgba(234, 88, 12, 0.4);
+  box-shadow: 0 0 10px rgba(234, 88, 12, 0.4);
+  white-space: nowrap;
 }
 
 .btn-shinra-trigger:hover {
@@ -945,6 +1144,87 @@ body.pro-dark {
 
 .btn-shinra-trigger:active {
   transform: scale(0.96);
+}
+
+.btn-chibaku-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.45);
+  white-space: nowrap;
+}
+
+.btn-chibaku-trigger:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.85);
+  background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+}
+
+.btn-chibaku-trigger:active {
+  transform: scale(0.96);
+}
+
+/* Chibaku Tensei Planetary Devastation Black Hole Singularity */
+.chibaku-overlay-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(circle, rgba(59, 7, 100, 0.5) 0%, rgba(0, 0, 0, 0.75) 80%);
+  animation: chibakuFade 2.4s ease forwards;
+}
+
+@keyframes chibakuFade {
+  0% { opacity: 0; }
+  12% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.chibaku-core-sphere {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #020617 0%, #000000 60%, #3b0764 100%);
+  box-shadow: 0 0 70px rgba(168, 85, 247, 0.95), 0 0 130px rgba(192, 132, 252, 0.6), inset 0 0 30px #a855f7;
+  position: relative;
+  animation: chibakuSingularity 2.4s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes chibakuSingularity {
+  0% { transform: scale(0.05) rotate(0deg); }
+  35% { transform: scale(1.25) rotate(180deg); }
+  65% { transform: scale(1) rotate(360deg); }
+  100% { transform: scale(0.02) rotate(540deg); }
+}
+
+.chibaku-accretion-ring {
+  position: absolute;
+  inset: -25px;
+  border-radius: 50%;
+  border: 3px dashed rgba(216, 180, 254, 0.85);
+  box-shadow: 0 0 35px rgba(168, 85, 247, 0.9);
+  animation: spinRing 2s linear infinite;
+}
+
+@keyframes spinRing {
+  from { transform: rotate(0deg) scale(1); }
+  to { transform: rotate(360deg) scale(1.12); }
 }
 
 /* Gravitational Shinra Tensei Repulsion Shockwave */
@@ -3763,40 +4043,60 @@ body.susanoo-mode .ambient-radial-primary {
     padding: 8px;
   }
 
-  /* Pain Face Chassis Mobile Optimization */
+  /* Pain Anime Head Mobile Optimization */
+  .pain-head-silhouette,
   .pain-face-chassis {
     max-width: 100%;
-    padding-inline: 4px;
+    padding-inline: 2px;
   }
 
+  .pain-hair-crown {
+    height: 38px;
+  }
+
+  .hair-spike.h-top {
+    transform: scale(0.85);
+  }
+
+  .pain-hair-side.left { left: -2px; transform: scale(0.85); }
+  .pain-hair-side.right { right: -2px; transform: scale(0.85); }
+
+  .pain-ear.left { left: 4px; }
+  .pain-ear.right { right: 4px; }
+
   .pain-headband {
-    max-width: 320px;
+    max-width: 310px;
     padding: 6px 10px;
   }
 
   .headband-plate {
-    width: 180px;
+    width: 175px;
     height: 36px;
   }
 
   .ame-symbol-wrap {
-    width: 42px;
+    width: 40px;
     height: 22px;
   }
 
   .pain-face-canvas {
-    max-width: 320px;
-    padding: 10px 12px 12px;
+    max-width: 310px;
+    padding: 10px 14px 22px;
+  }
+
+  .pain-third-eye-pod .rinne-socket {
+    width: 58px;
+    height: 32px;
   }
 
   .eye-chassis {
-    width: 76px;
-    height: 44px;
+    width: 74px;
+    height: 42px;
   }
 
   .itachi-iris {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
   }
 
   .chakra-stud-cluster {
@@ -3810,6 +4110,15 @@ body.susanoo-mode .ambient-radial-primary {
   }
 
   .evo-buttons {
+    justify-content: center;
+  }
+
+  .pain-hud-footer {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .pain-action-buttons {
     justify-content: center;
   }
 }

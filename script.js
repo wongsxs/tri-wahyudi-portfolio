@@ -93,13 +93,16 @@
   // =========================================================================
   const irisLeft = document.getElementById('irisLeft');
   const irisRight = document.getElementById('irisRight');
+  const irisRinnegan = document.getElementById('irisRinnegan');
   const leftEyePod = document.getElementById('leftEyePod');
   const rightEyePod = document.getElementById('rightEyePod');
+  const rinneganPod = document.getElementById('rinneganPod');
   const bloodTearDrop = document.getElementById('bloodTearDrop');
   const currentStageLabel = document.getElementById('currentStageLabel');
   const evoButtons = document.querySelectorAll('.evo-btn');
   const svgLeftEye = document.getElementById('svgLeftEye');
   const svgRightEye = document.getElementById('svgRightEye');
+  const svgRinnegan = document.getElementById('svgRinnegan');
   const crowCanvas = document.getElementById('crowCanvas');
 
   let currentStage = 4; // Default Mangekyo
@@ -252,6 +255,57 @@
     } catch (e) {}
   }
 
+  // Tendo Pain / Nagato: Chibaku Tensei Planetary Devastation Audio
+  function playChibakuAudio() {
+    if (!soundEnabled) return;
+    try {
+      initAudio();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+
+      // 1. Gravitational Singularity Charge Drone
+      const drone = audioCtx.createOscillator();
+      const droneGain = audioCtx.createGain();
+      drone.type = 'sawtooth';
+      drone.frequency.setValueAtTime(60, now);
+      drone.frequency.exponentialRampToValueAtTime(170, now + 0.6);
+      drone.frequency.exponentialRampToValueAtTime(32, now + 1.3);
+      droneGain.gain.setValueAtTime(0.18, now);
+      droneGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.3);
+      drone.connect(droneGain);
+      droneGain.connect(audioCtx.destination);
+      drone.start(now);
+      drone.stop(now + 1.3);
+
+      // 2. Cosmic Crystal Resonance Whistle
+      const chime = audioCtx.createOscillator();
+      const chimeGain = audioCtx.createGain();
+      chime.type = 'sine';
+      chime.frequency.setValueAtTime(1900, now);
+      chime.frequency.exponentialRampToValueAtTime(440, now + 0.9);
+      chimeGain.gain.setValueAtTime(0.12, now);
+      chimeGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.9);
+      chime.connect(chimeGain);
+      chimeGain.connect(audioCtx.destination);
+      chime.start(now);
+      chime.stop(now + 0.9);
+
+      // 3. Planetary Impact Heavy Sub Rumble
+      const boom = audioCtx.createOscillator();
+      const boomGain = audioCtx.createGain();
+      boom.type = 'triangle';
+      boom.frequency.setValueAtTime(130, now + 0.3);
+      boom.frequency.linearRampToValueAtTime(24, now + 1.6);
+      boomGain.gain.setValueAtTime(0.2, now + 0.3);
+      boomGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.6);
+      boom.connect(boomGain);
+      boomGain.connect(audioCtx.destination);
+      boom.start(now + 0.3);
+      boom.stop(now + 1.6);
+    } catch (e) {}
+  }
+
   // Sharingan Evolution SVGs
   const stageTemplates = {
     1: `
@@ -333,6 +387,18 @@
         <circle cx="50" cy="50" r="12" fill="#040406"/>
         <circle cx="50" cy="50" r="4" fill="#c084fc"/>
       </g>
+    `,
+    6: `
+      <!-- Full Rinnegan Concentric Ripple Circles -->
+      <circle cx="50" cy="50" r="48" fill="#3b0764"/>
+      <circle cx="50" cy="50" r="40" fill="none" stroke="#c084fc" stroke-width="2.2"/>
+      <circle cx="50" cy="50" r="32" fill="none" stroke="#d8b4fe" stroke-width="2.2"/>
+      <circle cx="50" cy="50" r="24" fill="none" stroke="#c084fc" stroke-width="2.2"/>
+      <circle cx="50" cy="50" r="16" fill="none" stroke="#e9d5ff" stroke-width="2.2"/>
+      <circle cx="50" cy="50" r="8" fill="none" stroke="#c084fc" stroke-width="2"/>
+      <g class="sharingan-wheel">
+        <circle cx="50" cy="50" r="4.5" fill="#040406"/>
+      </g>
     `
   };
 
@@ -341,7 +407,8 @@
     2: 'STAGE II • 2-TOMOE',
     3: 'STAGE III • 3-TOMOE',
     4: 'STAGE IV • MANGEKYO',
-    5: 'STAGE V • SUSANOO FLAME'
+    5: 'STAGE V • SUSANOO FLAME',
+    6: 'STAGE VI • RINNEGAN SIX PATHS'
   };
 
   function setSharinganStage(stageNum) {
@@ -379,8 +446,20 @@
     });
   });
 
-  // Binocular Dual Eye Tracking Physics
+  // Tri-Ocular Eye Tracking Physics (Dual Sharingan + Forehead Rinnegan)
   function trackDualEyes(targetX, targetY) {
+    // Track Forehead Third Eye (Rinnegan)
+    if (irisRinnegan && rinneganPod) {
+      const rectM = rinneganPod.getBoundingClientRect();
+      const cXM = rectM.left + rectM.width / 2;
+      const cYM = rectM.top + rectM.height / 2;
+      const dxM = targetX - cXM;
+      const dyM = targetY - cYM;
+      const angleM = Math.atan2(dyM, dxM);
+      const distM = Math.min(Math.hypot(dxM, dyM) / 20, 8);
+      irisRinnegan.style.transform = `translate(calc(-50% + ${(Math.cos(angleM) * distM).toFixed(1)}px), calc(-50% + ${(Math.sin(angleM) * distM * 0.5).toFixed(1)}px))`;
+    }
+
     if (!irisLeft || !irisRight) return;
 
     // Track Left Eye
@@ -408,15 +487,17 @@
     }
   }
 
-  // Natural Synchronized Blinking
+  // Natural Synchronized Blinking (All 3 Eyes in Harmony)
   function scheduleBlink() {
     const delay = Math.random() * 2500 + 3500;
     setTimeout(() => {
       leftEyePod?.classList.add('blinking');
       rightEyePod?.classList.add('blinking');
+      rinneganPod?.classList.add('blinking');
       setTimeout(() => {
         leftEyePod?.classList.remove('blinking');
         rightEyePod?.classList.remove('blinking');
+        rinneganPod?.classList.remove('blinking');
         scheduleBlink();
       }, 160);
     }, delay);
@@ -521,6 +602,55 @@
     painHeadband.addEventListener('click', () => {
       playHeadbandClink();
       triggerShinraTensei();
+    });
+  }
+
+  // =========================================================================
+  // TENDO PAIN / NAGATO: CHIBAKU TENSEI (PLANETARY DEVASTATION)
+  // =========================================================================
+  const btnChibakuTensei = document.getElementById('btnChibakuTensei');
+
+  function triggerChibakuTensei() {
+    playChibakuAudio();
+
+    // Screen Violent Shake
+    document.body.classList.remove('shinra-shaking');
+    void document.body.offsetWidth;
+    document.body.classList.add('shinra-shaking');
+    setTimeout(() => {
+      document.body.classList.remove('shinra-shaking');
+    }, 900);
+
+    // Chibaku Singularity Overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'chibaku-overlay-container';
+    overlay.innerHTML = `
+      <div class="chibaku-core-sphere">
+        <div class="chibaku-accretion-ring"></div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    rinneganPod?.classList.add('active-jutsu');
+
+    setTimeout(() => {
+      overlay.remove();
+      rinneganPod?.classList.remove('active-jutsu');
+    }, 2400);
+
+    showToast('🪐 地爆天星 • CHIBAKU TENSEI! "My pain is far greater than yours... Planetary Devastation!"');
+  }
+
+  if (btnChibakuTensei) {
+    btnChibakuTensei.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerChibakuTensei();
+    });
+  }
+
+  if (rinneganPod) {
+    rinneganPod.addEventListener('click', () => {
+      triggerChibakuTensei();
     });
   }
 
@@ -830,6 +960,8 @@ Daftar perintah yang tersedia:
   • <span class="cmd-highlight">skills</span>     : Ringkasan tech stack & framework
   • <span class="cmd-highlight">contact</span>    : Detail WhatsApp, Email, & GitHub
   • <span class="cmd-highlight">shinra</span>     : Trigger Almighty Push (Shinra Tensei Shockwave)
+  • <span class="cmd-highlight">chibaku</span>    : Trigger Planetary Devastation (Chibaku Tensei Singularity)
+  • <span class="cmd-highlight">rinnegan</span>   : Awaken Sacred Rinnegan (Six Paths Stage VI)
   • <span class="cmd-highlight">pain</span>       : Informasi Tendo Pain Yahiko Six Paths chassis
   • <span class="cmd-highlight">sharingan</span>  : Aktifkan Itachi Mangekyou Tsukuyomi Mode
   • <span class="cmd-highlight">matrix</span>     : Trigger animasi digital rain Cyber Matrix
@@ -886,8 +1018,14 @@ GitHub     : https://github.com/wongsxs (30+ Repositories)
     if (cmd === 'shinra' || cmd === 'shinratensei') {
       triggerShinraTensei();
       res = '<span style="color:#ea580c;font-weight:bold;">[神羅天征 • SHINRA TENSEI ACTIVATED]</span><br>"Kono sekai ni itami o... Feel pain, contemplate pain, accept pain, know pain.<br>Those who do not know pain will never understand true peace.<br><strong style="color:#ff6b00;">ALMIGHTY PUSH!</strong>"<br>Gravitational shockwave dispatched across the sector.';
+    } else if (cmd === 'chibaku' || cmd === 'chibakutensei') {
+      triggerChibakuTensei();
+      res = '<span style="color:#c084fc;font-weight:bold;">[地爆天星 • CHIBAKU TENSEI ACTIVATED]</span><br>"My pain is far greater than yours... <strong style="color:#d8b4fe;">PLANETARY DEVASTATION!</strong>"<br>Gravitational black hole singularity formed. Terrestrial mass condensed into an orbital asteroid.';
+    } else if (cmd === 'rinnegan') {
+      setSharinganStage(6);
+      res = '<span style="color:#d8b4fe;font-weight:bold;">[RINNEGAN AWAKENED • SIX PATHS OCULAR POWER]</span><br>Concentric ripple circles awaken across all ocular sockets. Universal gravimetric mastery engaged.';
     } else if (cmd === 'pain' || cmd === 'yahiko' || cmd === 'tendo') {
-      res = '<span style="color:#ea580c;font-weight:bold;">[TENDO PAIN &bull; THE SIX PATHS OF DEVA]</span><br>&bull; Vessel   : Yahiko (Amegakure Rogue Shinobi)<br>&bull; Receiver : 6 Nose Bridge Chakra Rods, Dual Lip Studs, Chin Bar<br>&bull; Jutsu    : Shinra Tensei (Almighty Push), Bansho Ten\'in (Universal Pull), Chibaku Tensei<br>&bull; Ocular   : Synthesized with Itachi Uchiha\'s Dual Mangekyo Sharingan';
+      res = '<span style="color:#ea580c;font-weight:bold;">[TENDO PAIN &bull; THE SIX PATHS OF DEVA]</span><br>&bull; Vessel   : Yahiko (Amegakure Rogue Shinobi)<br>&bull; Receiver : 6 Nose Bridge Chakra Rods, Dual Lip Studs, Chin Bar, 14 Ear Rings<br>&bull; Jutsu    : Shinra Tensei (Almighty Push), Bansho Ten\'in (Universal Pull), Chibaku Tensei<br>&bull; Ocular   : Tri-Ocular Engine (Dual Itachi Mangekyo Sharingan + Forehead Sacred Rinnegan)';
     } else if (cmd === 'sharingan' || cmd === 'tsukuyomi') {
       triggerKarasuGenjutsu();
       res = tsukuyomiActive 
@@ -900,9 +1038,9 @@ GitHub     : https://github.com/wongsxs (30+ Repositories)
       spawnFlyingCrows();
       res = '<span style="color:#94a3b8;">[KARASU BUNSHIN]</span> Itachi\'s silhouette dissolves into a flurry of flying black crows.';
     } else if (cmd.startsWith('stage') || cmd === 'evolve') {
-      const nextStage = (currentStage % 5) + 1;
+      const nextStage = (currentStage % 6) + 1;
       setSharinganStage(nextStage);
-      res = `<span style="color:#ff0033;font-weight:bold;">[SHARINGAN EVOLVED]</span> Ocular state shifted to ${stageLabels[nextStage]}.`;
+      res = `<span style="color:#ff0033;font-weight:bold;">[OCULAR ENGINE EVOLVED]</span> State shifted to ${stageLabels[nextStage]}.`;
     }
 
     const entry = document.createElement('div');
