@@ -89,70 +89,410 @@
   });
 
   // =========================================================================
-  // 2. MAGNETIC CUSTOM CURSOR & ITACHI EYE TRACKING
+  // 2. ITACHI UCHIHA DUAL SHARINGAN OCULAR ENGINE & ANIME AUDIO SYNTHESIZER
   // =========================================================================
-  const cursorDot = document.getElementById('cursorDot');
-  const cursorRing = document.getElementById('cursorRing');
-  const itachiEyeWidget = document.getElementById('itachiEyeWidget');
-  const itachiIris = document.getElementById('itachiIris');
-  const genjutsuState = document.getElementById('genjutsuState');
+  const irisLeft = document.getElementById('irisLeft');
+  const irisRight = document.getElementById('irisRight');
+  const leftEyePod = document.getElementById('leftEyePod');
+  const rightEyePod = document.getElementById('rightEyePod');
+  const bloodTearDrop = document.getElementById('bloodTearDrop');
+  const currentStageLabel = document.getElementById('currentStageLabel');
+  const evoButtons = document.querySelectorAll('.evo-btn');
+  const svgLeftEye = document.getElementById('svgLeftEye');
+  const svgRightEye = document.getElementById('svgRightEye');
+  const crowCanvas = document.getElementById('crowCanvas');
+
+  let currentStage = 4; // Default Mangekyo
   let tsukuyomiActive = false;
+  let amaterasuActive = false;
 
-  function trackItachiEye(targetX, targetY) {
-    if (!itachiEyeWidget || !itachiIris) return;
-    const rect = itachiEyeWidget.getBoundingClientRect();
-    const eyeCenterX = rect.left + rect.width / 2;
-    const eyeCenterY = rect.top + rect.height / 2;
+  // Sound Synthesizer: Authentic Anime Sharingan Chime & Amaterasu Flame
+  function playSharinganChime() {
+    if (!soundEnabled) return;
+    try {
+      initAudio();
+      if (!audioCtx) return;
 
-    const dx = targetX - eyeCenterX;
-    const dy = targetY - eyeCenterY;
-    const angle = Math.atan2(dy, dx);
+      const now = audioCtx.currentTime;
 
-    const maxDist = 13;
-    const rawDist = Math.hypot(dx, dy);
-    const dist = Math.min(rawDist / 18, maxDist);
+      // Crystalline High Chime
+      const osc1 = audioCtx.createOscillator();
+      const gain1 = audioCtx.createGain();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(1760, now);
+      osc1.frequency.exponentialRampToValueAtTime(880, now + 0.6);
+      gain1.gain.setValueAtTime(0.06, now);
+      gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.6);
+      osc1.connect(gain1);
+      gain1.connect(audioCtx.destination);
+      osc1.start(now);
+      osc1.stop(now + 0.6);
 
-    const moveX = Math.cos(angle) * dist;
-    const moveY = Math.sin(angle) * (dist * 0.55); // Flattened for eye socket contour
+      // Resonant Harmonic Tone
+      const osc2 = audioCtx.createOscillator();
+      const gain2 = audioCtx.createGain();
+      osc2.type = 'triangle';
+      osc2.frequency.setValueAtTime(1320, now);
+      osc2.frequency.exponentialRampToValueAtTime(440, now + 0.8);
+      gain2.gain.setValueAtTime(0.04, now);
+      gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+      osc2.connect(gain2);
+      gain2.connect(audioCtx.destination);
+      osc2.start(now);
+      osc2.stop(now + 0.8);
 
-    itachiIris.style.transform = `translate(calc(-50% + ${moveX.toFixed(1)}px), calc(-50% + ${moveY.toFixed(1)}px))`;
+      // Deep Sub Rumble
+      const sub = audioCtx.createOscillator();
+      const subGain = audioCtx.createGain();
+      sub.type = 'sawtooth';
+      sub.frequency.setValueAtTime(140, now);
+      sub.frequency.exponentialRampToValueAtTime(45, now + 0.7);
+      subGain.gain.setValueAtTime(0.05, now);
+      subGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.7);
+      sub.connect(subGain);
+      subGain.connect(audioCtx.destination);
+      sub.start(now);
+      sub.stop(now + 0.7);
+    } catch (e) {}
   }
 
-  // Natural Blinking Cycle
+  function playAmaterasuIgnite() {
+    if (!soundEnabled) return;
+    try {
+      initAudio();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(90, now);
+      osc.frequency.exponentialRampToValueAtTime(280, now + 0.2);
+      osc.frequency.exponentialRampToValueAtTime(50, now + 0.8);
+
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.8);
+    } catch (e) {}
+  }
+
+  // Sharingan Evolution SVGs
+  const stageTemplates = {
+    1: `
+      <circle cx="50" cy="50" r="48" fill="#e11d48"/>
+      <circle cx="50" cy="50" r="34" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="2"/>
+      <g class="sharingan-wheel">
+        <!-- Center Pupil -->
+        <circle cx="50" cy="50" r="10" fill="#040406"/>
+        <!-- 1-Tomoe at top -->
+        <g transform="translate(50,22)">
+          <circle cx="0" cy="0" r="4.5" fill="#040406"/>
+          <path d="M0 -4.5 Q5 -10 6 -13 Q1 -8 -4 0 Z" fill="#040406"/>
+        </g>
+      </g>
+    `,
+    2: `
+      <circle cx="50" cy="50" r="48" fill="#e11d48"/>
+      <circle cx="50" cy="50" r="34" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="2"/>
+      <g class="sharingan-wheel">
+        <circle cx="50" cy="50" r="10" fill="#040406"/>
+        <!-- 2-Tomoe at 0deg and 180deg -->
+        <g transform="translate(50,20)">
+          <circle cx="0" cy="0" r="4.5" fill="#040406"/>
+          <path d="M0 -4.5 Q5 -10 6 -13 Q1 -8 -4 0 Z" fill="#040406"/>
+        </g>
+        <g transform="translate(50,80) rotate(180)">
+          <circle cx="0" cy="0" r="4.5" fill="#040406"/>
+          <path d="M0 -4.5 Q5 -10 6 -13 Q1 -8 -4 0 Z" fill="#040406"/>
+        </g>
+      </g>
+    `,
+    3: `
+      <circle cx="50" cy="50" r="48" fill="#e11d48"/>
+      <circle cx="50" cy="50" r="34" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="2"/>
+      <g class="sharingan-wheel">
+        <circle cx="50" cy="50" r="10" fill="#040406"/>
+        <!-- 3-Tomoe at 0deg, 120deg, 240deg -->
+        <g transform="translate(50,20)">
+          <circle cx="0" cy="0" r="4.5" fill="#040406"/>
+          <path d="M0 -4.5 Q5 -10 6 -13 Q1 -8 -4 0 Z" fill="#040406"/>
+        </g>
+        <g transform="rotate(120 50 50) translate(50,20)">
+          <circle cx="0" cy="0" r="4.5" fill="#040406"/>
+          <path d="M0 -4.5 Q5 -10 6 -13 Q1 -8 -4 0 Z" fill="#040406"/>
+        </g>
+        <g transform="rotate(240 50 50) translate(50,20)">
+          <circle cx="0" cy="0" r="4.5" fill="#040406"/>
+          <path d="M0 -4.5 Q5 -10 6 -13 Q1 -8 -4 0 Z" fill="#040406"/>
+        </g>
+      </g>
+    `,
+    4: `
+      <circle cx="50" cy="50" r="48" fill="#e11d48"/>
+      <circle cx="50" cy="50" r="34" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="2.5"/>
+      <g class="sharingan-wheel">
+        <!-- Itachi Mangekyou 3-Pinwheel Curved Scythe Blades -->
+        <path d="M50 50 Q66 18 50 2 Q36 22 50 50" fill="#040406"/>
+        <path d="M50 50 Q78 68 91 75 Q68 84 50 50" fill="#040406"/>
+        <path d="M50 50 Q22 68 9 75 Q32 84 50 50" fill="#040406"/>
+        <circle cx="50" cy="50" r="11" fill="#040406"/>
+        <circle cx="50" cy="50" r="3.5" fill="#e11d48"/>
+      </g>
+    `,
+    5: `
+      <!-- Susanoo Ethereal Flame Iris -->
+      <circle cx="50" cy="50" r="48" fill="#7928ca"/>
+      <circle cx="50" cy="50" r="48" fill="url(#susanooGrad)"/>
+      <defs>
+        <radialGradient id="susanooGrad">
+          <stop offset="30%" stop-color="#c084fc"/>
+          <stop offset="90%" stop-color="#4c1d95"/>
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="34" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5"/>
+      <g class="sharingan-wheel">
+        <path d="M50 50 Q66 18 50 2 Q36 22 50 50" fill="#040406"/>
+        <path d="M50 50 Q78 68 91 75 Q68 84 50 50" fill="#040406"/>
+        <path d="M50 50 Q22 68 9 75 Q32 84 50 50" fill="#040406"/>
+        <circle cx="50" cy="50" r="12" fill="#040406"/>
+        <circle cx="50" cy="50" r="4" fill="#c084fc"/>
+      </g>
+    `
+  };
+
+  const stageLabels = {
+    1: 'STAGE I • 1-TOMOE',
+    2: 'STAGE II • 2-TOMOE',
+    3: 'STAGE III • 3-TOMOE',
+    4: 'STAGE IV • MANGEKYO',
+    5: 'STAGE V • SUSANOO FLAME'
+  };
+
+  function setSharinganStage(stageNum) {
+    currentStage = stageNum;
+    if (svgLeftEye) svgLeftEye.innerHTML = stageTemplates[stageNum] || stageTemplates[4];
+    if (svgRightEye) svgRightEye.innerHTML = stageTemplates[stageNum] || stageTemplates[4];
+
+    if (currentStageLabel) {
+      currentStageLabel.textContent = stageLabels[stageNum] || stageLabels[4];
+    }
+
+    evoButtons.forEach((btn) => {
+      const s = parseInt(btn.getAttribute('data-stage') || '4', 10);
+      if (s === stageNum) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+
+    if (stageNum === 5) {
+      document.body.classList.add('susanoo-mode');
+      document.body.classList.remove('tsukuyomi-mode');
+    } else {
+      document.body.classList.remove('susanoo-mode');
+    }
+
+    playSharinganChime();
+  }
+
+  // Initialize Stage 4 (Mangekyo)
+  setSharinganStage(4);
+
+  evoButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const s = parseInt(btn.getAttribute('data-stage') || '4', 10);
+      setSharinganStage(s);
+    });
+  });
+
+  // Binocular Dual Eye Tracking Physics
+  function trackDualEyes(targetX, targetY) {
+    if (!irisLeft || !irisRight) return;
+
+    // Track Left Eye
+    const rectL = leftEyePod?.getBoundingClientRect();
+    if (rectL) {
+      const cXL = rectL.left + rectL.width / 2;
+      const cYL = rectL.top + rectL.height / 2;
+      const dxL = targetX - cXL;
+      const dyL = targetY - cYL;
+      const angleL = Math.atan2(dyL, dxL);
+      const distL = Math.min(Math.hypot(dxL, dyL) / 18, 12);
+      irisLeft.style.transform = `translate(calc(-50% + ${(Math.cos(angleL) * distL).toFixed(1)}px), calc(-50% + ${(Math.sin(angleL) * distL * 0.55).toFixed(1)}px))`;
+    }
+
+    // Track Right Eye (Parallax Stereo Offset)
+    const rectR = rightEyePod?.getBoundingClientRect();
+    if (rectR) {
+      const cXR = rectR.left + rectR.width / 2;
+      const cYR = rectR.top + rectR.height / 2;
+      const dxR = targetX - cXR;
+      const dyR = targetY - cYR;
+      const angleR = Math.atan2(dyR, dxR);
+      const distR = Math.min(Math.hypot(dxR, dyR) / 18, 12);
+      irisRight.style.transform = `translate(calc(-50% + ${(Math.cos(angleR) * distR).toFixed(1)}px), calc(-50% + ${(Math.sin(angleR) * distR * 0.55).toFixed(1)}px))`;
+    }
+  }
+
+  // Natural Synchronized Blinking
   function scheduleBlink() {
-    if (!itachiEyeWidget) return;
     const delay = Math.random() * 2500 + 3500;
     setTimeout(() => {
-      itachiEyeWidget.classList.add('blinking');
+      leftEyePod?.classList.add('blinking');
+      rightEyePod?.classList.add('blinking');
       setTimeout(() => {
-        itachiEyeWidget.classList.remove('blinking');
+        leftEyePod?.classList.remove('blinking');
+        rightEyePod?.classList.remove('blinking');
         scheduleBlink();
       }, 160);
     }, delay);
   }
   scheduleBlink();
 
-  function toggleTsukuyomi() {
+  // LEFT EYE: TSUKUYOMI & FLYING CROWS DISPERSION
+  function triggerKarasuGenjutsu() {
     tsukuyomiActive = !tsukuyomiActive;
+    leftEyePod?.classList.toggle('active-jutsu', tsukuyomiActive);
+
     if (tsukuyomiActive) {
       document.body.classList.add('tsukuyomi-mode');
-      itachiEyeWidget?.classList.add('tsukuyomi');
-      if (genjutsuState) genjutsuState.textContent = 'TSUKUYOMI ACTIVE';
-      playHapticSound(180, 'sawtooth', 0.28);
-      showToast('👁️ Tsukuyomi Activated: "You are already under my Genjutsu."');
+      playSharinganChime();
+      spawnFlyingCrows();
+      showToast('👁️ Tsukuyomi Activated: "You are already caught in my Genjutsu."');
     } else {
       document.body.classList.remove('tsukuyomi-mode');
-      itachiEyeWidget?.classList.remove('tsukuyomi');
-      if (genjutsuState) genjutsuState.textContent = 'GAZE ACTIVE';
-      playHapticSound(550, 'sine', 0.08);
       showToast('Genjutsu released.');
     }
   }
 
-  if (itachiEyeWidget) {
-    itachiEyeWidget.addEventListener('click', toggleTsukuyomi);
+  if (leftEyePod) {
+    leftEyePod.addEventListener('click', triggerKarasuGenjutsu);
   }
 
+  // RIGHT EYE: AMATERASU BLACK FLAME & BLOOD TEAR
+  function triggerAmaterasu() {
+    amaterasuActive = !amaterasuActive;
+    rightEyePod?.classList.toggle('active-jutsu', amaterasuActive);
+
+    if (amaterasuActive) {
+      bloodTearDrop?.classList.add('dripping');
+      playAmaterasuIgnite();
+      showToast('🔥 Amaterasu Ignited: The black flames that never extinguish.');
+
+      setTimeout(() => {
+        bloodTearDrop?.classList.remove('dripping');
+        amaterasuActive = false;
+        rightEyePod?.classList.remove('active-jutsu');
+      }, 4500);
+    }
+  }
+
+  if (rightEyePod) {
+    rightEyePod.addEventListener('click', triggerAmaterasu);
+  }
+
+  // FLOCK OF FLYING CROWS ENGINE (KARASU BUNSHIN CANVAS)
+  let crowAnimationRunning = false;
+  function spawnFlyingCrows() {
+    if (!crowCanvas) return;
+    crowCanvas.classList.remove('hidden');
+    crowAnimationRunning = true;
+
+    const cCtx = crowCanvas.getContext('2d');
+    const cWidth = (crowCanvas.width = window.innerWidth);
+    const cHeight = (crowCanvas.height = window.innerHeight);
+
+    // 20 Flying Crows starting near center and scattering outward
+    const crows = [];
+    const centerX = cWidth / 2;
+    const centerY = cHeight * 0.35;
+
+    for (let i = 0; i < 22; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 4 + 3.5;
+      crows.push({
+        x: centerX + (Math.random() - 0.5) * 60,
+        y: centerY + (Math.random() - 0.5) * 60,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 1.2, // upward drift
+        size: Math.random() * 8 + 10,
+        wingPhase: Math.random() * Math.PI * 2,
+        wingSpeed: Math.random() * 0.25 + 0.35,
+        opacity: 1
+      });
+    }
+
+    let frameCount = 0;
+    function renderCrows() {
+      if (!crowAnimationRunning) return;
+      cCtx.clearRect(0, 0, cWidth, cHeight);
+      frameCount++;
+
+      let aliveCount = 0;
+
+      for (let i = 0; i < crows.length; i++) {
+        const c = crows[i];
+        c.x += c.vx;
+        c.y += c.vy;
+        c.wingPhase += c.wingSpeed;
+
+        if (frameCount > 80) {
+          c.opacity -= 0.015;
+        }
+
+        if (c.opacity > 0) {
+          aliveCount++;
+          cCtx.save();
+          cCtx.globalAlpha = Math.max(0, c.opacity);
+          cCtx.translate(c.x, c.y);
+
+          // Rotate crow to flight vector
+          const heading = Math.atan2(c.vy, c.vx);
+          cCtx.rotate(heading);
+
+          // Draw Crow Silhouette with Flapping Wings
+          const wingSpread = Math.sin(c.wingPhase) * (c.size * 0.7);
+
+          cCtx.fillStyle = '#050508';
+          cCtx.beginPath();
+          // Body
+          cCtx.ellipse(0, 0, c.size, c.size * 0.35, 0, 0, Math.PI * 2);
+          cCtx.fill();
+
+          // Left Wing
+          cCtx.beginPath();
+          cCtx.moveTo(0, 0);
+          cCtx.quadraticCurveTo(-c.size * 0.4, -c.size - wingSpread, -c.size * 1.1, -c.size * 0.5 - wingSpread);
+          cCtx.lineTo(-c.size * 0.5, 0);
+          cCtx.fill();
+
+          // Right Wing
+          cCtx.beginPath();
+          cCtx.moveTo(0, 0);
+          cCtx.quadraticCurveTo(-c.size * 0.4, c.size + wingSpread, -c.size * 1.1, c.size * 0.5 + wingSpread);
+          cCtx.lineTo(-c.size * 0.5, 0);
+          cCtx.fill();
+
+          cCtx.restore();
+        }
+      }
+
+      if (aliveCount > 0 && frameCount < 160) {
+        requestAnimationFrame(renderCrows);
+      } else {
+        crowCanvas.classList.add('hidden');
+        crowAnimationRunning = false;
+      }
+    }
+
+    requestAnimationFrame(renderCrows);
+  }
+
+  // Cursor & Mousemove tracking
+  const cursorDot = document.getElementById('cursorDot');
+  const cursorRing = document.getElementById('cursorRing');
   let mouseX = -100;
   let mouseY = -100;
   let ringX = -100;
@@ -167,12 +507,12 @@
       cursorDot.style.top = `${mouseY}px`;
     }
 
-    trackItachiEye(mouseX, mouseY);
+    trackDualEyes(mouseX, mouseY);
   });
 
   window.addEventListener('touchmove', (e) => {
     if (e.touches && e.touches[0]) {
-      trackItachiEye(e.touches[0].clientX, e.touches[0].clientY);
+      trackDualEyes(e.touches[0].clientX, e.touches[0].clientY);
     }
   }, { passive: true });
 
@@ -411,10 +751,20 @@ GitHub     : https://github.com/wongsxs (30+ Repositories)
 
     let res = null;
     if (cmd === 'sharingan' || cmd === 'tsukuyomi') {
-      toggleTsukuyomi();
+      triggerKarasuGenjutsu();
       res = tsukuyomiActive 
-        ? '<span style="color:#ff0033;font-weight:bold;">[MANGEKYO SHARINGAN AWAKENED]</span> Tsukuyomi Genjutsu is now cast over the entire domain.'
+        ? '<span style="color:#ff0033;font-weight:bold;">[MANGEKYO SHARINGAN AWAKENED]</span> Tsukuyomi Genjutsu is cast. A flock of black crows disperses across the night sky.'
         : '<span style="color:#4ade80;">[SHARINGAN SEALED]</span> Returning to standard reality.';
+    } else if (cmd === 'amaterasu') {
+      triggerAmaterasu();
+      res = '<span style="color:#ff0033;font-weight:bold;">[AMATERASU IGNITED]</span> The inextinguishable black flames ignite from the right eye.';
+    } else if (cmd === 'crows' || cmd === 'karasu') {
+      spawnFlyingCrows();
+      res = '<span style="color:#94a3b8;">[KARASU BUNSHIN]</span> Itachi\'s silhouette dissolves into a flurry of flying black crows.';
+    } else if (cmd.startsWith('stage') || cmd === 'evolve') {
+      const nextStage = (currentStage % 5) + 1;
+      setSharinganStage(nextStage);
+      res = `<span style="color:#ff0033;font-weight:bold;">[SHARINGAN EVOLVED]</span> Ocular state shifted to ${stageLabels[nextStage]}.`;
     }
 
     const entry = document.createElement('div');

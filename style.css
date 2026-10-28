@@ -361,45 +361,134 @@ body.pro-dark {
 }
 
 /* ==========================================================================
-   ITACHI MANGEKYOU SHARINGAN EYE (INTERACTIVE EYE-TRACKER HUD)
+   ITACHI UCHIHA DUAL SHARINGAN HUD & OCULAR VISOR
    ========================================================================== */
-.itachi-eye-container {
+.itachi-shrine-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
-.itachi-eye-widget {
-  display: inline-flex;
+.itachi-visor-hud {
+  background: rgba(8, 8, 12, 0.9);
+  border: 1px solid rgba(225, 29, 72, 0.35);
+  border-radius: 20px;
+  padding: 14px 20px 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(225, 29, 72, 0.15);
+  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  user-select: none;
-  transition: transform var(--transition-smooth);
+  gap: 12px;
+  max-width: 380px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-.itachi-eye-widget:hover {
-  transform: scale(1.06);
+.itachi-visor-hud::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff0033, transparent);
+}
+
+.visor-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.clan-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hud-clan-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff0033;
+  box-shadow: 0 0 8px #ff0033;
+}
+
+.hud-clan-badge {
+  color: var(--text-secondary);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.hud-stage-badge {
+  color: #ff0033;
+  font-weight: 700;
+  background: rgba(225, 29, 72, 0.12);
+  border: 1px solid rgba(225, 29, 72, 0.3);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+
+/* Binocular Dual Eyes Layout */
+.dual-eyes-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+}
+
+.eye-pod {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform var(--transition-fast);
+  position: relative;
+}
+
+.eye-pod:hover {
+  transform: scale(1.04);
+}
+
+.eye-jutsu-tag {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.eye-pod:hover .eye-jutsu-tag {
+  color: #ff0033;
 }
 
 .eye-chassis {
-  width: 90px;
-  height: 52px;
+  width: 86px;
+  height: 48px;
   border-radius: 50px / 28px;
-  background: #050508;
+  background: #040407;
   border: 2px solid rgba(225, 29, 72, 0.45);
-  box-shadow: 0 0 24px rgba(225, 29, 72, 0.25), inset 0 0 14px rgba(0, 0, 0, 0.95);
+  box-shadow: 0 0 20px rgba(225, 29, 72, 0.2), inset 0 0 12px rgba(0, 0, 0, 0.95);
   position: relative;
   overflow: hidden;
   transition: all var(--transition-smooth);
 }
 
-.itachi-eye-widget:hover .eye-chassis,
-.itachi-eye-widget.tsukuyomi .eye-chassis {
+.eye-pod:hover .eye-chassis,
+.eye-pod.active-jutsu .eye-chassis {
   border-color: #ff0033;
-  box-shadow: 0 0 32px rgba(255, 0, 51, 0.6), inset 0 0 16px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 30px rgba(255, 0, 51, 0.6), inset 0 0 14px rgba(0, 0, 0, 0.9);
 }
 
 .eye-socket {
@@ -411,21 +500,21 @@ body.pro-dark {
 .eye-sclera {
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at 50% 50%, #1c1c28 0%, #07070a 100%);
+  background: radial-gradient(ellipse at 50% 50%, #1e1e2c 0%, #060609 100%);
   position: relative;
   overflow: hidden;
 }
 
 .itachi-iris {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 14px rgba(225, 29, 72, 0.7);
-  transition: transform 0.06s ease-out;
+  transition: transform 0.05s ease-out;
   pointer-events: none;
 }
 
@@ -438,13 +527,13 @@ body.pro-dark {
   pointer-events: none;
 }
 
-.mangekyou-svg {
+.sharingan-svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-.mangekyou-blades {
+.sharingan-wheel {
   transform-origin: 50px 50px;
   animation: mangekyouSpin 12s linear infinite;
   transition: filter 0.3s ease;
@@ -455,67 +544,172 @@ body.pro-dark {
   to { transform: rotate(360deg); }
 }
 
-.itachi-eye-widget:hover .mangekyou-blades,
-.itachi-eye-widget.tsukuyomi .mangekyou-blades {
-  animation-duration: 1.8s;
-  filter: drop-shadow(0 0 8px #ff0033);
+.eye-pod:hover .sharingan-wheel,
+.eye-pod.active-jutsu .sharingan-wheel {
+  animation-duration: 1.5s;
+  filter: drop-shadow(0 0 10px #ff0033);
 }
 
-/* Natural Eyelid Blinking */
+/* Center Uchiha Crest Bridge */
+.eye-bridge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.clan-fan-symbol {
+  width: 20px;
+  height: 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fan-top-white {
+  width: 20px;
+  height: 10px;
+  background: #ffffff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.fan-bottom-red {
+  width: 20px;
+  height: 10px;
+  background: #ff0033;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.fan-handle {
+  width: 3px;
+  height: 5px;
+  background: #ffffff;
+  margin-top: -1px;
+}
+
+.chakra-pulse-core {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ff0033;
+  box-shadow: 0 0 6px #ff0033;
+  animation: pulseAnim 2s infinite;
+}
+
+/* Amaterasu Blood Tear Drip */
+.blood-tear-drop {
+  position: absolute;
+  top: 100%;
+  right: 18px;
+  width: 3px;
+  height: 0px;
+  background: linear-gradient(180deg, #ff0033 0%, #000000 100%);
+  border-radius: 3px;
+  opacity: 0;
+  transition: height 0.6s ease-in, opacity 0.6s ease-in;
+  box-shadow: 0 0 8px rgba(255, 0, 51, 0.7);
+  pointer-events: none;
+}
+
+.blood-tear-drop.dripping {
+  height: 28px;
+  opacity: 1;
+}
+
+/* Eyelids Blinking */
 .eyelid {
   position: absolute;
   left: 0;
   right: 0;
   height: 50%;
-  background: #050508;
+  background: #040407;
   z-index: 10;
   transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.eyelid-top {
-  top: 0;
-  transform: translateY(-100%);
-}
+.eyelid-top { top: 0; transform: translateY(-100%); }
+.eyelid-bottom { bottom: 0; transform: translateY(100%); }
 
-.eyelid-bottom {
-  bottom: 0;
-  transform: translateY(100%);
-}
+.eye-pod.blinking .eyelid-top { transform: translateY(0); }
+.eye-pod.blinking .eyelid-bottom { transform: translateY(0); }
 
-.itachi-eye-widget.blinking .eyelid-top {
-  transform: translateY(0);
-}
-
-.itachi-eye-widget.blinking .eyelid-bottom {
-  transform: translateY(0);
-}
-
-/* Eye HUD Label */
-.eye-hud-label {
-  display: inline-flex;
+/* Evolution Selector Bar */
+.evolution-selector-bar {
+  display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.evo-label {
   font-family: var(--font-mono);
   font-size: 9.5px;
-  letter-spacing: 0.05em;
-  background: rgba(225, 29, 72, 0.08);
-  border: 1px solid rgba(225, 29, 72, 0.25);
-  padding: 2px 8px;
-  border-radius: var(--radius-pill);
-}
-
-.hud-tag {
-  color: #ff0033;
-  font-weight: 700;
-}
-
-.hud-status {
   color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
-.itachi-eye-widget.tsukuyomi .hud-status {
-  color: #ff0033;
-  font-weight: 700;
+.evo-buttons {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.evo-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 3px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.evo-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.evo-btn.active {
+  background: #ff0033;
+  color: #ffffff;
+  border-color: #ff0033;
+  box-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+}
+
+.evo-btn.susanoo-btn {
+  border-color: rgba(192, 132, 252, 0.4);
+}
+
+.evo-btn.susanoo-btn.active {
+  background: #c084fc;
+  color: #000;
+  border-color: #c084fc;
+  box-shadow: 0 0 12px rgba(192, 132, 252, 0.7);
+}
+
+/* Crow Canvas (Karasu Bunshin) */
+.crow-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99997;
+}
+
+.crow-canvas.hidden {
+  display: none;
 }
 
 /* Fullscreen Tsukuyomi Red Flash / Ambient Aura */
@@ -526,7 +720,17 @@ body.tsukuyomi-mode {
 }
 
 body.tsukuyomi-mode .ambient-radial-primary {
-  background: radial-gradient(ellipse at 50% 0%, rgba(255, 0, 51, 0.25) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 0, 51, 0.3) 0%, transparent 70%);
+}
+
+body.susanoo-mode {
+  --accent-cyan: #c084fc;
+  --accent-cyan-tint: rgba(192, 132, 252, 0.15);
+  --accent-cyan-glow: rgba(192, 132, 252, 0.5);
+}
+
+body.susanoo-mode .ambient-radial-primary {
+  background: radial-gradient(ellipse at 50% 0%, rgba(192, 132, 252, 0.28) 0%, transparent 70%);
 }
 
 .hero-badge-row {

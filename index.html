@@ -27,6 +27,9 @@
   <!-- MATRIX RAIN OVERLAY (EASTER EGG) -->
   <canvas id="matrixCanvas" class="matrix-canvas hidden" aria-hidden="true"></canvas>
 
+  <!-- ITACHI CROWS PARTICLES CANVAS (KARASU BUNSHIN) -->
+  <canvas id="crowCanvas" class="crow-canvas hidden" aria-hidden="true"></canvas>
+
   <!-- AMBIENT BACKGROUND GLOW -->
   <div class="ambient-radial-primary" aria-hidden="true"></div>
   <div class="ambient-radial-secondary" aria-hidden="true"></div>
@@ -106,43 +109,80 @@
     <section id="hero" class="hero-section">
       <div class="content-container">
         
-        <!-- ITACHI MANGEKYOU SHARINGAN INTERACTIVE EYE -->
-        <div class="itachi-eye-container">
-          <div id="itachiEyeWidget" class="itachi-eye-widget" title="Itachi Mangekyou Sharingan • Klik untuk aktifkan Tsukuyomi Mode">
-            <div class="eye-chassis">
-              <div class="eye-socket">
-                <div class="eye-sclera">
-                  <div id="itachiIris" class="itachi-iris">
-                    <div class="iris-glow-ring"></div>
-                    <svg class="mangekyou-svg" viewBox="0 0 100 100">
-                      <!-- Red Iris Base -->
-                      <circle cx="50" cy="50" r="48" fill="#e11d48"/>
-                      <circle cx="50" cy="50" r="34" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="2.5"/>
-                      
-                      <!-- Itachi Mangekyou 3-Pinwheel Curved Blades -->
-                      <g id="mangekyouBlades" class="mangekyou-blades">
-                        <!-- Blade 1 (Top) -->
-                        <path d="M50 50 Q66 18 50 2 Q36 22 50 50" fill="#040406"/>
-                        <!-- Blade 2 (Bottom-Right) -->
-                        <path d="M50 50 Q78 68 91 75 Q68 84 50 50" fill="#040406"/>
-                        <!-- Blade 3 (Bottom-Left) -->
-                        <path d="M50 50 Q22 68 9 75 Q32 84 50 50" fill="#040406"/>
-                        
-                        <!-- Center Pupil & Red Core -->
-                        <circle cx="50" cy="50" r="11" fill="#040406"/>
-                        <circle cx="50" cy="50" r="3.5" fill="#e11d48"/>
-                      </g>
-                    </svg>
+        <!-- ITACHI UCHIHA DUAL SHARINGAN HUD (INTERACTIVE BINOCULAR EYE-TRACKER) -->
+        <div class="itachi-shrine-container">
+          <div class="itachi-visor-hud" id="itachiVisorHud">
+            <div class="visor-top-bar">
+              <div class="clan-badge-group">
+                <span class="hud-clan-dot"></span>
+                <span class="hud-clan-badge">UCHIHA ITACHI &bull; OCULAR ENGINE</span>
+              </div>
+              <span id="currentStageLabel" class="hud-stage-badge">STAGE IV &bull; MANGEKYO</span>
+            </div>
+
+            <!-- Binocular Dual Eyes -->
+            <div class="dual-eyes-wrapper">
+              <!-- Left Eye (Tsukuyomi) -->
+              <div class="eye-pod left-eye" id="leftEyePod" title="Mata Kiri: Tsukuyomi • Klik untuk memicu Genjutsu Gagak Hitam">
+                <div class="eye-jutsu-tag">TSUKUYOMI</div>
+                <div class="eye-chassis">
+                  <div class="eye-socket">
+                    <div class="eye-sclera">
+                      <div class="itachi-iris iris-left" id="irisLeft">
+                        <div class="iris-glow-ring"></div>
+                        <svg class="sharingan-svg" viewBox="0 0 100 100" id="svgLeftEye">
+                          <!-- Injected & Updated by JS -->
+                        </svg>
+                      </div>
+                      <div class="eyelid eyelid-top"></div>
+                      <div class="eyelid eyelid-bottom"></div>
+                    </div>
                   </div>
-                  <!-- Eyelids for periodic blinking -->
-                  <div class="eyelid eyelid-top"></div>
-                  <div class="eyelid eyelid-bottom"></div>
+                </div>
+              </div>
+
+              <!-- Center Cyber Crest / Uchiha Emblem -->
+              <div class="eye-bridge">
+                <div class="clan-fan-symbol" title="Uchiha Clan Fan Crest">
+                  <div class="fan-top-white"></div>
+                  <div class="fan-bottom-red"></div>
+                  <div class="fan-handle"></div>
+                </div>
+                <div class="chakra-pulse-core" id="chakraPulseCore"></div>
+              </div>
+
+              <!-- Right Eye (Amaterasu) -->
+              <div class="eye-pod right-eye" id="rightEyePod" title="Mata Kanan: Amaterasu • Klik untuk memicu Api Hitam Abadi">
+                <div class="eye-jutsu-tag">AMATERASU</div>
+                <div class="eye-chassis">
+                  <div class="eye-socket">
+                    <div class="eye-sclera">
+                      <div class="itachi-iris iris-right" id="irisRight">
+                        <div class="iris-glow-ring"></div>
+                        <svg class="sharingan-svg" viewBox="0 0 100 100" id="svgRightEye">
+                          <!-- Injected & Updated by JS -->
+                        </svg>
+                      </div>
+                      <div class="eyelid eyelid-top"></div>
+                      <div class="eyelid eyelid-bottom"></div>
+                    </div>
+                  </div>
+                  <!-- Blood Tear Drip -->
+                  <div class="blood-tear-drop" id="bloodTearDrop"></div>
                 </div>
               </div>
             </div>
-            <div class="eye-hud-label">
-              <span class="hud-tag">MANGEKYO</span>
-              <span id="genjutsuState" class="hud-status">GAZE ACTIVE</span>
+
+            <!-- Sharingan Evolution Stage Selector -->
+            <div class="evolution-selector-bar">
+              <span class="evo-label">EVOLUTION:</span>
+              <div class="evo-buttons" id="evoButtonContainer">
+                <button class="evo-btn" data-stage="1" title="1-Tomoe Sharingan">1-Tomoe</button>
+                <button class="evo-btn" data-stage="2" title="2-Tomoe Sharingan">2-Tomoe</button>
+                <button class="evo-btn" data-stage="3" title="3-Tomoe Sharingan">3-Tomoe</button>
+                <button class="evo-btn active" data-stage="4" title="Itachi Mangekyou Sharingan">Mangekyo</button>
+                <button class="evo-btn susanoo-btn" data-stage="5" title="Susanoo Flame Mode">Susanoo</button>
+              </div>
             </div>
           </div>
         </div>
